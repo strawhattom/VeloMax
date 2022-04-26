@@ -82,7 +82,8 @@ CREATE TABLE IF NOT EXISTS fidelity_programs(
     label VARCHAR(255) NOT NULL,
     cost INT NOT NULL,
     duration INT NOT NULL,
-    discount INT NOT NULL CHECK(discount < 100) -- percentage
+    discount INT NOT NULL CHECK(discount < 100), -- percentage
+    PRIMARY KEY(id)
 );
 
 -- Ordered bikes
