@@ -53,13 +53,13 @@ CREATE TABLE IF NOT EXISTS bikes(
 DROP TABLE IF EXISTS parts;
 CREATE TABLE IF NOT EXISTS parts(
     id INT NOT NULL AUTO_INCREMENT,
-    supplier_name VARCHAR(255) NOT NULL,
     description VARCHAR(255) NOT NULL,
-    unit_price FLOAT NOT NULL,
+    unit_price FLOAT NULL,
     introduction_date DATE NOT NULL,
     discontinuation_date DATE NOT NULL,
-    procurement_delay INT NOT NULL,
-    quantity INT NOT NULL,
+    procurement_delay INT DEFAULT 0,
+    quantity INT NOT NULL DEFAULT 1,
+    type VARCHAR(255) NOT NULL,
     PRIMARY KEY(id)
 );
 
