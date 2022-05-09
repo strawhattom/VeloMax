@@ -1,6 +1,6 @@
 namespace VeloMax.Models
 {
-     public class FidelityProgram
+    public class FidelityProgram
     {
         public string Label { get; set ;}
         public int Cost { get ; set;}

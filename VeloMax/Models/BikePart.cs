@@ -2,7 +2,7 @@ using System;
 
 namespace VeloMax.Models
 {
-     public class BikePart
+    public class BikePart
     {
         public int PartId { get; set; }
         public int BikeId { get; set; }

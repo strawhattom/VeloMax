@@ -2,7 +2,7 @@ using System;
 
 namespace VeloMax.Models
 {
-     public class Bike
+    public class Bike
     {
         public string Name { get; set;}
         public string Target { get; set; }

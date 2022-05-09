@@ -18,7 +18,7 @@ namespace VeloMax.Models
         public int OrderCount { get; set; }
         public bool Member { get; set; }
 
-        public Client(string type, string company = null, string lastName = null, string firstName = null, string street, string city, string postalCode, string province, string phone, string mail, int fidelityProgram = 0, int member = 0, int orderCount = 0){
+        public Client(string type, string company = null, string lastName = null, string firstName = null, string street, string city, string postalCode, string province, string phone, string mail, int fidelityProgram = 0, bool member = 0, int orderCount = 0){
             this.Type = type;
             this.CompanyName = company;
             this.LastName = lastName;
