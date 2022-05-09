@@ -6,7 +6,7 @@ namespace VeloMax.Models
         public int Cost { get ; set;}
         public int Duration { get; set;}
         public int Discount { get; set;} //TO CHECK
-    }
+    
 
     public FidelityProgram(string label, int cost, int duration, int discount)
     {
@@ -14,5 +14,6 @@ namespace VeloMax.Models
         this.Cost = cost;
         this.Duration = duration;
         this.Discount = discount;
+    }
     }
 }

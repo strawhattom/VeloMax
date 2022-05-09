@@ -14,7 +14,7 @@ namespace VeloMax.Models
         public Part(string supplier_name, string description, float unit_price, DateTime introduction_date, 
         DateTime discontinuation_date, int procurement_delay, int quantity)
         {
-            this.Supplier_name = supplier_name;
+            this.SupplierName = supplier_name;
             this.Description = description;
             this.UnitPrice = unit_price;
             this.DiscontinuationDate = discontinuation_date;
