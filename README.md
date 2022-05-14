@@ -4,7 +4,7 @@ BDD et interopérabilité Avril 2022 – A3
 
 ## Clone repository
 
-````bash
+```bash
 git clone https://github.com/nami10/VeloMax && cd ./VeloMax
 ```
 
