@@ -11,16 +11,18 @@
         <AvaloniaResource Include="Assets\**" />
         <None Remove=".gitignore" />
     </ItemGroup>
+<!--    <ItemGroup>-->
+<!--        <TrimmableAssembly Include="Avalonia.Themes.Fluent" />-->
+<!--        <TrimmableAssembly Include="Avalonia.Themes.Default" />-->
+<!--    </ItemGroup>-->
     <ItemGroup>
-        <TrimmableAssembly Include="Avalonia.Themes.Fluent" />
-        <TrimmableAssembly Include="Avalonia.Themes.Default" />
-    </ItemGroup>
-    <ItemGroup>
-        <PackageReference Include="Avalonia" Version="0.10.13" />
-        <PackageReference Include="Avalonia.Desktop" Version="0.10.13" />
-        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="0.10.13" />
-        <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.13" />
-        <PackageReference Include="XamlNameReferenceGenerator" Version="1.3.4" />
+        <PackageReference Include="Avalonia" Version="*" />
+        <PackageReference Include="Avalonia.Desktop" Version="*" />
+<!--        <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="*" />-->
+        <PackageReference Include="Avalonia.ReactiveUI" Version="*" />
+        <PackageReference Include="Avalonia.Xaml.Interactivity" Version="*" />
+        <PackageReference Include="MaterialDesign.Avalonia.PackIcon" Version="*" />
+<!--        <PackageReference Include="XamlNameReferenceGenerator" Version="*" />-->
     </ItemGroup>
     <ItemGroup>
       <AvaloniaXaml Remove="Assets\MenuItemButtonStyle.axaml" />

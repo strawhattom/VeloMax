@@ -3,20 +3,27 @@
         xmlns:vm="using:VeloMax.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="880" d:DesignHeight="560"
+        xmlns:material="clr-namespace:MaterialDesign.Avalonia.PackIcon;assembly=MaterialDesign.Avalonia.PackIcon"
+        xmlns:i="using:Avalonia.Xaml.Interactivity"
+        xmlns:controls="clr-namespace:VeloMax.Controls"
         x:Class="VeloMax.Views.MainWindow"
         Icon="/Assets/velomax-logo.ico"
-        Title="VeloMax">
+        Title="VeloMax"
+        WindowStartupLocation="CenterScreen"
+        CanResize="False"
+        Width="880"
+        Height="560">
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
     <Panel Name="Main">
+        
         <Border Background="white"
                 CornerRadius="20">
-            <Grid>
-                
+            
+            <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                 <!-- Grid definition -->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200"/>
@@ -38,50 +45,52 @@
                            Margin="20 0 0 0"
                 />
                 
-                <!-- Sidebar -->
+                <!-- Sidebar 
+                Kind : Icon name
+                Command : Click handler (MainWindowsViewModel)-->
                 <StackPanel Grid.Row="1" Grid.Column="0">
-                    <RadioButton
+                    <controls:MenuItemButton
                         Content="Dashboard"
                         Classes="MenuItem"
                         IsChecked="True"
-                        Command="{Binding DashboardClicked}"
-                    />
+                        Kind="ViewDashboard"
+                        Command="{Binding DashboardButtonClicked}"/>
                     
-                    <RadioButton
+                    <controls:MenuItemButton
                         Content="Bike and part"
                         Classes="MenuItem"
-                        Command="{Binding BikePartClicked}"
-                    />
+                        Kind="BikeBasket"
+                        Command="{Binding BikePartButtonClicked}"/>
                     
-                    <RadioButton
+                    <controls:MenuItemButton
                         Content="Client"
                         Classes="MenuItem"
-                        Command="{Binding ClientClicked}"
-                    />
+                        Kind="User"
+                        Command="{Binding ClientButtonClicked}"/>
                     
-                    <RadioButton
+                    <controls:MenuItemButton
                         Content="Supplier"
                         Classes="MenuItem"
-                        Command="{Binding SupplierClicked}"
-                    />
+                        Kind="BagPersonal"
+                        Command="{Binding SupplierButtonClicked}"/>
                     
-                    <RadioButton
+                    <controls:MenuItemButton
                         Content="Order"
                         Classes="MenuItem"
-                        Command="{Binding OrderClicked}"
-                    />
+                        Kind="Check"
+                        Command="{Binding OrderButtonClicked}"/>
                     
-                    <RadioButton
+                    <controls:MenuItemButton
                         Content="Stock"
+                        Kind="Wrench"
                         Classes="MenuItem"
-                        Command="{Binding StockClicked}"
-                    />
+                        Command="{Binding StockButtonClicked}"/>
                     
-                    <RadioButton
+                    <controls:MenuItemButton
                         Content="Other"
+                        Kind="DotsHorizontal"
                         Classes="MenuItem"
-                        Command="{Binding OtherClicked}"
-                    />
+                        Command="{Binding OtherButtonClicked}"/>
                 </StackPanel>
                 
                 <!-- Search box -->
@@ -98,23 +107,17 @@
                     
                     
                 </TextBox>
-                
-                <!-- <TextBlock Grid.Row="0" Grid.Column="1" -->
-                <!--            Text="{Binding SearchContent}"/> -->
 
-                <!-- Right panel -->
-                <ContentControl
-                    Grid.Column="1"
-                    Grid.Row="1"
+                <!-- Right panel 
+                Content : Panel handler-->
+                <ContentControl 
+                    Grid.Column="1" 
+                    Grid.Row="1" 
                     Grid.ColumnSpan="2"
                     Content="{Binding NavigationContent}"
                     Margin="5" />
 
             </Grid>
-            
-            
         </Border>
     </Panel>
-        
-
 </Window>

@@ -1,7 +1,7 @@
-﻿using System;
+﻿// using System;
 using System.Windows.Input;
-using Avalonia.Controls;
-using Avalonia.Input;
+// using Avalonia.Controls;
+// using Avalonia.Input;
 using ReactiveUI;
 
 namespace VeloMax.ViewModels
@@ -10,19 +10,14 @@ namespace VeloMax.ViewModels
     {
         private ViewModelBase _navigationContent = new DashboardViewModel();
         // private string _searchText = "";
-        public ICommand DashboardClicked { get; }
+        public ICommand DashboardButtonClicked { get; }
+        public ICommand BikePartButtonClicked { get; }
+        public ICommand ClientButtonClicked { get; }
+        public ICommand OrderButtonClicked { get; }
+        public ICommand OtherButtonClicked { get; }
+        public ICommand StockButtonClicked { get; }
+        public ICommand SupplierButtonClicked { get; }
 
-        public ICommand BikePartClicked { get; }
-
-        public ICommand ClientClicked { get; }
-
-        public ICommand OrderClicked { get; }
-
-        public ICommand OtherClicked { get; }
-
-        public ICommand SupplierClicked { get; }
-
-        public ICommand StockClicked { get; }
         
         // public ICommand SearchInput { get; }
         
@@ -41,47 +36,47 @@ namespace VeloMax.ViewModels
         // Constructor
         public MainWindowViewModel()
         {
-            this.DashboardClicked = ReactiveCommand.Create(this.OnDashboardClicked);
-            this.BikePartClicked = ReactiveCommand.Create(() => { NavigationContent = new BikePartViewModel();});
-            this.ClientClicked = ReactiveCommand.Create(this.OnClientClicked);
-            this.OrderClicked = ReactiveCommand.Create(this.OnOrderClicked);
-            this.OtherClicked = ReactiveCommand.Create(this.OnOtherClicked);
-            this.StockClicked = ReactiveCommand.Create(this.OnStockClicked);
-            this.SupplierClicked = ReactiveCommand.Create(this.OnSupplierClicked);
+            this.DashboardButtonClicked = ReactiveCommand.Create(this.OnDashboardButtonClicked);
+            this.BikePartButtonClicked = ReactiveCommand.Create(this.OnBikePartButtonClicked);
+            this.ClientButtonClicked = ReactiveCommand.Create(this.OnClientButtonClicked);
+            this.OrderButtonClicked = ReactiveCommand.Create(this.OnOrderButtonClicked);
+            this.OtherButtonClicked = ReactiveCommand.Create(this.OnOtherButtonClicked);
+            this.StockButtonClicked = ReactiveCommand.Create(this.OnStockButtonClicked);
+            this.SupplierButtonClicked = ReactiveCommand.Create(this.OnSupplierButtonClicked);
 
         }
 
-        private void OnDashboardClicked()
+        private void OnDashboardButtonClicked()
         {
             this.NavigationContent = new DashboardViewModel();
         }
 
-        // private void OnBikePartClicked()
-        // {
-        //     this.NavigationContent = new BikePartViewModel();
-        // }
+        private void OnBikePartButtonClicked()
+        {
+            this.NavigationContent = new BikePartViewModel();
+        }
 
-        private void OnClientClicked()
+        private void OnClientButtonClicked()
         {
             this.NavigationContent = new ClientViewModel();
         }
 
-        private void OnOrderClicked()
+        private void OnOrderButtonClicked()
         {
             this.NavigationContent = new OrderViewModel();
         }
 
-        private void OnOtherClicked()
+        private void OnOtherButtonClicked()
         {
             this.NavigationContent = new OtherViewModel();
         }
 
-        private void OnStockClicked()
+        private void OnStockButtonClicked()
         {
             this.NavigationContent = new StockViewModel();
         }
 
-        private void OnSupplierClicked()
+        private void OnSupplierButtonClicked()
         {
             this.NavigationContent = new SupplierViewModel();
         }
