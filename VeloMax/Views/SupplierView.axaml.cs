@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace VeloMax.Views
 {
-    public partial class Dashboard : UserControl
+    public partial class SupplierView : UserControl
     {
-        public Dashboard()
+        public SupplierView()
         {
             InitializeComponent();
         }

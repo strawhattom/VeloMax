@@ -40,6 +40,7 @@
                         Content="Dashboard"
                         Classes="MenuItem"
                         IsChecked="True"
+                        Command="{Binding DashboardClicked}"
                     />
                     
                     <ToggleButton
@@ -72,6 +73,14 @@
                         Classes="MenuItem"
                     />
                 </StackPanel>
+
+                <ContentControl
+                    Grid.Column="1"
+                    Grid.Row="1"
+                    Grid.ColumnSpan="2"
+                    Content="{Binding NavigationContent}"
+                    Margin="5" />
+
             </Grid>
             
             
