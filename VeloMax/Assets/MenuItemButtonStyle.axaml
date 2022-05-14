@@ -1,7 +1,6 @@
 <Styles 
   xmlns="https://github.com/avaloniaui"
-  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-  xmlns:material="clr-namespace:MaterialDesign.Avalonia.PackIcon;assembly=MaterialDesign.Avalonia.PackIcon">
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
   <Style Selector="ToggleButton.MenuItem">
     <Style.Setters>
@@ -12,11 +11,6 @@
               Name="PART_ContentPresenter"
               Orientation="Horizontal"
               Height="50">
-
-              <material:PackIcon
-                Kind="{Binding Kind, RelativeSource={RelativeSource TemplatedParent}}"
-                VerticalAlignment="Center"
-                Margin="20 0 0 0" />
 
               <ContentPresenter
                   Background="{TemplateBinding Background}"

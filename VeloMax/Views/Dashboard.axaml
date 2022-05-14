@@ -1,0 +1,115 @@
+﻿<UserControl 
+  xmlns="https://github.com/avaloniaui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  x:Class="VeloMax.Views.Dashboard">
+  
+  <StackPanel>
+    <TextBlock 
+      Text="Dashboard"
+      Foreground="#1A1826"
+      FontSize="28"
+      HorizontalAlignment="Left"
+      Margin="0 0 0 20" />
+    
+    <!-- Upper panels -->
+    <StackPanel Orientation="Horizontal">
+      
+      <!-- Bike and part -->
+      <Border Width="400" Height="200" CornerRadius="10">
+        <Border.Background>
+          <LinearGradientBrush StartPoint="0,0" EndPoint="100,200">
+            <GradientStop Color="#96CDFB" Offset="0.0" />
+            <GradientStop Color="#B5E8E0" Offset="1.0" />
+          </LinearGradientBrush>
+        </Border.Background>
+        
+        <TextBlock
+          Text="Bike and part"
+          Foreground="White"
+          VerticalAlignment="Bottom"
+          HorizontalAlignment="Left"
+          Margin="10 0 0 10"/>
+      </Border>
+      
+      <!-- Client -->
+      <Border Width="200" Height="200" CornerRadius="10" Margin="45 0 0 0">
+        <Border.Background>
+          <LinearGradientBrush StartPoint="0,0" EndPoint="100,200">
+            <GradientStop Color="#FAE3B0" Offset="0.0" />
+            <GradientStop Color="#F8BD96" Offset="1.0" />
+          </LinearGradientBrush>
+        </Border.Background>
+        
+        <TextBlock
+          Text="Client"
+          Foreground="White"
+          VerticalAlignment="Bottom"
+          HorizontalAlignment="Left"
+          Margin="10 0 0 10"/>
+      </Border>
+    </StackPanel>
+    <!-- End upper panels -->
+    
+    <!-- Lower panels -->
+    <StackPanel>
+
+      <StackPanel.Styles>
+        <Style Selector="Border">
+          <Setter Property="Margin" Value="15 0 0 0" />
+        </Style>
+      </StackPanel.Styles>
+
+      <TextBlock 
+        Text="Section"
+        Foreground="#1A1826"
+        FontSize="20"
+        HorizontalAlignment="Left"
+        Margin="0 10 0 10" />
+
+        <StackPanel Orientation="Horizontal">
+          
+          <!-- Supplier -->
+          <Border Width="150" Height="150" Background="#DDB6F2" CornerRadius="10" Margin="0">
+            <TextBlock
+              Text="Supplier"
+              Foreground="White"
+              VerticalAlignment="Bottom"
+              HorizontalAlignment="Left"
+              Margin="5 0 0 5"/>
+          </Border>
+
+          <!-- Order -->
+          <Border Width="150" Height="150" Background="#89DCEB" CornerRadius="10">
+            <TextBlock
+              Text="Order"
+              Foreground="White"
+              VerticalAlignment="Bottom"
+              HorizontalAlignment="Left"
+              Margin="5 0 0 5"/>
+          </Border>
+
+          <!-- Stock -->
+          <Border Width="150" Height="150" Background="#ABE9B3" CornerRadius="10">
+            <TextBlock
+              Text="Stock"
+              Foreground="White"
+              VerticalAlignment="Bottom"
+              HorizontalAlignment="Left"
+              Margin="5 0 0 5"/> 
+          </Border>
+
+          <!-- Other -->
+          <Border Width="150" Height="150" Background="#FAE3B0" CornerRadius="10">
+            <TextBlock
+              Text="Other"
+              Foreground="White"
+              VerticalAlignment="Bottom"
+              HorizontalAlignment="Left"
+              Margin="5 0 0 5"/> 
+          </Border>
+        </StackPanel>
+    </StackPanel>
+    <!-- End lower panels -->
+    
+  </StackPanel>
+</UserControl>

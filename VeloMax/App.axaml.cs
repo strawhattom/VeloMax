@@ -6,7 +6,7 @@ using VeloMax.Views;
 
 namespace VeloMax
 {
-    public partial class App : Application
+    public class App : Application
     {
         public override void Initialize()
         {

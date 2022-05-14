@@ -3,11 +3,9 @@
         xmlns:vm="using:VeloMax.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:material="clr-namespace:MaterialDesign.Avalonia.PackIcon;assembly=MaterialDesign.Avalonia.PackIcon"
-        xmlns:controls="clr-namespace:VeloMax.Controls"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="VeloMax.Views.MainWindow"
-        Icon="/Assets/avalonia-logo.ico"
+        Icon="/Assets/velomax-icon.ico"
         Title="VeloMax"
         Width="880"
         Height="560">
@@ -17,15 +15,6 @@
     </Design.DataContext>
 
      <Panel Name="MainPanel">
-        <!-- <Experimentalacrylicborder IsHitTestVisible="False">
-            <ExperimentalAcrylicBorder.Material>
-                <ExperimentalAcrylicMaterial 
-                    BackgroundSource="Digger"
-                    TintColor="#96CDFB"
-                    TintOpacity="1"
-                    MaterialOpacity="0.65" />
-            </ExperimentalAcrylicBorder.Material>
-        </ExperimentalAcrylicBorder> -->
         
         <Border Background="White">
             <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ShowGridLines="True">
@@ -52,50 +41,45 @@
                     Foreground="#161320" />
 
                 <StackPanel Grid.Column="0" Grid.Row="1">
-                    <controls:MenuItemButton 
+                    <RadioButton
                         Content="Home"
-                        Kind="ViewDashboard"
                         Classes="MenuItem"
                         IsChecked="True"
-                        Command="{Binding}" />
+                        Command="{Binding}"
+                        />
                     
-                    <controls:MenuItemButton
+                    <RadioButton
                         Content="Bike and part"
-                        Kind="BikeBasket"
                         Classes="MenuItem"
                         Command="{Binding}"
                         />
                     
-                    <controls:MenuItemButton 
+                    <RadioButton
                         Content="Client"
-                        Kind="User"
                         Classes="MenuItem"
-                        Command="{Binding}" />
+                        Command="{Binding}"
+                        />
                     
-                    <controls:MenuItemButton
+                    <RadioButton
                         Content = "Supplier"
-                        Kind="BagPersonal"
                         Classes="MenuItem"
                         Command="{Binding}"
                         />
                     
-                    <controls:MenuItemButton
+                    <RadioButton
                         Content = "Order"
-                        Kind="ViewList"
                         Classes="MenuItem"
                         Command="{Binding}"
                         />
                     
-                    <controls:MenuItemButton
+                    <RadioButton
                         Content = "Stock"
-                        Kind="Wrench"
                         Classes="MenuItem"
                         Command="{Binding}"
                         />
                     
-                    <controls:MenuItemButton
+                    <RadioButton
                         Content = "Other"
-                        Kind="DotsHorizontal"
                         Classes="MenuItem"
                         Command="{Binding}"
                         />

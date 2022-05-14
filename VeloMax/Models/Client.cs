@@ -25,6 +25,7 @@ namespace VeloMax.Models
             this.FirstName = firstName;
             this.Street = street;
             this.City = city;
+            this.Province = province;
             this.PostalCode = postalCode;
             this.Phone = phone;
             this.Mail = mail;
