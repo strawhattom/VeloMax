@@ -20,7 +20,8 @@
                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                 Padding="{TemplateBinding Padding}"
                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" 
+                                Margin="20,0,0,0"/>
                         </StackPanel>
                     </ControlTemplate>
                 </Setter.Value>
@@ -31,13 +32,13 @@
             <Setter Property="VerticalContentAlignment" Value="Center" />
             <Setter Property="HorizontalContentAlignment" Value="Left" />
             <Setter Property="Background" Value="Transparent" />
-            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Foreground" Value="#000000" />
             <Setter Property="BorderThickness" Value="0" />
         </Style.Setters>
     </Style>
 
     <Style Selector="ToggleButton.MenuItem:checked /template/ StackPanel#PART_ContentPresenter">
-        <Setter Property="Background" Value="#22202f" />
+        <Setter Property="Background" Value="#F2CDCD" />
     </Style>
 
     <Style Selector="ToggleButton.MenuItem:unchecked /template/ StackPanel#PART_ContentPresenter">
