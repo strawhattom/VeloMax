@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
+using Avalonia.Controls;
+using Avalonia.Input;
 using ReactiveUI;
 
 namespace VeloMax.ViewModels
@@ -9,6 +9,7 @@ namespace VeloMax.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         private ViewModelBase _navigationContent = new DashboardViewModel();
+        // private string _searchText = "";
         public ICommand DashboardClicked { get; }
 
         public ICommand BikePartClicked { get; }
@@ -22,22 +23,32 @@ namespace VeloMax.ViewModels
         public ICommand SupplierClicked { get; }
 
         public ICommand StockClicked { get; }
-
-        public ViewModelBase NavigationContent
-        {
+        
+        // public ICommand SearchInput { get; }
+        
+        public ViewModelBase NavigationContent 
+        { 
             get => this._navigationContent;
             set => this.RaiseAndSetIfChanged(ref this._navigationContent, value);
         }
 
+        // public string SearchContent
+        // {
+        //     get => this._searchText;
+        //     set => this.RaiseAndSetIfChanged(ref _searchText, value);
+        // }
+
+        // Constructor
         public MainWindowViewModel()
         {
             this.DashboardClicked = ReactiveCommand.Create(this.OnDashboardClicked);
-            this.BikePartClicked = ReactiveCommand.Create(this.OnBikePartClicked);
+            this.BikePartClicked = ReactiveCommand.Create(() => { NavigationContent = new BikePartViewModel();});
             this.ClientClicked = ReactiveCommand.Create(this.OnClientClicked);
             this.OrderClicked = ReactiveCommand.Create(this.OnOrderClicked);
             this.OtherClicked = ReactiveCommand.Create(this.OnOtherClicked);
             this.StockClicked = ReactiveCommand.Create(this.OnStockClicked);
             this.SupplierClicked = ReactiveCommand.Create(this.OnSupplierClicked);
+
         }
 
         private void OnDashboardClicked()
@@ -45,10 +56,10 @@ namespace VeloMax.ViewModels
             this.NavigationContent = new DashboardViewModel();
         }
 
-        private void OnBikePartClicked()
-        {
-            this.NavigationContent = new BikePartViewModel();
-        }
+        // private void OnBikePartClicked()
+        // {
+        //     this.NavigationContent = new BikePartViewModel();
+        // }
 
         private void OnClientClicked()
         {
@@ -74,5 +85,6 @@ namespace VeloMax.ViewModels
         {
             this.NavigationContent = new SupplierViewModel();
         }
+
     }
 }

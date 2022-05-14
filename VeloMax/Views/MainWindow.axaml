@@ -3,7 +3,7 @@
         xmlns:vm="using:VeloMax.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="890" d:DesignHeight="560"
+        mc:Ignorable="d" d:DesignWidth="880" d:DesignHeight="560"
         x:Class="VeloMax.Views.MainWindow"
         Icon="/Assets/velomax-logo.ico"
         Title="VeloMax">
@@ -16,6 +16,8 @@
         <Border Background="white"
                 CornerRadius="20">
             <Grid>
+                
+                <!-- Grid definition -->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200"/>
                     <ColumnDefinition Width="*"/>
@@ -26,6 +28,7 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 
+                <!-- Title -->
                 <TextBlock Grid.Row="0" Grid.Column="0"
                            Text = "VeloMax"
                            HorizontalAlignment="Left"
@@ -35,45 +38,71 @@
                            Margin="20 0 0 0"
                 />
                 
+                <!-- Sidebar -->
                 <StackPanel Grid.Row="1" Grid.Column="0">
-                    <ToggleButton
+                    <RadioButton
                         Content="Dashboard"
                         Classes="MenuItem"
                         IsChecked="True"
                         Command="{Binding DashboardClicked}"
                     />
                     
-                    <ToggleButton
+                    <RadioButton
                         Content="Bike and part"
                         Classes="MenuItem"
+                        Command="{Binding BikePartClicked}"
                     />
                     
-                    <ToggleButton
+                    <RadioButton
                         Content="Client"
                         Classes="MenuItem"
+                        Command="{Binding ClientClicked}"
                     />
                     
-                    <ToggleButton
+                    <RadioButton
                         Content="Supplier"
                         Classes="MenuItem"
+                        Command="{Binding SupplierClicked}"
                     />
                     
-                    <ToggleButton
+                    <RadioButton
                         Content="Order"
                         Classes="MenuItem"
+                        Command="{Binding OrderClicked}"
                     />
                     
-                    <ToggleButton
+                    <RadioButton
                         Content="Stock"
                         Classes="MenuItem"
+                        Command="{Binding StockClicked}"
                     />
                     
-                    <ToggleButton
+                    <RadioButton
                         Content="Other"
                         Classes="MenuItem"
+                        Command="{Binding OtherClicked}"
                     />
                 </StackPanel>
+                
+                <!-- Search box -->
+                <TextBox 
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"
+                    Watermark="Search..."
+                    Width="200"
+                    Height="40"
+                    Classes="SearchTextBox"
+                    Margin="5">
+                    
+                    
+                </TextBox>
+                
+                <!-- <TextBlock Grid.Row="0" Grid.Column="1" -->
+                <!--            Text="{Binding SearchContent}"/> -->
 
+                <!-- Right panel -->
                 <ContentControl
                     Grid.Column="1"
                     Grid.Row="1"

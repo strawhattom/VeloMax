@@ -1,0 +1,35 @@
+﻿<Styles 
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    >
+
+    <Style Selector="TextBox.SearchTextBox /template/ Border#PART_BorderElement">
+        <Setter Property="CornerRadius" Value="10"/>
+    </Style>
+
+    <Style Selector="TextBox.SearchTextBox /template/ TextBlock#PART_Watermark">
+        <Setter Property="Foreground" Value="#302D41"/>
+        <Setter Property="Margin" Value="3 2 0 0" />
+    </Style>
+
+    <Style Selector="TextBox.SearchTextBox /template/ DockPanel#PART_InnerDockPanel">
+        <Setter Property="Margin" Value="5 8 0 0" />
+    </Style>
+
+    <!-- Searchbox hover -->
+    <Style Selector="TextBox.SearchTextBox:pointerover /template/ Border#PART_BorderElement">
+        <Setter Property="BorderBrush" Value="#F2CDCD"/>
+        <Setter Property="Background" Value="White" />
+    </Style>
+
+    <!-- Searchbox focus -->
+    <Style Selector="TextBox.SearchTextBox:focus /template/ Border#PART_BorderElement">
+        <Setter Property="Background" Value="White" />
+    </Style>
+
+    <Style Selector="TextBox.SearchTextBox:focus">
+        <Setter Property="Foreground" Value="#302D41" />
+        <Setter Property="CaretBrush" Value="#F2CDCD" />
+    </Style>
+
+</Styles>
