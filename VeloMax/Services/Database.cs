@@ -97,5 +97,38 @@ namespace VeloMax.Services
 
             return Clients;
         }
+
+
+        public List<Part> GetParts()
+        {
+            List<Part> Parts = new List<Part>();
+
+            if (this.DbConnection())
+            {
+                string StringQuery = "SELECT * FROM Parts";
+                MySqlDataReader Reader = Query(Connection, StringQuery);
+
+                string description, type;
+                double unit_price;
+                int procurement_delay, quantity;
+                DateTime discontinuation_date, introduction_date;
+
+                while (Reader.Read())
+                {
+                    description = Reader.GetValue(1).ToString();
+                    unit_price = Double.Parse(Reader.GetValue(2).ToString());
+                    introduction_date = DateTime.Parse(Reader.GetValue(3).ToString());
+                    discontinuation_date = DateTime.Parse(Reader.GetValue(4).ToString());
+                    procurement_delay = Int32.Parse(Reader.GetValue(5).ToString());
+                    quantity = Int32.Parse(Reader.GetValue(6).ToString());
+                    type = Reader.GetValue(7).ToString();
+                    Parts.Add(new Part(description, unit_price, introduction_date, discontinuation_date, procurement_delay, quantity, type));
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+            return Parts;
+        }
     }
 }

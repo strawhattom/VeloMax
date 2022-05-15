@@ -19,9 +19,6 @@ namespace VeloMax.ViewModels
         public ICommand StockButtonClicked { get; }
         public ICommand SupplierButtonClicked { get; }
 
-        public ClientViewModel Client { get; }
-
-        public Database Db { get; }
         
         // public ICommand SearchInput { get; }
         
@@ -40,7 +37,6 @@ namespace VeloMax.ViewModels
         // Constructor
         public MainWindowViewModel(Database db)
         {
-            Client = new ClientViewModel(db.GetClients());
             Db = db;
             DashboardButtonClicked = ReactiveCommand.Create(OnDashboardButtonClicked);
             BikePartButtonClicked = ReactiveCommand.Create(OnBikePartButtonClicked);
@@ -58,7 +54,7 @@ namespace VeloMax.ViewModels
 
         private void OnBikePartButtonClicked()
         {
-            this.NavigationContent = new BikePartViewModel();
+            this.NavigationContent = new BikePartViewModel(Db.GetParts());
         }
 
         private void OnClientButtonClicked()

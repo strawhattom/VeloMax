@@ -1,15 +1,16 @@
 using System;
-using System.Diagnostics;
 using System.Collections.Generic;
-using System.Text;
+using System.Collections.ObjectModel;
+using VeloMax.Models;
 
 namespace VeloMax.ViewModels
 {
     public class BikePartViewModel : ViewModelBase
     {
-        public BikePartViewModel()
+        public ObservableCollection<Part> Parts { get; }
+        public BikePartViewModel(List<Part> p)
         {
-            Debug.WriteLine("Bike and part");
+            Parts = new ObservableCollection<Part>(p);     
         }
     }
 }

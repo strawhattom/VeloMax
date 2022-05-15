@@ -3,13 +3,33 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Class="VeloMax.Views.BikePartView">
-
-    <TextBlock 
+    xmlns:vm="clr-namespace:VeloMax.ViewModels"
+	x:Class="VeloMax.Views.BikePartView"
+	>
+	<StackPanel>
+		<Design.DataContext>
+			<vm:BikePartViewModel/>
+		</Design.DataContext>
+		
+		<TextBlock
         Text="Bike and part"
         Foreground="#000000"
         FontSize="28"
         HorizontalAlignment="Left"
         Margin="0,0,0,20"/>
+		<Grid>
+			<DataGrid Items="{Binding Parts}">
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
+					<DataGridTextColumn Header="Unit price" Binding="{Binding UnitPrice}"/>
+					<DataGridTextColumn Header="Procurement delay" Binding="{Binding ProcurementDelay}"/>
+					<DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
+					<DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
+				</DataGrid.Columns>
+			</DataGrid>
+			
+		</Grid>
+
+	</StackPanel>
 
 </UserControl>
