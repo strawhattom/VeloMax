@@ -51,7 +51,6 @@
                 <StackPanel Grid.Row="1" Grid.Column="0">
                     <controls:MenuItemButton
                         Content="Dashboard"
-                        Classes="MenuItem"
                         IsChecked="True"
                         Kind="ViewDashboard"
                         Command="{Binding DashboardButtonClicked}"/>

@@ -1,6 +1,8 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:VeloMax"
+			 xmlns:viewModel="clr-namespace:VeloMax.ViewModels"
+			 xmlns:view="clr-namespace:VeloMax.Views"
              x:Class="VeloMax.App">
     <Application.DataTemplates>
         <local:ViewLocator/>
@@ -10,7 +12,8 @@
         <FluentTheme Mode="Light"/>
         
         <StyleInclude Source="avares://MaterialDesign.Avalonia.PackIcon/Assets/Generic.xaml" />
-
+		<!-- DataGrid theme -->
+		<StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
         <StyleInclude Source="/Assets/MenuButtonStyle.axaml" />
         <StyleInclude Source="/Assets/SearchBoxStyle.axaml" />
     </Application.Styles>

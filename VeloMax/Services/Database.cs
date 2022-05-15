@@ -8,7 +8,7 @@ namespace VeloMax.Services
 {
     public class Database
     {
-        private string StringConnection = "database=VeloMax;server=localhost;uid=root;pwd=toor;";
+        private string StringConnection = "database=VeloMax;server=localhost;uid=root;pwd=;";
         private MySqlConnection Connection;
 
         public Database()
@@ -76,23 +76,20 @@ namespace VeloMax.Services
 
                 while (Reader.Read())
                 {
-                    for (int i = 0; i < Reader.FieldCount; i++)
-                    {
-                        Type = Reader.GetValue(0).ToString();
-                        CompanyName = Reader.GetValue(1).ToString();
-                        LastName = Reader.GetValue(2).ToString();
-                        FirstName = Reader.GetValue(3).ToString();
-                        Street = Reader.GetValue(4).ToString();
-                        City = Reader.GetValue(5).ToString();
-                        PostalCode = Reader.GetValue(6).ToString();
-                        Province = Reader.GetValue(7).ToString();
-                        Phone = Reader.GetValue(8).ToString();
-                        Mail = Reader.GetValue(9).ToString();
-                        FidelityProgram = Int32.Parse(Reader.GetValue(10).ToString());
-                        OrderCount = Int32.Parse(Reader.GetValue(11).ToString());
-                        Member = Boolean.Parse(Reader.GetValue(12).ToString());
-                        Clients.Add(new Client(Type, CompanyName, LastName, FirstName, Street, City, PostalCode, Province, Phone, Mail, FidelityProgram, Member, OrderCount));
-                    }
+                    Type = Reader.GetValue(1).ToString();
+                    CompanyName = Reader.GetValue(2).ToString();
+                    LastName = Reader.GetValue(3).ToString();
+                    FirstName = Reader.GetValue(4).ToString();
+                    Street = Reader.GetValue(5).ToString();
+                    City = Reader.GetValue(6).ToString();
+                    PostalCode = Reader.GetValue(7).ToString();
+                    Province = Reader.GetValue(8).ToString();
+                    Phone = Reader.GetValue(9).ToString();
+                    Mail = Reader.GetValue(10).ToString();
+                    FidelityProgram = Int32.Parse(Reader.GetValue(11).ToString());
+                    Member = Boolean.Parse(Reader.GetValue(12).ToString());
+                    OrderCount = Int32.Parse(Reader.GetValue(13).ToString());
+                    Clients.Add(new Client(Type, CompanyName, LastName, FirstName, Street, City, PostalCode, Province, Phone, Mail, FidelityProgram, Member, OrderCount));
                 }
                 Reader.Close();
                 Connection.Close();

@@ -1,5 +1,8 @@
 ﻿// using System;
 using System.Windows.Input;
+using System.Collections.Generic;
+using VeloMax.Services;
+using VeloMax.Models;
 using ReactiveUI;
 
 namespace VeloMax.ViewModels
@@ -16,6 +19,9 @@ namespace VeloMax.ViewModels
         public ICommand StockButtonClicked { get; }
         public ICommand SupplierButtonClicked { get; }
 
+        public ClientViewModel Client { get; }
+
+        public Database Db { get; }
         
         // public ICommand SearchInput { get; }
         
@@ -32,15 +38,17 @@ namespace VeloMax.ViewModels
         // }
 
         // Constructor
-        public MainWindowViewModel()
+        public MainWindowViewModel(Database db)
         {
-            this.DashboardButtonClicked = ReactiveCommand.Create(this.OnDashboardButtonClicked);
-            this.BikePartButtonClicked = ReactiveCommand.Create(this.OnBikePartButtonClicked);
-            this.ClientButtonClicked = ReactiveCommand.Create(this.OnClientButtonClicked);
-            this.OrderButtonClicked = ReactiveCommand.Create(this.OnOrderButtonClicked);
-            this.OtherButtonClicked = ReactiveCommand.Create(this.OnOtherButtonClicked);
-            this.StockButtonClicked = ReactiveCommand.Create(this.OnStockButtonClicked);
-            this.SupplierButtonClicked = ReactiveCommand.Create(this.OnSupplierButtonClicked);
+            Client = new ClientViewModel(db.GetClients());
+            Db = db;
+            DashboardButtonClicked = ReactiveCommand.Create(OnDashboardButtonClicked);
+            BikePartButtonClicked = ReactiveCommand.Create(OnBikePartButtonClicked);
+            ClientButtonClicked = ReactiveCommand.Create(OnClientButtonClicked);
+            OrderButtonClicked = ReactiveCommand.Create(OnOrderButtonClicked);
+            OtherButtonClicked = ReactiveCommand.Create(OnOtherButtonClicked);
+            StockButtonClicked = ReactiveCommand.Create(OnStockButtonClicked);
+            SupplierButtonClicked = ReactiveCommand.Create(OnSupplierButtonClicked);
         }
 
         private void OnDashboardButtonClicked()
@@ -55,7 +63,7 @@ namespace VeloMax.ViewModels
 
         private void OnClientButtonClicked()
         {
-            this.NavigationContent = new ClientViewModel();
+            this.NavigationContent = new ClientViewModel(Db.GetClients());
         }
 
         private void OnOrderButtonClicked()

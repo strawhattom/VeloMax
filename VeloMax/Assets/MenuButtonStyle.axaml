@@ -3,7 +3,7 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:material="clr-namespace:MaterialDesign.Avalonia.PackIcon;assembly=MaterialDesign.Avalonia.PackIcon">
 
-  <Style Selector="ToggleButton.MenuItem">
+  <Style Selector="ToggleButton">
     <Style.Setters>
       <Setter Property="Template">
         <Setter.Value>
@@ -42,11 +42,11 @@
     </Style.Setters>
   </Style>
 
-  <Style Selector="ToggleButton.MenuItem:checked /template/ StackPanel#PART_ContentPresenter">
+  <Style Selector="ToggleButton:checked /template/ StackPanel#PART_ContentPresenter">
     <Setter Property="Background" Value="#F2CDCD" />
   </Style>
 
-  <Style Selector="ToggleButton.MenuItem:unchecked /template/ StackPanel#PART_ContentPresenter">
+  <Style Selector="ToggleButton:unchecked /template/ StackPanel#PART_ContentPresenter">
     <Setter Property="Background" Value="Transparent" />
   </Style>
 

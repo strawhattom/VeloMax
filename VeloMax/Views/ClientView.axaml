@@ -3,13 +3,32 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    x:Class="VeloMax.Views.ClientView">
-
-    <TextBlock 
+	xmlns:vm="clr-namespace:VeloMax.ViewModels"
+	x:Class="VeloMax.Views.ClientView"
+	>
+	<StackPanel>
+		<Design.DataContext>
+			<vm:ClientViewModel/>
+		</Design.DataContext>
+		<TextBlock
         Text="Client"
         Foreground="#000000"
         FontSize="28"
         HorizontalAlignment="Left"
         Margin="0,0,0,20"/>
+		<Grid>
+			<DataGrid Items="{Binding Clients}">
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
+					<DataGridTextColumn Header="Company Name" Binding="{Binding CompanyName}"/>
+					<DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
+					<DataGridTextColumn Header="Street" Binding="{Binding Street}"/>
+					<DataGridTextColumn Header="Mail" Binding="{Binding Mail}"/>
+				</DataGrid.Columns>
+			</DataGrid>
+		</Grid>
+		
+	</StackPanel>
+    
 
 </UserControl>
