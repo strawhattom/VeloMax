@@ -3,13 +3,10 @@
         <OutputType>WinExe</OutputType>
         <TargetFramework>net6.0</TargetFramework>
         <Nullable>enable</Nullable>
-        <TrimMode>copyused</TrimMode>
-        <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
     </PropertyGroup>
     <ItemGroup>
         <Folder Include="Models\" />
         <AvaloniaResource Include="Assets\**" />
-        <None Remove=".gitignore" />
     </ItemGroup>
 <!--    <ItemGroup>-->
 <!--        <TrimmableAssembly Include="Avalonia.Themes.Fluent" />-->
@@ -22,9 +19,7 @@
         <PackageReference Include="Avalonia.ReactiveUI" Version="*" />
         <PackageReference Include="Avalonia.Xaml.Interactivity" Version="*" />
         <PackageReference Include="MaterialDesign.Avalonia.PackIcon" Version="*" />
+        <PackageReference Include="MySql.Data" Version="8.0.29" />
 <!--        <PackageReference Include="XamlNameReferenceGenerator" Version="*" />-->
-    </ItemGroup>
-    <ItemGroup>
-      <AvaloniaXaml Remove="Assets\MenuItemButtonStyle.axaml" />
     </ItemGroup>
 </Project>

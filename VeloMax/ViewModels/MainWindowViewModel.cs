@@ -1,7 +1,5 @@
 ﻿// using System;
 using System.Windows.Input;
-// using Avalonia.Controls;
-// using Avalonia.Input;
 using ReactiveUI;
 
 namespace VeloMax.ViewModels
@@ -43,7 +41,6 @@ namespace VeloMax.ViewModels
             this.OtherButtonClicked = ReactiveCommand.Create(this.OnOtherButtonClicked);
             this.StockButtonClicked = ReactiveCommand.Create(this.OnStockButtonClicked);
             this.SupplierButtonClicked = ReactiveCommand.Create(this.OnSupplierButtonClicked);
-
         }
 
         private void OnDashboardButtonClicked()

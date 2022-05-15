@@ -104,8 +104,7 @@
                     Height="40"
                     Classes="SearchTextBox"
                     Margin="5">
-                    
-                    
+
                 </TextBox>
 
                 <!-- Right panel 
