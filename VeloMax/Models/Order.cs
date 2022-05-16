@@ -11,6 +11,10 @@ namespace VeloMax.Models
 
         public Order(DateTime orderDate, string shippingAdress, string shippingDate, int quantity)
         {
+            if (shippingAdress is null || shippingDate is null)
+            {
+                System.Environment.Exit(0);
+            }
             this.OrderDate = orderDate;
             this.ShippingAdress = shippingAdress;
             this.ShippinDate = shippingDate;

@@ -3,9 +3,9 @@ namespace VeloMax.Models
      public class Client
     {
         public string Type { get; set; } //ENUM
-        public string CompanyName { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
+        public string? CompanyName { get; set; }
+        public string? LastName { get; set; }
+        public string? FirstName { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
         public string PostalCode { get; set; }
@@ -19,6 +19,13 @@ namespace VeloMax.Models
         public bool Member { get; set; }
 
         public Client(string type, string company, string lastName, string firstName, string street, string city, string postalCode, string province, string phone, string mail, int fidelityProgram = 0, bool member = false, int orderCount = 0){
+
+            // if not null args are null
+            if (type is null || street is null || city is null || postalCode is null || province is null || phone is null || mail is null)
+            {
+                System.Environment.Exit(0);
+            }
+
             this.Type = type;
             this.CompanyName = company;
             this.LastName = lastName;

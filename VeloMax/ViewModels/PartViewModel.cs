@@ -5,10 +5,10 @@ using VeloMax.Models;
 
 namespace VeloMax.ViewModels
 {
-    public class BikePartViewModel : ViewModelBase
+    public class PartViewModel : ViewModelBase
     {
         public ObservableCollection<Part> Parts { get; }
-        public BikePartViewModel(List<Part> p)
+        public PartViewModel(List<Part> p)
         {
             Parts = new ObservableCollection<Part>(p);     
         }

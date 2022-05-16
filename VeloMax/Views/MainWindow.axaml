@@ -11,8 +11,8 @@
         Title="VeloMax"
         WindowStartupLocation="CenterScreen"
         CanResize="False"
-        Width="880"
-        Height="560">
+        Width="900"
+        Height="700">
 
     <Design.DataContext>
         <vm:MainWindowViewModel/>
@@ -56,10 +56,16 @@
                         Command="{Binding DashboardButtonClicked}"/>
                     
                     <controls:MenuItemButton
-                        Content="Bike and part"
+                        Content="Bike"
                         Classes="MenuItem"
                         Kind="BikeBasket"
-                        Command="{Binding BikePartButtonClicked}"/>
+                        Command="{Binding BikeButtonClicked}"/>
+
+                    <controls:MenuItemButton
+                        Content="Part"
+                        Classes="MenuItem"
+                        Kind="BikeBasket"
+                        Command="{Binding PartButtonClicked}"/>
                     
                     <controls:MenuItemButton
                         Content="Client"

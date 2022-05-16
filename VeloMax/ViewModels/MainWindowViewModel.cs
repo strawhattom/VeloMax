@@ -13,7 +13,8 @@ namespace VeloMax.ViewModels
         private Database Db { get; set; }
         // private string _searchText = "";
         public ICommand DashboardButtonClicked { get; }
-        public ICommand BikePartButtonClicked { get; }
+        public ICommand BikeButtonClicked { get; }
+        public ICommand PartButtonClicked { get; }
         public ICommand ClientButtonClicked { get; }
         public ICommand OrderButtonClicked { get; }
         public ICommand OtherButtonClicked { get; }
@@ -40,12 +41,13 @@ namespace VeloMax.ViewModels
         {
             Db = db;
             DashboardButtonClicked = ReactiveCommand.Create(OnDashboardButtonClicked);
-            BikePartButtonClicked = ReactiveCommand.Create(OnBikePartButtonClicked);
+            BikeButtonClicked = ReactiveCommand.Create(OnBikeButtonClicked);
+            PartButtonClicked = ReactiveCommand.Create(OnPartButtonClicked);
             ClientButtonClicked = ReactiveCommand.Create(OnClientButtonClicked);
             OrderButtonClicked = ReactiveCommand.Create(OnOrderButtonClicked);
             OtherButtonClicked = ReactiveCommand.Create(OnOtherButtonClicked);
             StockButtonClicked = ReactiveCommand.Create(OnStockButtonClicked);
-            SupplierButtonClicked = ReactiveCommand.Create(OnSupplierButtonClicked);
+            SupplierButtonClicked = ReactiveCommand.Create(OnSupplierButtonClicked); 
         }
 
         private void OnDashboardButtonClicked()
@@ -53,9 +55,14 @@ namespace VeloMax.ViewModels
             this.NavigationContent = new DashboardViewModel();
         }
 
-        private void OnBikePartButtonClicked()
+        private void OnBikeButtonClicked()
         {
-            this.NavigationContent = new BikePartViewModel(Db.GetParts());
+            this.NavigationContent = new BikeViewModel(Db.GetBikes());
+        }
+
+        private void OnPartButtonClicked()
+        {
+            this.NavigationContent = new PartViewModel(Db.GetParts());
         }
 
         private void OnClientButtonClicked()

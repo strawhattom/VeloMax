@@ -1,0 +1,35 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:VeloMax.ViewModels"
+	x:Class="VeloMax.Views.BikeView"
+	>
+	<StackPanel>
+		<Design.DataContext>
+			<vm:BikeViewModel/>
+		</Design.DataContext>
+		
+		<TextBlock
+        Text="Bike"
+        Foreground="#000000"
+        FontSize="28"
+        HorizontalAlignment="Left"
+        Margin="0,0,0,20"/>
+		<Grid>
+			<DataGrid Items="{Binding Bikes}">
+				<DataGrid.Columns>
+					<DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+					<DataGridTextColumn Header="Target" Binding="{Binding Target}"/>
+					<DataGridTextColumn Header="Price" Binding="{Binding UnitPrice}"/>
+					<DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
+					<DataGridTextColumn Header="Introduced" Binding="{Binding IntroducedDate}"/>
+				</DataGrid.Columns>
+			</DataGrid>
+			
+		</Grid>
+
+	</StackPanel>
+
+</UserControl>

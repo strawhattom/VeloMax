@@ -15,7 +15,7 @@
     <StackPanel Orientation="Horizontal">
       
       <!-- Bike and part -->
-      <Border Width="400" Height="200" CornerRadius="10">
+      <Border Width="400" Height="300" CornerRadius="10">
         <Border.Background>
           <LinearGradientBrush StartPoint="0,0" EndPoint="100,200">
             <GradientStop Color="#96CDFB" Offset="0.0" />
@@ -32,7 +32,7 @@
       </Border>
       
       <!-- Client -->
-      <Border Width="200" Height="200" CornerRadius="10" Margin="45 0 0 0">
+      <Border Width="200" Height="300" CornerRadius="10" Margin="45 0 0 0">
         <Border.Background>
           <LinearGradientBrush StartPoint="0,0" EndPoint="100,200">
             <GradientStop Color="#FAE3B0" Offset="0.0" />
@@ -64,7 +64,7 @@
         Foreground="#1A1826"
         FontSize="20"
         HorizontalAlignment="Left"
-        Margin="0 10 0 10" />
+        Margin="0 40 0 10" />
 
         <StackPanel Orientation="Horizontal">
           

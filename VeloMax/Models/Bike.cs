@@ -13,6 +13,11 @@ namespace VeloMax.Models
 
         public Bike(string name, string target, double unitPrice, string type, DateTime iDate, DateTime dDate)
         {
+            // if args are null
+            if (name is null || target is null || unitPrice is double.NaN || type is null)
+            {
+                System.Environment.Exit(0);
+            }
             this.Name = name;
             this.Target = target;
             this.UnitPrice = unitPrice;
