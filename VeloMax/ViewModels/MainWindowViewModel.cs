@@ -72,7 +72,7 @@ namespace VeloMax.ViewModels
 
         private void OnOrderButtonClicked()
         {
-            this.NavigationContent = new OrderViewModel();
+            this.NavigationContent = new OrderViewModel(Db.GetOrders());
         }
 
         private void OnOtherButtonClicked()
@@ -87,7 +87,7 @@ namespace VeloMax.ViewModels
 
         private void OnSupplierButtonClicked()
         {
-            this.NavigationContent = new SupplierViewModel();
+            this.NavigationContent = new SupplierViewModel(Db.GetSuppliers());
         }
 
     }
