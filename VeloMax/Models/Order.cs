@@ -6,13 +6,13 @@ namespace VeloMax.Models
     {
         public DateTime OrderDate { get; set;}
         public string ShippingAdress { get; set; }
-        public string ShippinDate { get; set; }
+        public DateTime ShippinDate { get; set; }
         public int Quantity { get; set; }
         public int Id {get; set;}
 
-        public Order(int id, DateTime orderDate, string shippingAdress, string shippingDate, int quantity)
+        public Order(int id, DateTime orderDate, string shippingAdress, DateTime shippingDate, int quantity)
         {
-            if (shippingAdress is null || shippingDate is null)
+            if (shippingAdress is null)
             {
                 System.Environment.Exit(0);
             }

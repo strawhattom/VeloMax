@@ -72,12 +72,12 @@ namespace VeloMax.Services
 
                 string Type, Street, City, PostalCode, Province, Phone, Mail;
                 string? CompanyName, LastName, FirstName;
-                int FidelityProgram, OrderCount;id;
+                int FidelityProgram, OrderCount, Id;
                 Boolean Member;
 
                 while (Reader.Read())
                 {
-                    id = Reader.GetInt32(0);
+                    Id = Reader.GetInt32(0);
                     Type = Reader.GetString(1);
                     CompanyName = Reader.GetString(2);
                     LastName = Reader.GetString(3);
@@ -91,7 +91,7 @@ namespace VeloMax.Services
                     FidelityProgram = Reader.GetInt32(11);
                     Member = Reader.GetBoolean(12);
                     OrderCount = Reader.GetInt32(13);
-                    Clients.Add(new Client(id,Type, CompanyName, LastName, FirstName, Street, City, PostalCode, Province, Phone, Mail, FidelityProgram, Member, OrderCount));
+                    Clients.Add(new Client(Id,Type, CompanyName, LastName, FirstName, Street, City, PostalCode, Province, Phone, Mail, FidelityProgram, Member, OrderCount));
                 }
                 Reader.Close();
                 Connection.Close();
@@ -112,12 +112,12 @@ namespace VeloMax.Services
 
                 string description, type;
                 double unit_price;
-                int procurement_delay, quantity;id;
+                int procurement_delay, quantity, Id;
                 DateTime discontinuation_date, introduction_date;
 
                 while (Reader.Read())
                 {
-                    id = Reader.GetInt32(0);
+                    Id = Reader.GetInt32(0);
                     description = Reader.GetString(1);
                     unit_price = Reader.GetDouble(2);
                     introduction_date = Reader.GetDateTime(3);
@@ -130,7 +130,7 @@ namespace VeloMax.Services
                     {
                         System.Environment.Exit(0);
                     }
-                    Parts.Add(new Part(id,description, unit_price, introduction_date, discontinuation_date, procurement_delay, quantity, type));
+                    Parts.Add(new Part(Id,description, unit_price, introduction_date, discontinuation_date, procurement_delay, quantity, type));
                 }
                 Reader.Close();
                 Connection.Close();
@@ -155,7 +155,7 @@ namespace VeloMax.Services
 
                 while (Reader.Read())
                 {
-                    id = Reader.GetInt32(0)
+                    id = Reader.GetInt32(0);
                     name = Reader.GetString(1);
                     target = Reader.GetString(2);
                     unit_price = Reader.GetDouble(3);
@@ -170,5 +170,208 @@ namespace VeloMax.Services
 
             return Bikes;
         }
+
+        public List<Order> GetOrders()
+        {
+            List<Order> Orders = new List<Order>();
+
+            if (this.DbConnection())
+            {
+                string StringQuery = "SELECT * FROM Orders";
+                MySqlDataReader Reader = Query(Connection, StringQuery);
+
+                int id, quantity;
+                DateTime order_date, shipping_date;
+                string shipping_adresse;
+
+
+                while (Reader.Read())
+                {
+                    id = Reader.GetInt32(0);
+                    order_date = Reader.GetDateTime(1);
+                    shipping_adresse = Reader.GetString(2);
+                    shipping_date = Reader.GetDateTime(3);
+                    quantity = Reader.GetInt32(4);
+
+                    Orders.Add(new Order(id, order_date, shipping_adresse, shipping_date, quantity));
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+           return Orders; 
+        }
+
+        public List<Supplier> GetSuppliers()
+        {
+            List<Supplier> Suppliers = new List<Supplier>();
+
+            if (this.DbConnection())
+            {
+                string StringQuery = "SELECT * FROM suppliers";
+                MySqlDataReader Reader = Query(Connection, StringQuery);
+
+                int id;
+                string siret, name, contact, location, label;
+
+
+                while (Reader.Read())
+                {
+                    id = Reader.GetInt32(0);
+                    siret = Reader.GetString(1);
+                    name = Reader.GetString(2);
+                    contact = Reader.GetString(3);
+                    location = Reader.GetString(4);
+                    label = Reader.GetString(5);
+ 
+                    Suppliers.Add(new Supplier(id, siret, name, contact, location, label));
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+           return Suppliers; 
+        }
+
+        
+        public List<FidelityProgram> GetFidelityPrograms()
+        {
+            List<FidelityProgram> fidelityPrograms = new List<FidelityProgram>();
+
+            if (this.DbConnection())
+            {
+                string StringQuery = "SELECT * FROM fidelity_programs";
+                MySqlDataReader Reader = Query(Connection, StringQuery);
+
+                int id, cost, duration, discount;
+                string label;
+
+
+                while (Reader.Read())
+                {
+                    id = Reader.GetInt32(0);
+                    label = Reader.GetString(1);
+                    cost = Reader.GetInt32(2);
+                    duration = Reader.GetInt32(3);
+                    discount = Reader.GetInt32(4);
+
+
+                    fidelityPrograms.Add(new FidelityProgram(id, label, cost ,duration, discount));
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+           return fidelityPrograms; 
+        }
+
+        public List<OrderedPart> GetOrderParts()
+        {
+            List<OrderedPart> orderedParts = new List<OrderedPart>();
+
+            if (this.DbConnection())
+            {
+                string StringQuery = "SELECT * FROM ordered_parts";
+                MySqlDataReader Reader = Query(Connection, StringQuery);
+
+                int id, quantity, orders_id, parts_id;
+
+                while (Reader.Read())
+                {
+                    id = Reader.GetInt32(0);
+                    orders_id = Reader.GetInt32(1);
+                    parts_id = Reader.GetInt32(2);
+                    quantity = Reader.GetInt32(3);
+
+                    orderedParts.Add(new OrderedPart(id, orders_id, parts_id, quantity));
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+           return orderedParts; 
+        }
+
+        public List<OrderedBike> GetOrderBikes()
+        {
+            List<OrderedBike> orderedBikes = new List<OrderedBike>();
+
+            if (this.DbConnection())
+            {
+                string StringQuery = "SELECT * FROM ordered_bikes";
+                MySqlDataReader Reader = Query(Connection, StringQuery);
+
+                int id, quantity, bikes_id, parts_id;
+
+                while (Reader.Read())
+                {
+                    id = Reader.GetInt32(0);
+                    bikes_id = Reader.GetInt32(1);
+                    parts_id = Reader.GetInt32(2);
+                    quantity = Reader.GetInt32(3);
+
+                    orderedBikes.Add(new OrderedBike(id, bikes_id, parts_id, quantity));
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+           return orderedBikes; 
+        }
+
+        public List<BikePart> GetBikesParts()
+        {
+            List<BikePart> bikeParts = new List<BikePart>();
+
+            if (this.DbConnection())
+            {
+                string StringQuery = "SELECT * FROM bike_parts";
+                MySqlDataReader Reader = Query(Connection, StringQuery);
+
+                int id, bikes_id, parts_id;
+
+                while (Reader.Read())
+                {
+                    id = Reader.GetInt32(0);
+                    parts_id = Reader.GetInt32(1);
+                    bikes_id = Reader.GetInt32(2);
+
+                    bikeParts.Add(new BikePart(id, parts_id, bikes_id));
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+           return bikeParts; 
+        }
+
+        
+        public List<Procurement> GetProcurement()
+        {
+            List<Procurement> procurements = new List<Procurement>();
+
+            if (this.DbConnection())
+            {
+                string StringQuery = "SELECT * FROM procurement";
+                MySqlDataReader Reader = Query(Connection, StringQuery);
+
+                int id, parts_id, suppliers_id;
+
+                while (Reader.Read())
+                {
+                    id = Reader.GetInt32(0);
+                    parts_id = Reader.GetInt32(2);
+                    suppliers_id = Reader.GetInt32(3);
+
+                    procurements.Add(new Procurement(id, parts_id, suppliers_id));
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+           return procurements; 
+        }
+
+        
     }
 }

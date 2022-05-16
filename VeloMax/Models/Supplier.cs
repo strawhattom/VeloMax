@@ -8,10 +8,10 @@ namespace VeloMax.Models
         public string? Name { get; set; }
         public string? Contact { get; set; }
         public string? Location { get; set; }
-        public int Label { get; set; }
+        public string Label { get; set; }
         public int Id {get; set;}
 
-        public Supplier(int id, string siret, string name, string contact, string location, int label){
+        public Supplier(int id, string siret, string name, string contact, string location, string label){
             if (siret is null || name is null || contact is null | location is null)
             {
                 Console.WriteLine("ERROR : at least one arg is null");
