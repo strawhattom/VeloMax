@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Avalonia.Controls;
 using VeloMax.Models;
 using ReactiveUI;
 
@@ -75,6 +76,11 @@ namespace VeloMax.ViewModels
         public void RowClicked()
         {
             Console.WriteLine("Clicked");
+        }
+
+        private void CellClick(object sender, SelectionChangedEventArgs e)
+        {
+            Type = "ROAAR";
         }
     }
 }

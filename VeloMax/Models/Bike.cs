@@ -8,7 +8,7 @@ namespace VeloMax.Models
         public string Target { get; set; }
         public double UnitPrice { get; set; }
         public string Type { get; set; } //enum
-        public DateTime IntroducedDate { get; set;}
+        public DateTime IntroductionDate { get; set;}
         public DateTime DiscontinuationDate { get; set;}
 
         public int Id {get; set;}
@@ -25,7 +25,7 @@ namespace VeloMax.Models
             this.Target = target;
             this.UnitPrice = unitPrice;
             this.Type = type;
-            this.IntroducedDate = iDate;
+            this.IntroductionDate = iDate;
             this.DiscontinuationDate = dDate;
         }
 

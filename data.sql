@@ -1,3 +1,4 @@
+USE velomax;
 -- Bikes
 INSERT INTO `bikes` (`id`, `name`, `target`, `unit_price`, `type`, `introduction_date`, `discontinuation_date`) VALUES (101, 'Kilimandjaro', 'Adultes', 569, 'VTT', '2022-04-26', '2022-04-26');
 INSERT INTO `bikes` (`id`, `name`, `target`, `unit_price`, `type`, `introduction_date`, `discontinuation_date`) VALUES (102, 'NorthPole', 'Adultes', 329, 'VTT', '2022-04-26', '2022-04-26');

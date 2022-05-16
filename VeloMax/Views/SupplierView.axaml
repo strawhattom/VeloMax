@@ -18,7 +18,9 @@
         HorizontalAlignment="Left"
         Margin="0,0,0,20"/>
 		<Grid>
-			<DataGrid Items="{Binding Suppliers}">
+			<DataGrid Items="{Binding Data}"
+					Name="SupplierGrid">
+				
 			</DataGrid>
 			
 		</Grid>

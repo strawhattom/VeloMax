@@ -4,6 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:vm="clr-namespace:VeloMax.ViewModels"
+	xmlns:controls="clr-namespace:VeloMax.Controls"
 	x:Class="VeloMax.Views.ClientView"
 	>
 	<StackPanel>
@@ -11,16 +12,14 @@
 			<vm:ClientViewModel/>
 		</Design.DataContext>
 		
-		<Grid HorizontalAlignment="Stretch" 
-			  VerticalAlignment="Stretch"
-			  Background="Lightgreen">
+		<Grid Background="Lightgreen">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="60"/>
-				<RowDefinition Height="700"/>
+				<RowDefinition Height="40"/>
+				<RowDefinition Height="550"/>
 			</Grid.RowDefinitions>
 
 			<!-- Title + client type button-->
-			<StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+			<StackPanel>
 				<Grid>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"/>
@@ -71,51 +70,47 @@
 			</StackPanel>
 
 			<!-- Data + buttons -->
-			<StackPanel Grid.Row="1"
+			<Panel Grid.Row="1"
 						Background="Pink">
 				<Grid>
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="750"/>
+						<ColumnDefinition Width="800"/>
 						<ColumnDefinition Width="180"/>
 					</Grid.ColumnDefinitions>
 					<DataGrid Grid.Column="0"
 							  Items="{Binding Data}"
-							  SelectedItem="{Binding Selected}"
+							  SelectedItem="{Binding CellClick}"
 							  SelectionMode="Extended"
-							  AutoGenerateColumns="True">
-					</DataGrid>
+							  AutoGenerateColumns="True"/>
 					
 					<!-- Modificator Button -->
 					<StackPanel Grid.Column="1"
-								VerticalAlignment="Center"
 								HorizontalAlignment="Center"
-								Orientation="Vertical"
-								Background="Red"
-								Height="700">
+								Background="Red">
 						<Button
 							Content="Add"
 							Background="#ABE9B3"
-							VerticalContentAlignment="Center"
+							Margin="0,100,0,0"
 							HorizontalContentAlignment="Center"
 							Width="140"
 							/>
 						<Button
 							Content="Update"
 							Background="#F8BD96"
+							Margin="0,100,0,0"
 							Width="140"
-							VerticalContentAlignment="Center"
 							HorizontalContentAlignment="Center"
 							/>
 						<Button
 							Content="Delete"
 							Background="#F28FAD"
+							Margin="0,100,0,0"
 							Width="140"
 							HorizontalContentAlignment="Center"
-							VerticalContentAlignment="Center"
 							/>
 					</StackPanel>
 				</Grid>
-			</StackPanel>
+			</Panel>
 		</Grid>
 	</StackPanel>
 </UserControl>

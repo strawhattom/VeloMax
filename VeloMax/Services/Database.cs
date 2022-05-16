@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using VeloMax.Models;
 using MySql.Data.MySqlClient;
-
+using System.Globalization;
 
 namespace VeloMax.Services
 {
@@ -173,7 +173,7 @@ namespace VeloMax.Services
                 string StringQuery = "SELECT * FROM parts";
                 MySqlDataReader Reader = Query(Connection, StringQuery);
 
-                string description, type;
+                string Description, type;
                 double unit_price;
                 int procurement_delay, quantity, Id;
                 DateTime discontinuation_date, introduction_date;
@@ -181,7 +181,7 @@ namespace VeloMax.Services
                 while (Reader.Read())
                 {
                     Id = Reader.GetInt32(0);
-                    description = Reader.GetString(1);
+                    Description = Reader.GetString(1);
                     unit_price = Reader.GetDouble(2);
                     introduction_date = Reader.GetDateTime(3);
                     discontinuation_date = Reader.GetDateTime(4);
@@ -189,11 +189,11 @@ namespace VeloMax.Services
                     quantity = Reader.GetInt32(6);
                     type = Reader.GetString(7);
 
-                    if (description is null || type is null)
+                    if (Description is null || type is null)
                     {
                         System.Environment.Exit(0);
                     }
-                    List.Add(new Part(Id,description, unit_price, introduction_date, discontinuation_date, procurement_delay, quantity, type));
+                    List.Add(new Part(Id,Description, unit_price, introduction_date, discontinuation_date, procurement_delay, quantity, type));
                 }
                 Reader.Close();
                 Connection.Close();

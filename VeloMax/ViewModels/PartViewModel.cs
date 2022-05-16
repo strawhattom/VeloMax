@@ -7,10 +7,10 @@ namespace VeloMax.ViewModels
 {
     public class PartViewModel : ViewModelBase
     {
-        public ObservableCollection<Part> Parts { get; }
+        public ObservableCollection<Part> Data { get; }
         public PartViewModel(List<Part> p)
         {
-            Parts = new ObservableCollection<Part>(p);     
+            Data = new ObservableCollection<Part>(p);     
         }
     }
 }

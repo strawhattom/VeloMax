@@ -1,7 +1,6 @@
 <Styles
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
 	<Style Selector="Button.Modificator">
 		<Style.Setters>
 			<Setter Property="Template">
@@ -10,17 +9,17 @@
 						<StackPanel
 						  Name="Modificator"
 						  Height="40"
-						  Margin="10">
-								<ContentPresenter
-									Background="{TemplateBinding Background}"
-									BorderBrush="{TemplateBinding BorderBrush}"
-									BorderThickness="{TemplateBinding BorderThickness}"
-									Content="{TemplateBinding Content}"
-									ContentTemplate="{TemplateBinding ContentTemplate}"
-									Padding="{TemplateBinding Padding}"
-									HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-									VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
-									/>
+						  Margin="50">
+							<ContentPresenter
+								Background="{TemplateBinding Background}"
+								BorderBrush="{TemplateBinding BorderBrush}"
+								BorderThickness="{TemplateBinding BorderThickness}"
+								Content="{TemplateBinding Content}"
+								ContentTemplate="{TemplateBinding ContentTemplate}"
+								Padding="{TemplateBinding Padding}"
+								HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+								VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+								/>
 						</StackPanel>
 					</ControlTemplate>
 				</Setter.Value>

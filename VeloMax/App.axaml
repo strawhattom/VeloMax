@@ -14,7 +14,9 @@
         <StyleInclude Source="avares://MaterialDesign.Avalonia.PackIcon/Assets/Generic.xaml" />
 		<!-- DataGrid theme -->
 		<StyleInclude Source="avares://Avalonia.Controls.DataGrid/Themes/Fluent.xaml"/>
-		
+
+
+
 		<!-- Custom style -->
         <StyleInclude Source="/Assets/MenuButtonStyle.axaml" />
 		<StyleInclude Source="/Assets/ModificatorButtonStyle.axaml" />

@@ -10,17 +10,73 @@
 		<Design.DataContext>
 			<vm:PartViewModel/>
 		</Design.DataContext>
-		
-		<TextBlock
-        Text="Part"
-        Foreground="#000000"
-        FontSize="28"
-        HorizontalAlignment="Left"
-        Margin="0,0,0,20"/>
+
 		<Grid>
-			<DataGrid Items="{Binding Parts}">
-			</DataGrid>
-			
+			<Grid.RowDefinitions>
+				<RowDefinition Height="40"/>
+				<RowDefinition Height="550"/>
+			</Grid.RowDefinitions>
+
+			<!-- Title + client type button-->
+			<StackPanel>
+				<TextBlock
+					Grid.Column="0"
+					Text="Part"
+					Foreground="#000000"
+					FontSize="28"
+					HorizontalAlignment="Left"
+					Margin="0,0,0,20"/>
+			</StackPanel>
+
+			<!-- Data + buttons -->
+			<Panel Grid.Row="1">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="800"/>
+						<ColumnDefinition Width="180"/>
+					</Grid.ColumnDefinitions>
+					<DataGrid Grid.Column="0"
+							  Name="PartGrid"
+							  Items="{Binding Data}">
+							<DataGrid.Columns>
+								<DataGridTextColumn Header="Id"  Binding="{Binding Id}"/>
+								<DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+								<DataGridTextColumn Header="Unit price" Binding="{Binding UnitPrice}" />
+								<DataGridTextColumn Header="Introduced in" Binding="{Binding IntroductionDate}" />
+								<DataGridTextColumn Header="Discontinuated in" Binding="{Binding DiscontinuationDate}" />
+								<DataGridTextColumn Header="Procurement delay" Binding="{Binding ProcurementDelay}" />
+								<DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
+								<DataGridTextColumn Header="Type" Binding="{Binding Type}" />
+							</DataGrid.Columns>
+					</DataGrid>
+
+					<!-- Modificator Button -->
+					<StackPanel Grid.Column="1"
+								HorizontalAlignment="Center">
+						<Button
+							Content="Add"
+							Background="#ABE9B3"
+							Margin="0,100,0,0"
+							HorizontalContentAlignment="Center"
+							Width="140"
+							/>
+						<Button
+							Content="Update"
+							Background="#F8BD96"
+							Margin="0,100,0,0"
+							Width="140"
+							HorizontalContentAlignment="Center"
+							/>
+						<Button
+							Content="Delete"
+							Background="#F28FAD"
+							Margin="0,100,0,0"
+							Width="140"
+							HorizontalContentAlignment="Center"
+							/>
+					</StackPanel>
+				</Grid>
+			</Panel>
 		</Grid>
 
 	</StackPanel>
