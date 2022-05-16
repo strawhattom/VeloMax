@@ -79,9 +79,9 @@ namespace VeloMax.Services
                 {
                     Id = Reader.GetInt32(0);
                     Type = Reader.GetString(1);
-                    CompanyName = Reader.GetString(2);
-                    LastName = Reader.GetString(3);
-                    FirstName = Reader.GetString(4);
+                    CompanyName = Reader.GetValue(2).ToString();
+                    LastName = Reader.GetValue(3).ToString();
+                    FirstName = Reader.GetValue(4).ToString();
                     Street = Reader.GetString(5);
                     City = Reader.GetString(6);
                     PostalCode = Reader.GetString(7);
