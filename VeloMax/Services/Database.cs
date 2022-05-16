@@ -8,7 +8,7 @@ namespace VeloMax.Services
 {
     public class Database
     {
-        private string StringConnection = "database=Velomax;server=Localhost;uid=root;pwd=toor";
+        private string StringConnection = "database=Velomax;server=Localhost;uid=root;pwd=";
         private MySqlConnection Connection;
 
         public Database()
@@ -63,51 +63,114 @@ namespace VeloMax.Services
 
         public List<Client> GetClients()
         {
-            List<Client> Clients = new List<Client>();
+            List<Client> List = new List<Client>();
 
             if (this.DbConnection())
             {
-                string StringQuery = "SELECT * FROM Clients";
+                string StringQuery = "SELECT * FROM clients";
                 MySqlDataReader Reader = Query(Connection, StringQuery);
 
-                string Type, Street, City, PostalCode, Province, Phone, Mail;
-                string? CompanyName, LastName, FirstName;
-                int FidelityProgram, OrderCount, Id;
-                Boolean Member;
+                string Street, City, PostalCode, Province, Phone, Mail;
+                int Id;
 
                 while (Reader.Read())
                 {
                     Id = Reader.GetInt32(0);
-                    Type = Reader.GetString(1);
-                    CompanyName = Reader.GetValue(2).ToString();
-                    LastName = Reader.GetValue(3).ToString();
-                    FirstName = Reader.GetValue(4).ToString();
-                    Street = Reader.GetString(5);
-                    City = Reader.GetString(6);
-                    PostalCode = Reader.GetString(7);
-                    Province = Reader.GetString(8);
-                    Phone = Reader.GetString(9);
-                    Mail = Reader.GetString(10);
-                    FidelityProgram = Reader.GetInt32(11);
-                    Member = Reader.GetBoolean(12);
-                    OrderCount = Reader.GetInt32(13);
-                    Clients.Add(new Client(Id,Type, CompanyName, LastName, FirstName, Street, City, PostalCode, Province, Phone, Mail, FidelityProgram, Member, OrderCount));
+                    Street = Reader.GetString(1);
+                    City = Reader.GetString(2);
+                    PostalCode = Reader.GetString(3);
+                    Province = Reader.GetString(4);
+                    Phone = Reader.GetString(5);
+                    Mail = Reader.GetString(6);
+                    List.Add(new Client(Id,Street, City, PostalCode, Province, Phone, Mail));
                 }
                 Reader.Close();
                 Connection.Close();
             }
 
-            return Clients;
+            return List;
+        }
+
+        public List<Individual> GetIndividuals()
+        {
+            List<Individual> List = new List<Individual>();
+
+            if (this.DbConnection())
+            {
+                string StringQuery = "SELECT * FROM clients NATURAL JOIN individuals";
+                MySqlDataReader Reader = Query(Connection, StringQuery);
+
+                int Id;
+                string Street, City, PostalCode, Province, Phone, Mail;
+                string FirstName, LastName;
+                int FidelityId;
+                
+
+                while (Reader.Read())
+                {
+                    Id = Reader.GetInt32(0);
+                    Street = Reader.GetString(1);
+                    City = Reader.GetString(2);
+                    PostalCode = Reader.GetString(3);
+                    Province = Reader.GetString(4);
+                    Phone = Reader.GetString(5);
+                    Mail = Reader.GetString(6);
+                    FirstName = Reader.GetString(7);
+                    LastName = Reader.GetString(8);
+                    FidelityId = Reader.GetInt32(9);
+                    List.Add(new Individual(Id, FirstName, LastName, Street, City, PostalCode, Province, Phone, Mail, FidelityId));
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+            return List;
+        }
+
+        public List<Professional> GetProfessionals()
+        {
+            List<Professional> List = new List<Professional>();
+
+            if (this.DbConnection())
+            {
+                string StringQuery = "SELECT * FROM clients NATURAL JOIN professionals";
+                MySqlDataReader Reader = Query(Connection, StringQuery);
+
+                string Street, City, PostalCode, Province, Phone, Mail;
+                int Id;
+                string CompanyName, ContactName;
+                int OrderCount;
+
+
+                while (Reader.Read())
+                {
+                    Id = Reader.GetInt32(0);
+                    Street = Reader.GetString(1);
+                    City = Reader.GetString(2);
+                    PostalCode = Reader.GetString(3);
+                    Province = Reader.GetString(4);
+                    Phone = Reader.GetString(5);
+                    Mail = Reader.GetString(6);
+                    CompanyName = Reader.GetString(7);
+                    ContactName = Reader.GetString(8);
+                    OrderCount = Reader.GetInt32(9);
+                    List.Add(new Professional(Id, CompanyName, ContactName, Street, City, PostalCode, Province, Phone, Mail, OrderCount));
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+            return List;
         }
 
 
         public List<Part> GetParts()
         {
-            List<Part> Parts = new List<Part>();
+            List<Part> List = new List<Part>();
 
             if (this.DbConnection())
             {
-                string StringQuery = "SELECT * FROM Parts";
+                string StringQuery = "SELECT * FROM parts";
                 MySqlDataReader Reader = Query(Connection, StringQuery);
 
                 string description, type;
@@ -130,22 +193,22 @@ namespace VeloMax.Services
                     {
                         System.Environment.Exit(0);
                     }
-                    Parts.Add(new Part(Id,description, unit_price, introduction_date, discontinuation_date, procurement_delay, quantity, type));
+                    List.Add(new Part(Id,description, unit_price, introduction_date, discontinuation_date, procurement_delay, quantity, type));
                 }
                 Reader.Close();
                 Connection.Close();
             }
 
-            return Parts;
+            return List;
         }
 
         public List<Bike> GetBikes()
         {
-            List<Bike> Bikes = new List<Bike>();
+            List<Bike> List = new List<Bike>();
 
             if (this.DbConnection())
             {
-                string StringQuery = "SELECT * FROM Bikes";
+                string StringQuery = "SELECT * FROM bikes";
                 MySqlDataReader Reader = Query(Connection, StringQuery);
 
                 string name, target, type;
@@ -162,22 +225,22 @@ namespace VeloMax.Services
                     type = Reader.GetString(4);
                     introduction_date = Reader.GetDateTime(5);
                     discontinuation_date = Reader.GetDateTime(6);
-                    Bikes.Add(new Bike(id, name, target, unit_price, type, introduction_date, discontinuation_date));
+                    List.Add(new Bike(id, name, target, unit_price, type, introduction_date, discontinuation_date));
                 }
                 Reader.Close();
                 Connection.Close();
             }
 
-            return Bikes;
+            return List;
         }
 
         public List<Order> GetOrders()
         {
-            List<Order> Orders = new List<Order>();
+            List<Order> List = new List<Order>();
 
             if (this.DbConnection())
             {
-                string StringQuery = "SELECT * FROM Orders";
+                string StringQuery = "SELECT * FROM orders";
                 MySqlDataReader Reader = Query(Connection, StringQuery);
 
                 int id, quantity;
@@ -193,18 +256,18 @@ namespace VeloMax.Services
                     shipping_date = Reader.GetDateTime(3);
                     quantity = Reader.GetInt32(4);
 
-                    Orders.Add(new Order(id, order_date, shipping_adresse, shipping_date, quantity));
+                    List.Add(new Order(id, order_date, shipping_adresse, shipping_date, quantity));
                 }
                 Reader.Close();
                 Connection.Close();
             }
 
-           return Orders; 
+           return List; 
         }
 
         public List<Supplier> GetSuppliers()
         {
-            List<Supplier> Suppliers = new List<Supplier>();
+            List<Supplier> List = new List<Supplier>();
 
             if (this.DbConnection())
             {
@@ -223,20 +286,20 @@ namespace VeloMax.Services
                     contact = Reader.GetString(3);
                     location = Reader.GetString(4);
                     label = Reader.GetString(5);
- 
-                    Suppliers.Add(new Supplier(id, siret, name, contact, location, label));
+
+                    List.Add(new Supplier(id, siret, name, contact, location, label));
                 }
                 Reader.Close();
                 Connection.Close();
             }
 
-           return Suppliers; 
+           return List; 
         }
 
         
         public List<FidelityProgram> GetFidelityPrograms()
         {
-            List<FidelityProgram> fidelityPrograms = new List<FidelityProgram>();
+            List<FidelityProgram> List = new List<FidelityProgram>();
 
             if (this.DbConnection())
             {
@@ -256,18 +319,18 @@ namespace VeloMax.Services
                     discount = Reader.GetInt32(4);
 
 
-                    fidelityPrograms.Add(new FidelityProgram(id, label, cost ,duration, discount));
+                    List.Add(new FidelityProgram(id, label, cost ,duration, discount));
                 }
                 Reader.Close();
                 Connection.Close();
             }
 
-           return fidelityPrograms; 
+           return List; 
         }
 
         public List<OrderedPart> GetOrderParts()
         {
-            List<OrderedPart> orderedParts = new List<OrderedPart>();
+            List<OrderedPart> List = new List<OrderedPart>();
 
             if (this.DbConnection())
             {
@@ -283,18 +346,18 @@ namespace VeloMax.Services
                     parts_id = Reader.GetInt32(2);
                     quantity = Reader.GetInt32(3);
 
-                    orderedParts.Add(new OrderedPart(id, orders_id, parts_id, quantity));
+                    List.Add(new OrderedPart(id, orders_id, parts_id, quantity));
                 }
                 Reader.Close();
                 Connection.Close();
             }
 
-           return orderedParts; 
+           return List; 
         }
 
         public List<OrderedBike> GetOrderBikes()
         {
-            List<OrderedBike> orderedBikes = new List<OrderedBike>();
+            List<OrderedBike> List = new List<OrderedBike>();
 
             if (this.DbConnection())
             {
@@ -310,18 +373,18 @@ namespace VeloMax.Services
                     parts_id = Reader.GetInt32(2);
                     quantity = Reader.GetInt32(3);
 
-                    orderedBikes.Add(new OrderedBike(id, bikes_id, parts_id, quantity));
+                    List.Add(new OrderedBike(id, bikes_id, parts_id, quantity));
                 }
                 Reader.Close();
                 Connection.Close();
             }
 
-           return orderedBikes; 
+           return List; 
         }
 
         public List<BikePart> GetBikesParts()
         {
-            List<BikePart> bikeParts = new List<BikePart>();
+            List<BikePart> List = new List<BikePart>();
 
             if (this.DbConnection())
             {
@@ -336,19 +399,19 @@ namespace VeloMax.Services
                     parts_id = Reader.GetInt32(1);
                     bikes_id = Reader.GetInt32(2);
 
-                    bikeParts.Add(new BikePart(id, parts_id, bikes_id));
+                    List.Add(new BikePart(id, parts_id, bikes_id));
                 }
                 Reader.Close();
                 Connection.Close();
             }
 
-           return bikeParts; 
+           return List; 
         }
 
         
         public List<Procurement> GetProcurement()
         {
-            List<Procurement> procurements = new List<Procurement>();
+            List<Procurement> List = new List<Procurement>();
 
             if (this.DbConnection())
             {
@@ -363,13 +426,13 @@ namespace VeloMax.Services
                     parts_id = Reader.GetInt32(2);
                     suppliers_id = Reader.GetInt32(3);
 
-                    procurements.Add(new Procurement(id, parts_id, suppliers_id));
+                    List.Add(new Procurement(id, parts_id, suppliers_id));
                 }
                 Reader.Close();
                 Connection.Close();
             }
 
-           return procurements; 
+           return List; 
         }
 
         
