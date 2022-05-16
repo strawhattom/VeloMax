@@ -18,14 +18,7 @@
         HorizontalAlignment="Left"
         Margin="0,0,0,20"/>
 		<Grid>
-			<DataGrid Items="{Binding Bikes}">
-				<DataGrid.Columns>
-					<DataGridTextColumn Header="Siret" Binding="{Binding Siret}"/>
-					<DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-					<DataGridTextColumn Header="Contact" Binding="{Binding Contact}"/>
-					<DataGridTextColumn Header="Location" Binding="{Binding Location}"/>
-					<DataGridTextColumn Header="Label" Binding="{Binding Label}"/>
-				</DataGrid.Columns>
+			<DataGrid Items="{Binding Suppliers}">
 			</DataGrid>
 			
 		</Grid>

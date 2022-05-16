@@ -19,13 +19,6 @@
         Margin="0,0,0,20"/>
 		<Grid>
 			<DataGrid Items="{Binding Bikes}">
-				<DataGrid.Columns>
-					<DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-					<DataGridTextColumn Header="Target" Binding="{Binding Target}"/>
-					<DataGridTextColumn Header="Price" Binding="{Binding UnitPrice}"/>
-					<DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
-					<DataGridTextColumn Header="Introduced" Binding="{Binding IntroducedDate}"/>
-				</DataGrid.Columns>
 			</DataGrid>
 			
 		</Grid>

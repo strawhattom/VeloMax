@@ -19,13 +19,7 @@
         HorizontalAlignment="Left"
         Margin="0,0,0,20"/>
 		<Grid>
-			<DataGrid Items="{Binding Bikes}">
-				<DataGrid.Columns>
-					<DataGridTextColumn Header="OrderDate" Binding="{Binding OrderDate}"/>
-					<DataGridTextColumn Header="Shipping Adresse" Binding="{Binding ShippingAdresse}"/>
-					<DataGridTextColumn Header="Shipping Date" Binding="{Binding ShippingDate}"/>
-					<DataGridTextColumn Header="Quanity" Binding="{Binding Quantity}"/>
-				</DataGrid.Columns>
+			<DataGrid Items="{Binding Orders}">
 			</DataGrid>
 			
 		</Grid>

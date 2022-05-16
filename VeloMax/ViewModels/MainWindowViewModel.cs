@@ -1,6 +1,5 @@
 ﻿// using System;
 using System.Windows.Input;
-using System.Collections.Generic;
 using VeloMax.Services;
 using VeloMax.Models;
 using ReactiveUI;

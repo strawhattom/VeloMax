@@ -19,13 +19,6 @@
         Margin="0,0,0,20"/>
 		<Grid>
 			<DataGrid Items="{Binding Parts}">
-				<DataGrid.Columns>
-					<DataGridTextColumn Header="Description" Binding="{Binding Description}"/>
-					<DataGridTextColumn Header="Unit price" Binding="{Binding UnitPrice}"/>
-					<DataGridTextColumn Header="Procurement delay" Binding="{Binding ProcurementDelay}"/>
-					<DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}"/>
-					<DataGridTextColumn Header="Type" Binding="{Binding Type}"/>
-				</DataGrid.Columns>
 			</DataGrid>
 			
 		</Grid>
