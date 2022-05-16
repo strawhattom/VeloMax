@@ -11,7 +11,7 @@
         Title="VeloMax"
         WindowStartupLocation="CenterScreen"
         CanResize="False"
-        Width="900"
+        Width="1200"
         Height="700">
 
     <Design.DataContext>

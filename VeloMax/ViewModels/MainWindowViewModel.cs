@@ -21,7 +21,6 @@ namespace VeloMax.ViewModels
         public ICommand StockButtonClicked { get; }
         public ICommand SupplierButtonClicked { get; }
 
-        
         // public ICommand SearchInput { get; }
         
         public ViewModelBase NavigationContent 
@@ -89,6 +88,5 @@ namespace VeloMax.ViewModels
         {
             this.NavigationContent = new SupplierViewModel(Db.GetSuppliers());
         }
-
     }
 }
