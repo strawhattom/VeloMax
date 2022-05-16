@@ -10,14 +10,15 @@ namespace VeloMax.Models
         public int Discount { get; set;} //TO CHECK
 
         public static readonly List<string> PROGRAMS = new List<string> { "1", "2", "3", "4"};
+        public int Id {get; set;}
 
-
-        public FidelityProgram(string label, int cost, int duration, int discount)
+        public FidelityProgram(int id, string label, int cost, int duration, int discount)
         {
             if (label is null || !PROGRAMS.Contains(label))
             {
                 System.Environment.Exit(0);
             }
+            this.Id = id;
             this.Label = label;
             this.Cost = cost;
             this.Duration = duration;

@@ -9,8 +9,9 @@ namespace VeloMax.Models
         public string? Contact { get; set; }
         public string? Location { get; set; }
         public int Label { get; set; }
+        public int Id {get; set;}
 
-        public Supplier(string siret, string name, string contact, string location, int label){
+        public Supplier(int id, string siret, string name, string contact, string location, int label){
             if (siret is null || name is null || contact is null | location is null)
             {
                 Console.WriteLine("ERROR : at least one arg is null");
@@ -21,6 +22,7 @@ namespace VeloMax.Models
                 Console.WriteLine("ERROR : incorrect label in enum (1,2,3,4)");
                 System.Environment.Exit(0);
             }
+            this.Id = id;
             this.Siret = siret;
             this.Name = name;
             this.Contact = contact;

@@ -11,13 +11,16 @@ namespace VeloMax.Models
         public DateTime IntroducedDate { get; set;}
         public DateTime DiscontinuationDate { get; set;}
 
-        public Bike(string name, string target, double unitPrice, string type, DateTime iDate, DateTime dDate)
+        public int Id {get; set;}
+
+        public Bike(int id,string name, string target, double unitPrice, string type, DateTime iDate, DateTime dDate)
         {
             // if args are null
             if (name is null || target is null || unitPrice is double.NaN || type is null)
             {
                 System.Environment.Exit(0);
             }
+            this.Id = id;
             this.Name = name;
             this.Target = target;
             this.UnitPrice = unitPrice;

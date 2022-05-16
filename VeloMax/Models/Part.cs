@@ -10,8 +10,9 @@ namespace VeloMax.Models
         private int ProcurementDelay { get; set; }
         private int Quantity { get; set; }
         private string Type { get; set; }
+        public int Id {get; set;}
 
-        public Part(string description, double unit_price, DateTime introduction_date, 
+        public Part(int id, string description, double unit_price, DateTime introduction_date, 
         DateTime discontinuation_date, int procurement_delay, int quantity, string type)
         {
 
@@ -20,7 +21,8 @@ namespace VeloMax.Models
             {
                 System.Environment.Exit(0);
             }
-
+            
+            this.Id = id;
             this.Description = description;
             this.UnitPrice = unit_price;
             this.DiscontinuationDate = discontinuation_date;

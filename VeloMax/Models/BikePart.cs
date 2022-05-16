@@ -6,9 +6,12 @@ namespace VeloMax.Models
     {
         public int PartId { get; set; }
         public int BikeId { get; set; }
+        public int Id {get; set;}
 
-        public BikePart(int partId, int bikeId)
+
+        public BikePart(int id, int partId, int bikeId)
         {
+            this.Id=id;
             this.PartId = partId;
             this.BikeId = bikeId;
         }

@@ -8,7 +8,7 @@ namespace VeloMax.Services
 {
     public class Database
     {
-        private string StringConnection = "database=VeloMax;server=localhost;uid=root;pwd=;";
+        private string StringConnection = "database=Velomax;server=Localhost;uid=root;pwd=toor";
         private MySqlConnection Connection;
 
         public Database()
@@ -72,11 +72,12 @@ namespace VeloMax.Services
 
                 string Type, Street, City, PostalCode, Province, Phone, Mail;
                 string? CompanyName, LastName, FirstName;
-                int FidelityProgram, OrderCount;
+                int FidelityProgram, OrderCount;id;
                 Boolean Member;
 
                 while (Reader.Read())
                 {
+                    id = Reader.GetInt32(0);
                     Type = Reader.GetString(1);
                     CompanyName = Reader.GetString(2);
                     LastName = Reader.GetString(3);
@@ -90,7 +91,7 @@ namespace VeloMax.Services
                     FidelityProgram = Reader.GetInt32(11);
                     Member = Reader.GetBoolean(12);
                     OrderCount = Reader.GetInt32(13);
-                    Clients.Add(new Client(Type, CompanyName, LastName, FirstName, Street, City, PostalCode, Province, Phone, Mail, FidelityProgram, Member, OrderCount));
+                    Clients.Add(new Client(id,Type, CompanyName, LastName, FirstName, Street, City, PostalCode, Province, Phone, Mail, FidelityProgram, Member, OrderCount));
                 }
                 Reader.Close();
                 Connection.Close();
@@ -111,11 +112,12 @@ namespace VeloMax.Services
 
                 string description, type;
                 double unit_price;
-                int procurement_delay, quantity;
+                int procurement_delay, quantity;id;
                 DateTime discontinuation_date, introduction_date;
 
                 while (Reader.Read())
                 {
+                    id = Reader.GetInt32(0);
                     description = Reader.GetString(1);
                     unit_price = Reader.GetDouble(2);
                     introduction_date = Reader.GetDateTime(3);
@@ -128,7 +130,7 @@ namespace VeloMax.Services
                     {
                         System.Environment.Exit(0);
                     }
-                    Parts.Add(new Part(description, unit_price, introduction_date, discontinuation_date, procurement_delay, quantity, type));
+                    Parts.Add(new Part(id,description, unit_price, introduction_date, discontinuation_date, procurement_delay, quantity, type));
                 }
                 Reader.Close();
                 Connection.Close();
@@ -148,17 +150,19 @@ namespace VeloMax.Services
 
                 string name, target, type;
                 double unit_price;
+                int id;
                 DateTime discontinuation_date, introduction_date;
 
                 while (Reader.Read())
                 {
+                    id = Reader.GetInt32(0)
                     name = Reader.GetString(1);
                     target = Reader.GetString(2);
                     unit_price = Reader.GetDouble(3);
                     type = Reader.GetString(4);
                     introduction_date = Reader.GetDateTime(5);
                     discontinuation_date = Reader.GetDateTime(6);
-                    Bikes.Add(new Bike(name, target, unit_price, type, introduction_date, discontinuation_date));
+                    Bikes.Add(new Bike(id, name, target, unit_price, type, introduction_date, discontinuation_date));
                 }
                 Reader.Close();
                 Connection.Close();
