@@ -21,8 +21,8 @@ CREATE TABLE IF NOT EXISTS clients(
 DROP TABLE IF EXISTS individuals;
 CREATE TABLE IF NOT EXISTS individuals(
 	id INT NOT NULL,
-	first_name VARCHAR(255) NULL,
-	last_name VARCHAR(255) NULL,
+	first_name VARCHAR(255) NOT NULL,
+	last_name VARCHAR(255) NOT NULL,
 	id_fidelity INT DEFAULT 0,
 	PRIMARY KEY(id),
 	FOREIGN KEY(id)
@@ -34,11 +34,12 @@ CREATE TABLE IF NOT EXISTS individuals(
 DROP TABLE IF EXISTS professionals;
 CREATE TABLE IF NOT EXISTS professionals(
     id INT NOT NULL AUTO_INCREMENT,
-	company_name VARCHAR(255) NULL,
-	order_count INT NULL DEFAULT 0,
+    company_name VARCHAR(255) NOT NULL,
+    contact_name VARCHAR(255) NOT NULL,
+    order_count INT NOT NULL DEFAULT 0,
     PRIMARY KEY(id),
 	FOREIGN KEY(id)
-		REFERENCES clients(id),
+		REFERENCES clients(id)
 );
 
 
