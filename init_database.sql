@@ -18,25 +18,28 @@ CREATE TABLE IF NOT EXISTS clients(
     PRIMARY KEY(id)
 );
 
-DROP TABLE IF EXISTS Particulier;
-CREATE TABLE IF NOT EXISTS Particulier(
+DROP TABLE IF EXISTS individuals;
+CREATE TABLE IF NOT EXISTS individuals(
 	id INT NOT NULL,
 	first_name VARCHAR(255) NULL,
 	last_name VARCHAR(255) NULL,
-	id_fidelity_programs INT DEFAULT 0,
-	primary key(id),
-	foreign key(id)
-		references clients(id)
+	id_fidelity INT DEFAULT 0,
+	PRIMARY KEY(id),
+	FOREIGN KEY(id)
+		REFERENCES clients(id),
+    FOREIGN KEY(id_fidelity)
+        REFERENCES fidelity_programs(id)
 );
 
-DROP TABLE IF EXISTS Professionel;
-CREATE TABLE IF NOT EXISTS Professionel(
+DROP TABLE IF EXISTS professionals;
+CREATE TABLE IF NOT EXISTS professionals(
     id INT NOT NULL AUTO_INCREMENT,
 	company_name VARCHAR(255) NULL,
 	order_count INT NULL DEFAULT 0,
-    primary key(id),
-    foreign key(id)
-		references clients(id));
+    PRIMARY KEY(id),
+	FOREIGN KEY(id)
+		REFERENCES clients(id),
+);
 
 
 -- Orders
