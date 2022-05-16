@@ -1,13 +1,14 @@
 <Styles
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-	<Style Selector="Button.Type">
+
+	<Style Selector="Button.Modificator">
 		<Style.Setters>
 			<Setter Property="Template">
 				<Setter.Value>
 					<ControlTemplate>
 						<StackPanel
-						  Name="Button"
+						  Name="Modificator"
 						  Height="40"
 						  Margin="10">
 								<ContentPresenter
@@ -26,6 +27,7 @@
 			</Setter>
 			<Setter Property="VerticalAlignment" Value="Stretch" />
 			<Setter Property="HorizontalAlignment" Value="Stretch" />
+			<Setter Property="Background" Value="Transparent" />
 			<Setter Property="Foreground" Value="Black" />
 		</Style.Setters>
 	</Style>

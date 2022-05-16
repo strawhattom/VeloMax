@@ -43,7 +43,7 @@
                            FontSize="22"
                            FontWeight="Bold"
                            Margin="20 0 0 0"
-                />
+                    />
                 
                 <!-- Sidebar 
                 Kind : Icon name
@@ -52,6 +52,7 @@
                     <controls:MenuItemButton
                         Content="Dashboard"
                         IsChecked="True"
+						Classes="MenuItem"
                         Kind="ViewDashboard"
                         Command="{Binding DashboardButtonClicked}"/>
                     

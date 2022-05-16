@@ -3,6 +3,8 @@
 namespace VeloMax.Models
 {
     public class Part{
+
+        public int Id { get; set; }
         private string Description { get; set; }
         private double? UnitPrice { get; set; }
         private DateTime IntroductionDate { get; set;}
@@ -10,7 +12,6 @@ namespace VeloMax.Models
         private int ProcurementDelay { get; set; }
         private int Quantity { get; set; }
         private string Type { get; set; }
-        public int Id {get; set;}
 
         public Part(int id, string description, double unit_price, DateTime introduction_date, 
         DateTime discontinuation_date, int procurement_delay, int quantity, string type)

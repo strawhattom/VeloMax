@@ -11,59 +11,111 @@
 			<vm:ClientViewModel/>
 		</Design.DataContext>
 		
-		<Grid>
+		<Grid HorizontalAlignment="Stretch" 
+			  VerticalAlignment="Stretch"
+			  Background="Lightgreen">
 			<Grid.RowDefinitions>
-				<RowDefinition Height="75"/>
-				<RowDefinition Height="*"/>
+				<RowDefinition Height="60"/>
+				<RowDefinition Height="700"/>
 			</Grid.RowDefinitions>
 
 			<!-- Title + client type button-->
-			<StackPanel>
+			<StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 				<Grid>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="*"/>
-						<ColumnDefinition Width="600"/>
+						<ColumnDefinition Width="500"/>
 					</Grid.ColumnDefinitions>
 					<TextBlock
-						Grid.Row="0"
-						Text="{Binding Show}"
+						Grid.Column="0"
+						Text="{Binding Type}"
 						Foreground="#000000"
 						FontSize="28"
 						HorizontalAlignment="Left"
 						Margin="0,0,0,20"/>
+
+					<!-- Client buttons -->
+					<StackPanel Grid.Column="1" 
+								Orientation="Horizontal"
+								HorizontalAlignment="Right"
+								VerticalAlignment="Center">
+						<Button
+							Content="All"
+							Classes="Type"
+							Background="#D9E0EE"
+							Width="140"
+							Command="{Binding ClientShowClicked}"
+							VerticalContentAlignment="Center"
+							HorizontalContentAlignment="Center"
+							/>
+						<Button
+							Content="Individual"
+							Classes="Type"
+							Width="140"
+							Background="#D9E0EE"
+							Command="{Binding IndividualShowClicked}"
+							VerticalContentAlignment="Center"
+							HorizontalContentAlignment="Center"
+							/>
+						<Button
+							Content="Professional"
+							Classes="Type"
+							Background="#D9E0EE"
+							Width="140"
+							Command="{Binding ProfessionalShowClicked}"
+							VerticalContentAlignment="Center"
+							HorizontalContentAlignment="Center"
+							/>
+					</StackPanel>
 				</Grid>
 			</StackPanel>
-			
-			<DataGrid Grid.Row="1" Grid.Column="0" Items="{Binding Individuals}">
-				<DataGrid.Columns>
-					<DataGridTextColumn Header="id" Binding="{Binding Id}"/>
-					<DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
-					<DataGridTextColumn Header="Last Name" Binding="{Binding LastName}"/>
-					<DataGridTextColumn Header="Street" Binding="{Binding Street}"/>
-					<DataGridTextColumn Header="Mail" Binding="{Binding Mail}"/>
-					<DataGridTextColumn Header="Program" Binding="{Binding FidelityProgram}"/>
-				</DataGrid.Columns>
-			</DataGrid>
 
-			<!--
-			<TextBlock
-				Grid.Row="0"
-				Text="Professional"
-				Foreground="#000000"
-				FontSize="28"
-				HorizontalAlignment="Left"
-				Margin="0,0,0,20"/>
-			<DataGrid Grid.Row="1" Grid.Column="1" Items="{Binding Professionals}">
-				<DataGrid.Columns>
-					<DataGridTextColumn Header="id" Binding="{Binding Id}"/>
-					<DataGridTextColumn Header="Company" Binding="{Binding CompanyName}"/>
-					<DataGridTextColumn Header="Contact" Binding="{Binding ContactName}"/>
-					<DataGridTextColumn Header="Street" Binding="{Binding Street}"/>
-					<DataGridTextColumn Header="Mail" Binding="{Binding Mail}"/>
-					<DataGridTextColumn Header="Order count" Binding="{Binding OrderCount}"/>
-				</DataGrid.Columns>
-			</DataGrid>
-			-->
+			<!-- Data + buttons -->
+			<StackPanel Grid.Row="1"
+						Background="Pink">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="750"/>
+						<ColumnDefinition Width="180"/>
+					</Grid.ColumnDefinitions>
+					<DataGrid Grid.Column="0"
+							  Items="{Binding Data}"
+							  SelectedItem="{Binding Selected}"
+							  SelectionMode="Extended"
+							  AutoGenerateColumns="True">
+					</DataGrid>
+					
+					<!-- Modificator Button -->
+					<StackPanel Grid.Column="1"
+								VerticalAlignment="Center"
+								HorizontalAlignment="Center"
+								Orientation="Vertical"
+								Background="Red"
+								Height="700">
+						<Button
+							Content="Add"
+							Background="#ABE9B3"
+							VerticalContentAlignment="Center"
+							HorizontalContentAlignment="Center"
+							Width="140"
+							/>
+						<Button
+							Content="Update"
+							Background="#F8BD96"
+							Width="140"
+							VerticalContentAlignment="Center"
+							HorizontalContentAlignment="Center"
+							/>
+						<Button
+							Content="Delete"
+							Background="#F28FAD"
+							Width="140"
+							HorizontalContentAlignment="Center"
+							VerticalContentAlignment="Center"
+							/>
+					</StackPanel>
+				</Grid>
+			</StackPanel>
 		</Grid>
 	</StackPanel>
 </UserControl>

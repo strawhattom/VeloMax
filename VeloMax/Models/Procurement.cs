@@ -4,9 +4,9 @@ namespace VeloMax.Models{
 
     public class Procurement
     {
+        public int Id { get; set; }
         public int PartId { get; set; }
         public int SupplierId { get; set; }
-        public int Id {get; set;}
 
         public Procurement(int id, int parts_id, int suppliers_id){
             this.Id = id;
