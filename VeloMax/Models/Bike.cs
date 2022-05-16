@@ -58,7 +58,7 @@ namespace VeloMax.Models
                 case 4:
                     return this.Type;
                 case 5:
-                    return this.IntroducedDate.ToString();
+                    return this.IntroductionDate.ToString();
                 case 6:
                     return this.DiscontinuationDate.ToString(); 
                 default:
