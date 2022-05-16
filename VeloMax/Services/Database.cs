@@ -435,6 +435,419 @@ namespace VeloMax.Services
            return List; 
         }
 
-        
+        public void SetValue(MySqlConnection connection, string modify)
+        {
+            
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = modify;
+            command.ExecuteNonQuery();
+             
+        }
+
+        public Boolean ModifyBike(Bike bike)
+        {
+            if(this.DbConnection())
+            {
+                string[] tab = bike.attributs();
+
+                string modify = "UPDATE Bike SET";
+                for(int i = 0; i < tab.Length; i++)
+                {
+                    modify+=tab[i] + "=" + bike.at(i);
+                }
+                    
+                modify += "WHERE id = " + bike.at(0);
+
+                SetValue(Connection, modify);
+                return true;   
+            }
+            return false;
+        }
+
+        public Boolean CreateBike(Bike bike)
+        {
+            string[] tab = bike.attributs();
+
+            string create = "Insert into `velomax`.`Bike` (";
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += tab[i] + ',';
+            }
+            create+=tab[tab.Length-1] + ") Value (" ;
+            
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += bike.at(i) + ',';
+            }
+            create+=bike.at(tab.Length-1) + ')';
+
+            if(this.DbConnection())
+            {
+                SetValue(Connection,create);
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean ModifyOrder(Order order)
+        {
+            if(this.DbConnection())
+            {
+                string[] tab = order.attributs();
+
+                string modify = "UPDATE Bike SET";
+                for(int i = 0; i < tab.Length; i++)
+                {
+                    modify+=tab[i] + "=" + order.at(i);
+                }
+                    
+                modify += "WHERE id = " + order.at(0);
+
+                SetValue(Connection, modify);
+                return true;   
+            }
+            return false;
+        }
+
+        public Boolean CreateOrder(Order order)
+        {
+            string[] tab = order.attributs();
+
+            string create = "Insert into `velomax`.`Bike` (";
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += tab[i] + ',';
+            }
+            create+=tab[tab.Length-1] + ") Value (" ;
+            
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += order.at(i) + ',';
+            }
+            create+= order.at(tab.Length-1) + ')';
+
+            if(this.DbConnection())
+            {
+                SetValue(Connection,create);
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean ModifyParts(Part part)
+        {
+            if(this.DbConnection())
+            {
+                string[] tab = part.attributs();
+
+                string modify = "UPDATE Bike SET";
+                for(int i = 0; i < tab.Length; i++)
+                {
+                    modify+=tab[i] + "=" + part.at(i);
+                }
+                    
+                modify += "WHERE id = " + part.at(0);
+
+                SetValue(Connection, modify);
+                return true;   
+            }
+            return false;
+        }
+
+        public Boolean CreatePart(Part part)
+        {
+            string[] tab = part.attributs();
+
+            string create = "Insert into `velomax`.`Bike` (";
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += tab[i] + ',';
+            }
+            create+=tab[tab.Length-1] + ") Value (" ;
+            
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += part.at(i) + ',';
+            }
+            create+= part.at(tab.Length-1) + ')';
+
+            if(this.DbConnection())
+            {
+                SetValue(Connection,create);
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean ModifySupplier(Supplier supplier)
+        {
+            if(this.DbConnection())
+            {
+                string[] tab = supplier.attributs();
+
+                string modify = "UPDATE Bike SET";
+                for(int i = 0; i < tab.Length; i++)
+                {
+                    modify+=tab[i] + "=" + supplier.at(i);
+                }
+                    
+                modify += "WHERE id = " + supplier.at(0);
+
+                SetValue(Connection, modify);
+                return true;   
+            }
+            return false;
+        }
+
+        public Boolean CreateSupplier(Supplier supplier)
+        {
+            string[] tab = supplier.attributs();
+
+            string create = "Insert into `velomax`.`Bike` (";
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += tab[i] + ',';
+            }
+            create+=tab[tab.Length-1] + ") Value (" ;
+            
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += supplier.at(i) + ',';
+            }
+            create+= supplier.at(tab.Length-1) + ')';
+
+            if(this.DbConnection())
+            {
+                SetValue(Connection,create);
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean ModifyFildelityProgram(FidelityProgram fidelity)
+        {
+            if(this.DbConnection())
+            {
+                string[] tab = fidelity.attributs();
+
+                string modify = "UPDATE Bike SET";
+                for(int i = 0; i < tab.Length; i++)
+                {
+                    modify+=tab[i] + "=" + fidelity.at(i);
+                }
+                    
+                modify += "WHERE id = " + fidelity.at(0);
+
+                SetValue(Connection, modify);
+                return true;   
+            }
+            return false;
+        }
+
+        public Boolean CreateFidelityProgram(FidelityProgram fidelity)
+        {
+            string[] tab = fidelity.attributs();
+
+            string create = "Insert into `velomax`.`Bike` (";
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += tab[i] + ',';
+            }
+            create+=tab[tab.Length-1] + ") Value (" ;
+            
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += fidelity.at(i) + ',';
+            }
+            create+= fidelity.at(tab.Length-1) + ')';
+
+            if(this.DbConnection())
+            {
+                SetValue(Connection,create);
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean ModifyOrderBikes(OrderedBike orderedBike)
+        {
+            if(this.DbConnection())
+            {
+                string[] tab = orderedBike.attributs();
+
+                string modify = "UPDATE Bike SET";
+                for(int i = 0; i < tab.Length; i++)
+                {
+                    modify+=tab[i] + "=" + orderedBike.at(i);
+                }
+                    
+                modify += "WHERE id = " + orderedBike.at(0);
+
+                SetValue(Connection, modify);
+                return true;   
+            }
+            return false;
+        }
+
+        public Boolean CreateOrderBikes(OrderedBike orderedBike)
+        {
+            string[] tab = orderedBike.attributs();
+
+            string create = "Insert into `velomax`.`Bike` (";
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += tab[i] + ',';
+            }
+            create+=tab[tab.Length-1] + ") Value (" ;
+            
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += orderedBike.at(i) + ',';
+            }
+            create+= orderedBike.at(tab.Length-1) + ')';
+
+            if(this.DbConnection())
+            {
+                SetValue(Connection,create);
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean ModifyOrderParts(OrderedPart orderedPart)
+        {
+            if(this.DbConnection())
+            {
+                string[] tab = orderedPart.attributs();
+
+                string modify = "UPDATE Bike SET";
+                for(int i = 0; i < tab.Length; i++)
+                {
+                    modify+=tab[i] + "=" + orderedPart.at(i);
+                }
+                    
+                modify += "WHERE id = " + orderedPart.at(0);
+
+                SetValue(Connection, modify);
+                return true;   
+            }
+            return false;
+        }
+
+        public Boolean CreateOrderParts(OrderedPart orderedPart)
+        {
+            string[] tab = orderedPart.attributs();
+
+            string create = "Insert into `velomax`.`Bike` (";
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += tab[i] + ',';
+            }
+            create+=tab[tab.Length-1] + ") Value (" ;
+            
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += orderedPart.at(i) + ',';
+            }
+            create+= orderedPart.at(tab.Length-1) + ')';
+
+            if(this.DbConnection())
+            {
+                SetValue(Connection,create);
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean ModifyBikeParts(BikePart bikePart)
+        {
+            if(this.DbConnection())
+            {
+                string[] tab = bikePart.attributs();
+
+                string modify = "UPDATE Bike SET";
+                for(int i = 0; i < tab.Length; i++)
+                {
+                    modify+=tab[i] + "=" + bikePart.at(i);
+                }
+                    
+                modify += "WHERE id = " + bikePart.at(0);
+
+                SetValue(Connection, modify);
+                return true;   
+            }
+            return false;
+        }
+
+        public Boolean CreateBikeParts(BikePart bikePart)
+        {
+            string[] tab = bikePart.attributs();
+
+            string create = "Insert into `velomax`.`Bike` (";
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += tab[i] + ',';
+            }
+            create+=tab[tab.Length-1] + ") Value (" ;
+            
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += bikePart.at(i) + ',';
+            }
+            create+= bikePart.at(tab.Length-1) + ')';
+
+            if(this.DbConnection())
+            {
+                SetValue(Connection,create);
+                return true;
+            }
+            return false;
+        }
+
+        public Boolean ModifyProcurment(Procurement procurement)
+        {
+            if(this.DbConnection())
+            {
+                string[] tab = procurement.attributs();
+
+                string modify = "UPDATE Bike SET";
+                for(int i = 0; i < tab.Length; i++)
+                {
+                    modify+=tab[i] + "=" + procurement.at(i);
+                }
+                    
+                modify += "WHERE id = " + procurement.at(0);
+
+                SetValue(Connection, modify);
+                return true;   
+            }
+            return false;
+        }
+
+        public Boolean CreateProcurment(Procurement procurement)
+        {
+            string[] tab = procurement.attributs();
+
+            string create = "Insert into `velomax`.`Bike` (";
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += tab[i] + ',';
+            }
+            create+=tab[tab.Length-1] + ") Value (" ;
+            
+            for(int i = 0; i< tab.Length-1;i++)
+            {
+                create += procurement.at(i) + ',';
+            }
+            create+= procurement.at(tab.Length-1) + ')';
+
+            if(this.DbConnection())
+            {
+                SetValue(Connection,create);
+                return true;
+            }
+            return false;
+        }
+
     }
 }

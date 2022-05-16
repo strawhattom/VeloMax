@@ -28,5 +28,42 @@ namespace VeloMax.Models
             this.IntroducedDate = iDate;
             this.DiscontinuationDate = dDate;
         }
+
+        public string[] attributs()
+        {
+            string[] attributs = new string[7];
+            attributs[0]="Id";
+            attributs[1]="name";
+            attributs[2]="target";
+            attributs[3]="unite_price";
+            attributs[4]="type";
+            attributs[5]="introduction_date";
+            attributs[6]="discontinuation_date";
+
+            return attributs;
+        }
+
+        public string at(int i)
+        {
+            switch(i)
+            {
+                case 0:
+                    return this.Id.ToString();
+                case 1:
+                    return this.Name;
+                case 2:
+                    return this.Target;
+                case 3:
+                    return this .UnitPrice.ToString();
+                case 4:
+                    return this.Type;
+                case 5:
+                    return this.IntroducedDate.ToString();
+                case 6:
+                    return this.DiscontinuationDate.ToString(); 
+                default:
+                    return null;
+            }    
+        }
     }
 }

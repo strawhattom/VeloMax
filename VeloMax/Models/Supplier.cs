@@ -30,6 +30,41 @@ namespace VeloMax.Models
             this.Label = label;
         }
         
+        public string[] attributs()
+        {
+            string[] attributs = new string[7];
+            attributs[0]="Id";
+            attributs[1]="siret";
+            attributs[2]="name";
+            attributs[3]="contact";
+            attributs[4]="location";
+            attributs[5]="label";
+            
+
+            return attributs;
+        }
+
+        public string at(int i)
+        {
+            switch(i)
+            {
+                case 0:
+                    return this.Id.ToString();
+                case 1:
+                    return this.Siret;
+                case 2:
+                    return this.Name.ToString();
+                case 3:
+                    return this .Contact.ToString();
+                case 4:
+                    return this.Location.ToString();
+                case 5:
+                    return this.Label.ToString();
+                default:
+                    return null;
+            }    
+        }
+
 
     }
 }
