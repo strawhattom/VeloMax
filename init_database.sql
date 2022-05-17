@@ -5,6 +5,17 @@ DROP DATABASE IF EXISTS velomax;
 CREATE DATABASE IF NOT EXISTS velomax;
 USE velomax;
 
+-- Fidelity programs
+DROP TABLE IF EXISTS fidelity_programs;
+CREATE TABLE IF NOT EXISTS fidelity_programs(
+	id INT NOT NULL AUTO_INCREMENT,
+	label VARCHAR(255) NOT NULL,
+	cost INT NOT NULL,
+	duration INT NOT NULL,
+	discount INT NOT NULL CHECK(discount < 100), -- percentage
+	PRIMARY KEY(id)
+);
+
 -- Clients
 DROP TABLE IF EXISTS clients;
 CREATE TABLE IF NOT EXISTS clients(
@@ -20,24 +31,21 @@ CREATE TABLE IF NOT EXISTS clients(
 
 DROP TABLE IF EXISTS individuals;
 CREATE TABLE IF NOT EXISTS individuals(
-	id INT NOT NULL,
+	id INT NOT NULL REFERENCES clients,
 	first_name VARCHAR(255) NOT NULL,
 	last_name VARCHAR(255) NOT NULL,
-	id_fidelity INT DEFAULT 0,
+	id_fidelity INT NOT NULL DEFAULT 0,
 	PRIMARY KEY(id),
-	FOREIGN KEY(id)
-		REFERENCES clients(id),
-    	FOREIGN KEY(id_fidelity)
-        	REFERENCES fidelity_programs(id)
+	FOREIGN KEY(id_fidelity)
+		REFERENCES fidelity_programs(id)
 );
 
 DROP TABLE IF EXISTS professionals;
 CREATE TABLE IF NOT EXISTS professionals(
-	id INT NOT NULL,
+	id INT NOT NULL REFERENCES clients,
 	company_name VARCHAR(255) NOT NULL,
 	contact_name VARCHAR(255) NOT NULL,
 	order_count INT NOT NULL DEFAULT 0,
-	PRIMARY KEY(id),
 	FOREIGN KEY(id)
 		REFERENCES clients(id)
 );
@@ -90,17 +98,6 @@ CREATE TABLE IF NOT EXISTS suppliers(
 	contact VARCHAR(255) NOT NULL,
 	location VARCHAR(255) NOT NULL,
 	label ENUM('1','2','3','4'), -- 1 very good, 2 good, 3 average, 4 bad
-	PRIMARY KEY(id)
-);
-
--- Fidelity programs
-DROP TABLE IF EXISTS fidelity_programs;
-CREATE TABLE IF NOT EXISTS fidelity_programs(
-	id INT NOT NULL AUTO_INCREMENT,
-	label VARCHAR(255) NOT NULL,
-	cost INT NOT NULL,
-	duration INT NOT NULL,
-	discount INT NOT NULL CHECK(discount < 100), -- percentage
 	PRIMARY KEY(id)
 );
 
