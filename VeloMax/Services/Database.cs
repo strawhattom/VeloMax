@@ -1076,12 +1076,12 @@ namespace VeloMax.Services
         
         }
 
-        public List<List<List<string>>> StockPartsByBikes()
+        public List<List<List<string>>> StockPartsByBikes(string type="name") // range celon l argument donnée (argument appartient a table bikes)
         {
-            string best = "SELECT B.name, P.description, P.Quantity "+
+            string best = "SELECT B."+type+", P.description, P.Quantity "+
                         "FROM bikes B JOIN bike_parts Br ON B.id=Br.bikes_id " +
                         "JOIN parts P ON P.id=Br.parts_id "+
-                        "ORDER BY B.name;"; 
+                        "ORDER BY B."+type+";"; 
             
             List<List<List<string>>> Parts = new List<List<List<string>>>();
             List<List<string>> Velo = new List<List<string>>();
@@ -1147,5 +1147,78 @@ namespace VeloMax.Services
             }
             return Parts;
         }
+
+        public List<List<List<string>>> StockPartsBySuppliers()
+        {
+            string best = "SELECT S.name, P.description, P.Quantity "+
+                        "FROM suppliers S JOIN procurement Pr ON S.id=Pr.suppliers_id " +
+                        "JOIN parts P ON P.id=Pr.parts_id "+
+                        "ORDER BY S.name;"; 
+            
+            List<List<List<string>>> Parts = new List<List<List<string>>>();
+            List<List<string>> Velo = new List<List<string>>();
+
+            if (this.DbConnection())
+                {
+                    MySqlDataReader Reader = Query(Connection, best);
+                    string tmp="";
+                    while (Reader.Read())
+                        {
+                            string nombike = Reader.GetString(0);
+                    if(nombike==tmp)
+                    {
+                        List<string> piece = new List<string>();
+                        piece.Add(Reader.GetString(1));
+                        piece.Add(Reader.GetInt32(2).ToString());
+
+                        Velo.Add(piece);
+                    }
+                    else
+                    {
+                        tmp = Reader.GetString(0);
+                        Parts.Add(Velo);
+                        List<string> nom = new List<string>();
+                        nom.Add(tmp);
+                        Velo = new List<List<string>>();
+                        Velo.Add(nom);
+                        List<string> piece = new List<string>();
+                        piece.Add(Reader.GetString(1));
+                        piece.Add(Reader.GetInt32(2).ToString());
+                        Velo.Add(piece);
+
+                    }
+                    Reader.Close();
+                    Connection.Close();
+                }
+            }
+            return Parts;
+        }
+
+        public List<List<string>> StockNull() //savoir quelles pieces sont a commander
+        {
+            string best = "SELECT P.id, P.description FROM parts P WHERE P.quantity = 0;";
+            
+            List<List<string>> Stock = new List<List<string>>();
+
+            if (this.DbConnection())
+                {
+                    MySqlDataReader Reader = Query(Connection, best);
+
+                    while (Reader.Read())
+                        {
+                            List<string>  clients = new List<string>();
+                            clients.Add(Reader.GetString(0));
+                            clients.Add(Reader.GetString(1));
+                            Stock.Add(clients);
+                        }   
+                    
+                    Reader.Close();
+                    Connection.Close();
+                    
+            }
+            return Stock;
+        }
+        
+        
     }
 }

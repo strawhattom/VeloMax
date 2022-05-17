@@ -24,7 +24,7 @@ INSERT INTO `fidelity_programs` (`id`, `label`, `cost`, `duration`, `discount`) 
 INSERT INTO `fidelity_programs` (`id`, `label`, `cost`, `duration`, `discount`) VALUES (4, 'Fidélio Max', 100, 3, 12);
 
 -- Parts
-INSERT INTO `parts` (`id`, `description`, `unit_price`, `introduction_date`, `discontinuation_date`, `procurement_delay`, `quantity`, `type`) VALUES (1, 'C32', 0, '2022-04-26', '2022-04-26', 0, 1, 'Cadre');
+INSERT INTO `parts` (`id`, `description`, `unit_price`, `introduction_date`, `discontinuation_date`, `procurement_delay`, `quantity`, `type`) VALUES (1, 'C32', 0, '2022-04-26', '2022-04-26', 0, 0, 'Cadre');
 INSERT INTO `parts` (`id`, `description`, `unit_price`, `introduction_date`, `discontinuation_date`, `procurement_delay`, `quantity`, `type`) VALUES (2, 'C34', 0, '2022-04-26', '2022-04-26', 0, 1, 'Cadre');
 INSERT INTO `parts` (`id`, `description`, `unit_price`, `introduction_date`, `discontinuation_date`, `procurement_delay`, `quantity`, `type`) VALUES (3, 'C76', 0, '2022-04-26', '2022-04-26', 0, 2, 'Cadre');
 INSERT INTO `parts` (`id`, `description`, `unit_price`, `introduction_date`, `discontinuation_date`, `procurement_delay`, `quantity`, `type`) VALUES (4, 'C43', 0, '2022-04-26', '2022-04-26', 0, 2, 'Cadre');
