@@ -17,6 +17,7 @@ INSERT INTO `bikes` (`id`, `name`, `target`, `unit_price`, `type`, `introduction
 INSERT INTO `bikes` (`id`, `name`, `target`, `unit_price`, `type`, `introduction_date`, `discontinuation_date`) VALUES (115, 'Mud Zinger II', 'Adultes', 359, 'BMX', '2022-04-26', '2022-04-26');
 
 -- Fidelity programs
+INSERT INTO `fidelity_programs` (`id`, `label`, `cost`, `duration`, `discount`) VALUES (5, 'sans', 0, 0, 0);
 INSERT INTO `fidelity_programs` (`id`, `label`, `cost`, `duration`, `discount`) VALUES (1, 'Fidélio', 15, 1, 5);
 INSERT INTO `fidelity_programs` (`id`, `label`, `cost`, `duration`, `discount`) VALUES (2, 'Fidélio Or', 25, 2, 8);
 INSERT INTO `fidelity_programs` (`id`, `label`, `cost`, `duration`, `discount`) VALUES (3, 'Fidélio Platine', 60, 2, 10);
@@ -322,7 +323,7 @@ INSERT INTO `clients`(id,street,city,postal_code,province,phone,mail) VALUES (6,
 
 INSERT INTO `individuals`(id,first_name,last_name,id_fidelity, expiration_date) VALUES (1,'Paul','Barbier',1,"2022-06-08");
 INSERT INTO `individuals`(id,first_name,last_name,id_fidelity, expiration_date) VALUES (2,'Christelle','Gandon',3,"2022-06-05");
-INSERT INTO `individuals`(id,first_name,last_name,id_fidelity, expiration_date) VALUES (3,'Alexande','Rouste',2,"2022-02-03");
+INSERT INTO `individuals`(id,first_name,last_name,id_fidelity) VALUES (3,'Alexande','Rouste',5);
 
 INSERT INTO `professionals`(id,company_name,contact_name,order_count) VALUES (4,'Cycle Alex Singer','Bast',8);
 INSERT INTO `professionals`(id,company_name,contact_name,order_count) VALUES (5,'CycleDGuidon','Gorfle',31);

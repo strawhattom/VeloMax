@@ -916,6 +916,58 @@ namespace VeloMax.Services
             return bestlist;
         }
         
+        public List<List<string>> ClientsFidelity()
+        {
+            string best = "SELECT F.id, F.label, I.first_name, I.last_name"+
+                        "FROM fidelity_programs F JOIN individuals I ON F.id = I.id_fidelity;";
+            
+            List<List<string>>clients = new List<List<string>>();
+
+            if (this.DbConnection())
+                {
+                    MySqlDataReader Reader = Query(Connection, best);
+
+                    List<string> fidelity0 = new List<string>();
+                    List<string> fidelity1 = new List<string>();
+                    List<string> fidelity2 = new List<string>();
+                    List<string> fidelity3 = new List<string>();
+                    List<string> fidelity4 = new List<string>();
+
+                    int j=0;
+                    while (Reader.Read())
+                        {
+                            if(Reader.GetInt32(0)==5)
+                            {
+                                fidelity0.Add(Reader.GetString(2)+' '+Reader.GetString(3));
+                            }
+                            if(Reader.GetInt32(0)==1)
+                            {
+                                fidelity1.Add(Reader.GetString(2)+' '+Reader.GetString(3));
+                            }
+                            if(Reader.GetInt32(0)==2)
+                            {
+                                fidelity2.Add(Reader.GetString(2)+' '+Reader.GetString(3));
+                            }
+                            if(Reader.GetInt32(0)==3)
+                            {
+                                fidelity3.Add(Reader.GetString(2)+' '+Reader.GetString(3));
+                            }
+                            if(Reader.GetInt32(0)==4)
+                            {
+                                fidelity4.Add(Reader.GetString(2)+' '+Reader.GetString(3));
+                            }
+                        }   
+                    
+                    Reader.Close();
+                    Connection.Close();
+                    clients.Add(fidelity0);
+                    clients.Add(fidelity1);
+                    clients.Add(fidelity2);
+                    clients.Add(fidelity3);
+                    clients.Add(fidelity4);
+            }
+            return clients;
+        }
 
     }
 }
