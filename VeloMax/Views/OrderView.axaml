@@ -4,24 +4,70 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:VeloMax.ViewModels"
-    x:Class="VeloMax.Views.OrderView"
->
-
-    <StackPanel>
+	x:Class="VeloMax.Views.OrderView"
+	>
+	<StackPanel>
 		<Design.DataContext>
 			<vm:OrderViewModel/>
 		</Design.DataContext>
-		
-		<TextBlock
-        Text="Bike"
-        Foreground="#000000"
-        FontSize="28"
-        HorizontalAlignment="Left"
-        Margin="0,0,0,20"/>
+
 		<Grid>
-			<DataGrid Items="{Binding Orders}">
-			</DataGrid>
-			
+			<Grid.RowDefinitions>
+				<RowDefinition Height="40"/>
+				<RowDefinition Height="550"/>
+			</Grid.RowDefinitions>
+
+			<!-- Title + client type button-->
+			<StackPanel>
+				<TextBlock
+					Grid.Column="0"
+					Text="Order"
+					Foreground="#000000"
+					FontSize="28"
+					HorizontalAlignment="Left"
+					Margin="0,0,0,20"/>
+			</StackPanel>
+
+			<!-- Data + buttons -->
+			<Panel Grid.Row="1">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="800"/>
+						<ColumnDefinition Width="180"/>
+					</Grid.ColumnDefinitions>
+					<DataGrid Grid.Column="0"
+							  Name="OrderGrid"
+							  Items="{Binding Orders}"
+							  AutoGenerateColumns="True">
+					</DataGrid>
+
+					<!-- Modificator Button -->
+					<StackPanel Grid.Column="1"
+								HorizontalAlignment="Center">
+						<Button
+							Content="Add"
+							Background="#ABE9B3"
+							Margin="0,100,0,0"
+							HorizontalContentAlignment="Center"
+							Width="140"
+							/>
+						<Button
+							Content="Update"
+							Background="#F8BD96"
+							Margin="0,100,0,0"
+							Width="140"
+							HorizontalContentAlignment="Center"
+							/>
+						<Button
+							Content="Delete"
+							Background="#F28FAD"
+							Margin="0,100,0,0"
+							Width="140"
+							HorizontalContentAlignment="Center"
+							/>
+					</StackPanel>
+				</Grid>
+			</Panel>
 		</Grid>
 
 	</StackPanel>

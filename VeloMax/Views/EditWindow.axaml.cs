@@ -1,6 +1,7 @@
 ﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
+using VeloMax.Models;
 
 namespace VeloMax.Views
 {
@@ -9,6 +10,11 @@ namespace VeloMax.Views
         public EditWindow()
         {
             InitializeComponent();
+        }
+
+        public EditWindow(object o)
+        {
+            
         }
 
         private void InitializeComponent()

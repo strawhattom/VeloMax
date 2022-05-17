@@ -16,6 +16,5 @@ namespace VeloMax.Views
         {
             AvaloniaXamlLoader.Load(this);
         }
-
     }
 }

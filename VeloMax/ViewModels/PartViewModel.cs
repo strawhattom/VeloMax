@@ -5,6 +5,7 @@ using System.Windows.Input;
 using Avalonia.Controls;
 using ReactiveUI;
 using VeloMax.Models;
+using VeloMax.Views;
 
 namespace VeloMax.ViewModels
 {
@@ -28,11 +29,14 @@ namespace VeloMax.ViewModels
             _selectedPart = Parts[0];
             UpdateClicked = ReactiveCommand.Create(OnUpdateClick);
             ModifyClicked = ReactiveCommand.Create(OnModifyClick);
+            
         }
 
         private void OnModifyClick()
         {
             Console.WriteLine("Want to modify");
+            var edit = new EditWindow();
+            edit.Show();
         }
 
         private void OnUpdateClick()

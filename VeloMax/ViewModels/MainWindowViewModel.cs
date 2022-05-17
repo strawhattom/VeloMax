@@ -20,8 +20,6 @@ namespace VeloMax.ViewModels
         public ICommand StockButtonClicked { get; }
         public ICommand SupplierButtonClicked { get; }
 
-        public Interaction<EditWindowViewModel, ViewModelBase?> ShowDialog { get; }
-
         // public ICommand SearchInput { get; }
         
         public ViewModelBase NavigationContent 
@@ -50,8 +48,6 @@ namespace VeloMax.ViewModels
             OtherButtonClicked = ReactiveCommand.Create(OnOtherButtonClicked);
             StockButtonClicked = ReactiveCommand.Create(OnStockButtonClicked);
             SupplierButtonClicked = ReactiveCommand.Create(OnSupplierButtonClicked);
-
-            // Window
 
         }
         

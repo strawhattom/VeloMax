@@ -7,7 +7,87 @@
     x:Class="VeloMax.Views.EditWindow"
     Title="Edit window">
     
-    <TextBlock
-        Text="Want to update ?"
-        />
+    <StackPanel>
+        <!-- <TextBox
+            Watermark="id"
+            Margin="10"
+            Width="200"
+            BorderThickness="2"
+            BorderBrush="gray"/> -->
+        <Grid 
+            Height="100"
+            Margin="250,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="200"/>
+            </Grid.RowDefinitions>
+
+            <Button
+                Grid.Column="0"
+                Grid.Row="0"
+                Content="Client"
+                Foreground="#D9E0EE"
+                Background="#1E1E2E"
+
+                Width="140"
+                HorizontalContentAlignment="Center"
+                />
+            <Button
+                Grid.Column="1"
+                Grid.Row="0"
+                Content="Supplier"
+                Foreground="#D9E0EE"
+                Background="#1E1E2E"
+
+                Width="140"
+                HorizontalContentAlignment="Center"
+                />
+            <Button
+                Grid.Column="2"
+                Grid.Row="0"
+                Content="Part"
+                Foreground="#D9E0EE"
+                Background="#1E1E2E"
+
+                Width="140"
+                HorizontalContentAlignment="Center"
+                />
+            <Button
+                Grid.Column="0"
+                Grid.Row="1"
+                Content="Bike"
+                Foreground="#D9E0EE"
+                Background="#1E1E2E"
+
+                Width="140"
+                HorizontalContentAlignment="Center"
+                />
+            <Button
+                Grid.Column="1"
+                Grid.Row="1"
+                Content="Order"
+                Foreground="#D9E0EE"
+                Background="#1E1E2E"
+
+                Width="140"
+                HorizontalContentAlignment="Center"
+                />
+            <Button
+                Grid.Column="2"
+                Grid.Row="1"
+                Content="Supplier part"
+                Foreground="#D9E0EE"
+                Background="#1E1E2E"
+
+                Width="140"
+                HorizontalContentAlignment="Center"
+                />
+            
+        </Grid>
+    </StackPanel>
 </Window>

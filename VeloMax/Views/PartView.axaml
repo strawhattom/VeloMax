@@ -45,6 +45,7 @@
 									<DataTemplate>
 										<StackPanel Orientation="Horizontal">
 											<Button
+											Width="100"
 											Name = "{Binding Id}"
 											Command="{Binding ModifyClicked}"
 											Content="Edit"
@@ -73,7 +74,7 @@
 							Background="#F8BD96"
 							Margin="0,100,0,0"
 							Width="140"
-							Command="{Binding UpdateClicked}"
+							Command="{Binding ModifyClicked}"
 							HorizontalContentAlignment="Center"
 							/>
 						<Button
