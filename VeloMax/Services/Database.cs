@@ -854,11 +854,11 @@ namespace VeloMax.Services
             string[] date = DateTime.Now.ToString().Split('/');
             string mois = date[0];
             string year = date[2].Split(' ')[0];
-            string best = "SELECT P.description , sum(OP.quantity), sum(OP.quantity)*P.unit_price, avg(OP.Quantity)"+
-                        "FROM ordered_parts OP JOIN parts P ON OP.parts_id=P.id JOIN orders O ON OP.orders_id = O.id"+
-                        "WHERE O.shipping_date>'" + year + "-" + mois + "-01'"+
+            string best = "SELECT P.description , sum(OP.quantity), sum(OP.quantity)*P.unit_price, avg(OP.Quantity) "+
+                        "FROM ordered_parts OP JOIN parts P ON OP.parts_id=P.id JOIN orders O ON OP.orders_id = O.id "+
+                        "WHERE O.shipping_date>'" + year + "-" + mois + "-01' "+
                         "GROUP BY P.id" +
-                        "HAVING sum(OP.quantity)>= all(SELECT sum(quantity) FROM ordered_parts GROUP BY parts_id);";
+                        "HAVING sum(OP.quantity)>= all(SELECT sum(quantity) FROM ordered_parts GROUP BY parts_id); ";
             
             List<string> bestlist = new List<string>();
 
@@ -887,10 +887,10 @@ namespace VeloMax.Services
             string[] date = DateTime.Now.ToString().Split('/');
             string mois = date[0];
             string year = date[2].Split(' ')[0];
-            string best = "SELECT B.name , sum(OB.quantity), sum(OB.quantity)*B.unit_price, avg(OB.Quantity)"+
-                        "FROM ordered_bikes OB JOIN bikes B ON OB.bikes_id=B.id JOIN orders O ON OB.orders_id = O.id"+
-                        "WHERE O.shipping_date>'" + year + "-" + mois + "-01'"+
-                        "GROUP BY B.id" +
+            string best = "SELECT B.name , sum(OB.quantity), sum(OB.quantity)*B.unit_price, avg(OB.Quantity) "+
+                        "FROM ordered_bikes OB JOIN bikes B ON OB.bikes_id=B.id JOIN orders O ON OB.orders_id = O.id "+
+                        "WHERE O.shipping_date>'" + year + "-" + mois + "-01' "+
+                        "GROUP BY B.id " +
                         "HAVING sum(OB.quantity)>= all(SELECT sum(quantity) FROM ordered_bikes GROUP BY bikes_id)";
             
             List<string> bestlist = new List<string>();
@@ -919,7 +919,7 @@ namespace VeloMax.Services
 
         public List<List<string>> ClientsFidelity()
         {
-            string best = "SELECT F.id, F.label, I.first_name, I.last_name"+
+            string best = "SELECT F.id, F.label, I.first_name, I.last_name "+
                         "FROM fidelity_programs F JOIN individuals I ON F.id = I.id_fidelity;";
             
             List<List<string>>clients = new List<List<string>>();
@@ -999,5 +999,83 @@ namespace VeloMax.Services
             return expiration;
         }
 
+
+        public List<List<string>> BestClients()
+        {
+            
+            List<List<string>> bestclients = new List<List<string>>();
+
+            if (this.DbConnection())
+            {
+                string best = "Select C.company_name ,sum(O.quantity) "+
+                    "FROM orders O JOIN professionals C ON C.id = O.id_client "+
+                    "group by C.id "+
+                    "GROUP BY B.id " +
+                    "Having sum(O.quantity) >= all(Select sum(O.quantity) FROM orders O group by id_client);";
+
+                MySqlDataReader Reader = Query(Connection, best);
+
+                while (Reader.Read())
+                    {
+                        List<string>  clients = new List<string>();
+                        clients.Add(Reader.GetString(0));
+                        clients.Add(Reader.GetInt32(1).ToString());
+                        bestclients.Add(clients);
+                    }   
+                
+                Reader.Close();
+
+                best = "Select C.first_name, C.last_name, sum(O.quantity) "+
+                    "FROM orders O JOIN individuals C ON C.id = O.id_client "+
+                    "group by C.id "+
+                    "Having sum(O.quantity) >= all(Select sum(O.quantity) FROM orders O group by id_client);";
+
+                Reader = Query(Connection, best);
+
+                while (Reader.Read())
+                    {
+                        List<string>  clients = new List<string>();
+                        clients.Add(Reader.GetString(0)+' '+Reader.GetString(1));
+                        clients.Add(Reader.GetInt32(2).ToString());
+                        bestclients.Add(clients);
+                    }   
+                
+                Reader.Close();
+                Connection.Close();
+                    
+            }
+            return bestclients;
+        }
+        
+        public List<int> Average()
+        {
+            string best = "Select avg(Bp.quantity*B.unit_price + Pp.quantity * P.unit_price), avg(Bp.quantity), avg(Pp.quantity)"+
+                        "From orders O JOIN ordered_bikes Bp ON O.id=Bp.orders_id"+
+                        "Join bikes B on B.id = Bp.bikes_id"+
+                        "join ordered_parts Pp on Pp.orders_id = O.id" +
+                        "join parts P on P.id = Pp.parts_id;";
+            
+            List<int> average = new List<int>();
+
+            if (this.DbConnection())
+                {
+                    MySqlDataReader Reader = Query(Connection, best);
+
+                    while (Reader.Read())
+                        {
+                            for (int i = 0; i < Reader.FieldCount; i++)
+                            {
+                                {
+                                    average.Add(Reader.GetInt32(i));
+                                }
+                            }
+                            
+                        }
+                    Reader.Close();
+                    Connection.Close();
+            }
+            return average;
+        
+        }
     }
 }
