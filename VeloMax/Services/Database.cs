@@ -934,7 +934,6 @@ namespace VeloMax.Services
                     List<string> fidelity3 = new List<string>();
                     List<string> fidelity4 = new List<string>();
 
-                    int j=0;
                     while (Reader.Read())
                         {
                             if(Reader.GetInt32(0)==5)
@@ -981,7 +980,6 @@ namespace VeloMax.Services
                 {
                     MySqlDataReader Reader = Query(Connection, best);
 
-                    int j=0;
                     while (Reader.Read())
                         {
                             List<string>  clients = new List<string>();
@@ -1076,6 +1074,78 @@ namespace VeloMax.Services
             }
             return average;
         
+        }
+
+        public List<List<List<string>>> StockPartsByBikes()
+        {
+            string best = "SELECT B.name, P.description, P.Quantity "+
+                        "FROM bikes B JOIN bike_parts Br ON B.id=Br.bikes_id " +
+                        "JOIN parts P ON P.id=Br.parts_id "+
+                        "ORDER BY B.name;"; 
+            
+            List<List<List<string>>> Parts = new List<List<List<string>>>();
+            List<List<string>> Velo = new List<List<string>>();
+
+            if (this.DbConnection())
+                {
+                    MySqlDataReader Reader = Query(Connection, best);
+                    string tmp="";
+                    while (Reader.Read())
+                        {
+                            string nombike = Reader.GetString(0);
+                    if(nombike==tmp)
+                    {
+                        List<string> piece = new List<string>();
+                        piece.Add(Reader.GetString(1));
+                        piece.Add(Reader.GetInt32(2).ToString());
+
+                        Velo.Add(piece);
+                    }
+                    else
+                    {
+                        tmp = Reader.GetString(0);
+                        Parts.Add(Velo);
+                        List<string> nom = new List<string>();
+                        nom.Add(tmp);
+                        Velo = new List<List<string>>();
+                        Velo.Add(nom);
+                        List<string> piece = new List<string>();
+                        piece.Add(Reader.GetString(1));
+                        piece.Add(Reader.GetInt32(2).ToString());
+                        Velo.Add(piece);
+
+                    }
+                    Reader.Close();
+                    Connection.Close();
+                }
+            }
+            return Parts;
+        }
+
+        public List<string> StockParts()
+        {
+            string best = "SELECT P.description, P.quantity FROM parts P";
+            
+            List<string> Parts = new List<string>();
+
+            if (this.DbConnection())
+            {
+                MySqlDataReader Reader = Query(Connection, best);
+
+                while (Reader.Read())
+                    {
+                        for (int i = 0; i < Reader.FieldCount; i++)
+                        {
+                            {
+                                Parts.Add(Reader.GetValue(i).ToString());
+                            }
+                        }
+                        
+                    }
+                Reader.Close();
+                Connection.Close();
+            }
+            return Parts;
         }
     }
 }
