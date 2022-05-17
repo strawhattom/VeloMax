@@ -6,7 +6,7 @@ namespace VeloMax.Models
 
         public int Id { get; set; }
         private string Description { get; set; }
-        private double? UnitPrice { get; set; }
+        private double UnitPrice { get; set; }
         private DateTime IntroductionDate { get; set;}
         private DateTime DiscontinuationDate{ get; set; }
         private int ProcurementDelay { get; set; }
@@ -69,7 +69,7 @@ namespace VeloMax.Models
                 case 7:
                     return this.Type; 
                 default:
-                    return null;
+                    return "";
             }    
         }
 

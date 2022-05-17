@@ -38,7 +38,7 @@ namespace VeloMax.Models
                     return this.BikeId.ToString();
 
                 default:
-                    return null;
+                    return "";
             }    
         }
     }

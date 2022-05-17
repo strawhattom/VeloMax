@@ -36,7 +36,7 @@ namespace VeloMax.Models{
                     return this.SupplierId.ToString();
 
                 default:
-                    return null;
+                    return "";
             }    
         }
     }

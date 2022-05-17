@@ -44,7 +44,7 @@ namespace VeloMax.Models
                     return this.Quantity.ToString();
 
                 default:
-                    return null;
+                    return "";
             }    
         }
     }

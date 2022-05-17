@@ -53,7 +53,7 @@ namespace VeloMax.Models
                     return this.Discount.ToString();
  
                 default:
-                    return null;
+                    return "";
             }    
         }
     }

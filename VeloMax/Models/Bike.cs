@@ -62,7 +62,7 @@ namespace VeloMax.Models
                 case 6:
                     return this.DiscontinuationDate.ToString(); 
                 default:
-                    return null;
+                    return "";
             }    
         }
     }

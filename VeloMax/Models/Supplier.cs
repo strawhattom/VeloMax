@@ -5,14 +5,14 @@ namespace VeloMax.Models
     public class Supplier
     {
         public int Id { get; set; }
-        public string? Siret { get; set; }
-        public string? Name { get; set; }
-        public string? Contact { get; set; }
-        public string? Location { get; set; }
+        public string Siret { get; set; }
+        public string Name { get; set; }
+        public string Contact { get; set; }
+        public string Location { get; set; }
         public string Label { get; set; }
 
         public Supplier(int id, string siret, string name, string contact, string location, string label){
-            if (siret is null || name is null || contact is null | location is null)
+            if (siret is null || name is null || contact is null || location is null)
             {
                 Console.WriteLine("ERROR : at least one arg is null");
                 System.Environment.Exit(0);
@@ -55,13 +55,13 @@ namespace VeloMax.Models
                 case 2:
                     return this.Name.ToString();
                 case 3:
-                    return this .Contact.ToString();
+                    return this.Contact.ToString();
                 case 4:
                     return this.Location.ToString();
                 case 5:
                     return this.Label.ToString();
                 default:
-                    return null;
+                    return "";
             }    
         }
 

@@ -50,7 +50,7 @@ namespace VeloMax.Models
                 case 4:
                     return this.Quantity.ToString();
                 default:
-                    return null;
+                    return "";
             }    
         }
     }
