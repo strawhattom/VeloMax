@@ -37,17 +37,26 @@
 					</Grid.ColumnDefinitions>
 					<DataGrid Grid.Column="0"
 							  Name="PartGrid"
-							  Items="{Binding Data}">
-							<DataGrid.Columns>
-								<DataGridTextColumn Header="Id"  Binding="{Binding Id}"/>
-								<DataGridTextColumn Header="Description" Binding="{Binding Description}" />
-								<DataGridTextColumn Header="Unit price" Binding="{Binding UnitPrice}" />
-								<DataGridTextColumn Header="Introduced in" Binding="{Binding IntroductionDate}" />
-								<DataGridTextColumn Header="Discontinuated in" Binding="{Binding DiscontinuationDate}" />
-								<DataGridTextColumn Header="Procurement delay" Binding="{Binding ProcurementDelay}" />
-								<DataGridTextColumn Header="Quantity" Binding="{Binding Quantity}" />
-								<DataGridTextColumn Header="Type" Binding="{Binding Type}" />
-							</DataGrid.Columns>
+							  Items="{Binding Parts}"
+							  AutoGenerateColumns="True">
+						<DataGrid.Columns>
+							<DataGridTemplateColumn Header="Edit" Width="*" >
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<StackPanel Orientation="Horizontal">
+											<Button
+											Width="100"
+											Name = "{Binding Id}"
+											Command="{Binding ModifyClicked}"
+											Content="Edit"
+											Background="#F8BD96"
+											HorizontalContentAlignment="Center"
+											/>
+										</StackPanel>
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+						</DataGrid.Columns>
 					</DataGrid>
 
 					<!-- Modificator Button -->
@@ -65,6 +74,7 @@
 							Background="#F8BD96"
 							Margin="0,100,0,0"
 							Width="140"
+							Command="{Binding ModifyClicked}"
 							HorizontalContentAlignment="Center"
 							/>
 						<Button
@@ -78,7 +88,5 @@
 				</Grid>
 			</Panel>
 		</Grid>
-
 	</StackPanel>
-
 </UserControl>

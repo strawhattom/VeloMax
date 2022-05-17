@@ -7,7 +7,7 @@ namespace VeloMax.ViewModels
 {
     public class OrderViewModel : ViewModelBase
     {
-        public ObservableCollection<Order> Orders { get; }
+        public ObservableCollection<Order> Orders { get; } // don't change it
 
         public OrderViewModel(List<Order> o)
         {

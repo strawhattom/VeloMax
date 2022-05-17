@@ -328,13 +328,13 @@ INSERT INTO `professionals`(id,company_name,contact_name,order_count) VALUES (4,
 INSERT INTO `professionals`(id,company_name,contact_name,order_count) VALUES (5,'CycleDGuidon','Gorfle',31);
 INSERT INTO `professionals`(id,company_name,contact_name,order_count) VALUES (6,'Baudou Bikes','Haussien',5);
 
-INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_clients) VALUES (1,'2022-05-06','1 Rue Pasteur, 93160 Noisy-le-Grand','2022-06-08',1,2);
-INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_clients) VALUES (2,'2022-03-05','24 Rue de Sévigné, 94370 Sucy-en-Brie','2022-07-05',3,3);
-INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_clients) VALUES (3,'2022-02-01','1 Rue Augereau, 77000 Melun','2022-08-01',2,1);
-INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_clients) VALUES (4,'2022-05-26','Rue Neuve des Carmes, 63000 Clermont-Ferrand','2022-05-28',20,4);
-INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_clients) VALUES (5,'2022-07-16','53 Rue Victor Hugo, 92300 Levallois-Perret','2022-07-29',5,4);
-INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_clients) VALUES (6,'2022-04-04','11 Rue Danton, 69003 Lyon','2022-04-21',12,5);
-INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_clients) VALUES (7,'2022-04-04','2 Rue de l''Occitanie , 31150 Fenouillet','2022-05-01',10,6);
+INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_client) VALUES (1,'2022-05-06','1 Rue Pasteur, 93160 Noisy-le-Grand','2022-06-08',1,2);
+INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_client) VALUES (2,'2022-03-05','24 Rue de Sévigné, 94370 Sucy-en-Brie','2022-07-05',3,3);
+INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_client) VALUES (3,'2022-02-01','1 Rue Augereau, 77000 Melun','2022-08-01',2,1);
+INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_client) VALUES (4,'2022-05-26','Rue Neuve des Carmes, 63000 Clermont-Ferrand','2022-05-28',20,4);
+INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_client) VALUES (5,'2022-07-16','53 Rue Victor Hugo, 92300 Levallois-Perret','2022-07-29',5,4);
+INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_client) VALUES (6,'2022-04-04','11 Rue Danton, 69003 Lyon','2022-04-21',12,5);
+INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_client) VALUES (7,'2022-04-04','2 Rue de l''Occitanie , 31150 Fenouillet','2022-05-01',10,6);
 
 INSERT INTO `ordered_parts`(id,orders_id,parts_id,quantity) VALUES (1,2,43,2);
 INSERT INTO `ordered_parts`(id,orders_id,parts_id,quantity) VALUES (2,3,43,5);
