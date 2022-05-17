@@ -8,7 +8,7 @@ namespace VeloMax.Services
 {
     public class Database
     {
-        private string StringConnection = "database=Velomax;server=Localhost;uid=root;pwd=";
+        private string StringConnection = Config.Connection;
         private MySqlConnection Connection;
 
         public Database()
