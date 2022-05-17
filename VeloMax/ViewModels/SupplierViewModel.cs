@@ -7,10 +7,10 @@ namespace VeloMax.ViewModels
 {
     public class SupplierViewModel : ViewModelBase
     {
-        public ObservableCollection<Supplier> Data { get; }
+        public ObservableCollection<Supplier> Suppliers { get; set; } // don't change it
         public SupplierViewModel(List<Supplier> s)
         {
-            Data = new ObservableCollection<Supplier>(s);
+            Suppliers = new ObservableCollection<Supplier>(s);
         }
     }
 }

@@ -37,17 +37,18 @@
 					</Grid.ColumnDefinitions>
 					<DataGrid Grid.Column="0"
 							  Name="BikeGrid"
-							  Items="{Binding Data}">
-						<DataGrid.Columns>
+							  Items="{Binding Bikes}"
+							  AutoGenerateColumns="True"
+							  CanUserSortColumns="True">
+						<!-- <DataGrid.Columns>
 							<DataGridTextColumn Header="Id"  Binding="{Binding Id}"/>
 							<DataGridTextColumn Header="Target" Binding="{Binding Target}" />
 							<DataGridTextColumn Header="Name" Binding="{Binding Name}" />
 							<DataGridTextColumn Header="Unit price" Binding="{Binding UnitPrice}" />
 							<DataGridTextColumn Header="Type" Binding="{Binding Type}" />
 							<DataGridTextColumn Header="Introduced in" Binding="{Binding IntroductionDate}" />
-							<DataGridTextColumn Header="Discontinuated in" Binding="{Binding DiscontinuationDate}" />
-							
-						</DataGrid.Columns>
+							<DataGridTextColumn Header="Discontinuated in" Binding="{Binding DiscontinuationDate}" />	
+						</DataGrid.Columns> -->
 					</DataGrid>
 
 					<!-- Modificator Button -->

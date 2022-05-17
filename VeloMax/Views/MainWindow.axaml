@@ -7,6 +7,8 @@
         xmlns:i="using:Avalonia.Xaml.Interactivity"
         xmlns:controls="clr-namespace:VeloMax.Controls"
         x:Class="VeloMax.Views.MainWindow"
+        TransparencyLevelHint="AcrylicBlur"
+        ExtendClientAreaToDecorationsHint="True"
         Icon="/Assets/velomax-logo.ico"
         Title="VeloMax"
         WindowStartupLocation="CenterScreen"
@@ -19,6 +21,15 @@
     </Design.DataContext>
 
     <Panel Name="Main">
+        <ExperimentalAcrylicBorder IsHitTestVisible="False">
+            <ExperimentalAcrylicBorder.Material>
+                <ExperimentalAcrylicMaterial
+                    BackgroundSource="Digger"
+                    TintColor="Black"
+                    TintOpacity="1"
+                    MaterialOpacity="0.65" />
+            </ExperimentalAcrylicBorder.Material>
+        </ExperimentalAcrylicBorder>
         
         <Border Background="white"
                 CornerRadius="20">

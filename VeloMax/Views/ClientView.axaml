@@ -78,10 +78,28 @@
 						<ColumnDefinition Width="180"/>
 					</Grid.ColumnDefinitions>
 					<DataGrid Grid.Column="0"
-							  Items="{Binding Data}"
-							  SelectedItem="{Binding CellClick}"
-							  SelectionMode="Extended"
-							  AutoGenerateColumns="True"/>
+							Name="ClientGrid"
+							Items="{Binding ClientData}"
+							AutoGenerateColumns="True"
+							CanUserSortColumns="True">
+
+						<DataGrid.Columns>
+							<DataGridTemplateColumn Header="Edit" Width="*" >
+								<DataGridTemplateColumn.CellTemplate>
+									<DataTemplate>
+										<StackPanel Orientation="Horizontal">
+											<Button
+											Name="{Binding Id}"
+											Content="Edit"
+											Background="#F8BD96"
+											HorizontalContentAlignment="Center"
+											/>
+										</StackPanel>
+									</DataTemplate>
+								</DataGridTemplateColumn.CellTemplate>
+							</DataGridTemplateColumn>
+						</DataGrid.Columns>
+					</DataGrid>
 					
 					<!-- Modificator Button -->
 					<StackPanel Grid.Column="1"
@@ -94,13 +112,7 @@
 							HorizontalContentAlignment="Center"
 							Width="140"
 							/>
-						<Button
-							Content="Update"
-							Background="#F8BD96"
-							Margin="0,100,0,0"
-							Width="140"
-							HorizontalContentAlignment="Center"
-							/>
+						
 						<Button
 							Content="Delete"
 							Background="#F28FAD"

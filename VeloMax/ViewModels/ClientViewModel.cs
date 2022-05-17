@@ -16,7 +16,6 @@ namespace VeloMax.ViewModels
         public ICommand ClientButtonClick { get; }
         public ICommand IndividualButtonClick { get; }
         public ICommand ProfessionalButtonClick { get; }
-        public ICommand RowClick { get; }
         public ObservableCollection<Object> Clients { get; }
         public ObservableCollection<Object> Individuals{ get; }
         public ObservableCollection<Object> Professionals { get; }
@@ -27,7 +26,7 @@ namespace VeloMax.ViewModels
             set => this.RaiseAndSetIfChanged(ref _type, value);
         }
 
-        public ObservableCollection<object> Data
+        public ObservableCollection<Object> ClientData // don't change it
         {
             get => _data;
             set => this.RaiseAndSetIfChanged(ref _data, value);
@@ -46,41 +45,30 @@ namespace VeloMax.ViewModels
             Professionals = new ObservableCollection<Object>(p);
 
             //Default properties
-            Data = Clients;
+            ClientData = Clients;
             Type = "Client";
 
             ClientButtonClick = ReactiveCommand.Create(ClientShowClicked);
             IndividualButtonClick = ReactiveCommand.Create(IndividualShowClicked);
             ProfessionalButtonClick = ReactiveCommand.Create(ProfessionalShowClicked);
-            RowClick = ReactiveCommand.Create(RowClicked);
         }
 
         public void ClientShowClicked()
         {
             Type = "Client";
-            Data = Clients;
+            ClientData = Clients;
         }
 
         public void IndividualShowClicked()
         {
             Type = "Individual";
-            Data = Individuals;
+            ClientData = Individuals;
         }
 
         public void ProfessionalShowClicked()
         {
             Type = "Professionnal";
-            Data = Professionals;
-        }
-
-        public void RowClicked()
-        {
-            Console.WriteLine("Clicked");
-        }
-
-        private void CellClick(object sender, SelectionChangedEventArgs e)
-        {
-            Type = "ROAAR";
+            ClientData = Professionals;
         }
     }
 }

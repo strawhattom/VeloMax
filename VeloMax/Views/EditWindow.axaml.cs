@@ -1,13 +1,12 @@
-﻿using System;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 
 namespace VeloMax.Views
 {
-    public partial class PartView : UserControl
+    public partial class EditWindow : Window
     {
-        public PartView()
+        public EditWindow()
         {
             InitializeComponent();
         }
@@ -16,6 +15,5 @@ namespace VeloMax.Views
         {
             AvaloniaXamlLoader.Load(this);
         }
-
     }
 }
