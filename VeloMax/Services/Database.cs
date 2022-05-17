@@ -916,6 +916,7 @@ namespace VeloMax.Services
             return bestlist;
         }
         
+
         public List<List<string>> ClientsFidelity()
         {
             string best = "SELECT F.id, F.label, I.first_name, I.last_name"+
@@ -967,6 +968,35 @@ namespace VeloMax.Services
                     clients.Add(fidelity4);
             }
             return clients;
+        }
+
+
+        public List<List<string>> ClientExpirationDate()
+        {
+            string best = "SELECT id, last_name, first_name, expiration_date FROM individuals;";
+            
+            List<List<string>>expiration = new List<List<string>>();
+
+            if (this.DbConnection())
+                {
+                    MySqlDataReader Reader = Query(Connection, best);
+
+                    int j=0;
+                    while (Reader.Read())
+                        {
+                            List<string>  clients = new List<string>();
+                            clients.Add(Reader.GetInt32(0).ToString());
+                            clients.Add(Reader.GetString(1));
+                            clients.Add(Reader.GetString(2));
+                            clients.Add(Reader.GetDateTime(3).ToString());
+                            expiration.Add(clients);
+                        }   
+                    
+                    Reader.Close();
+                    Connection.Close();
+                    
+            }
+            return expiration;
         }
 
     }
