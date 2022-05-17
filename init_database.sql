@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS individuals(
 	first_name VARCHAR(255) NOT NULL,
 	last_name VARCHAR(255) NOT NULL,
 	id_fidelity INT NOT NULL DEFAULT 0,
+    expiration_date DATE NULL,
 	PRIMARY KEY(id),
 	FOREIGN KEY(id_fidelity)
 		REFERENCES fidelity_programs(id)

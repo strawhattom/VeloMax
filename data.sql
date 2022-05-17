@@ -65,7 +65,7 @@ INSERT INTO `parts` (`id`, `description`, `unit_price`, `introduction_date`, `di
 INSERT INTO `parts` (`id`, `description`, `unit_price`, `introduction_date`, `discontinuation_date`, `procurement_delay`, `quantity`, `type`) VALUES (40, 'R45', 0, '2022-04-26', '2022-04-26', 0, 1, 'Roue avant');
 INSERT INTO `parts` (`id`, `description`, `unit_price`, `introduction_date`, `discontinuation_date`, `procurement_delay`, `quantity`, `type`) VALUES (41, 'R48', 0, '2022-04-26', '2022-04-26', 0, 2, 'Roue avant');
 INSERT INTO `parts` (`id`, `description`, `unit_price`, `introduction_date`, `discontinuation_date`, `procurement_delay`, `quantity`, `type`) VALUES (42, 'R12', 0, '2022-04-26', '2022-04-26', 0, 1, 'Roue avant');
-INSERT INTO `parts` (`id`, `description`, `unit_price`, `introduction_date`, `discontinuation_date`, `procurement_delay`, `quantity`, `type`) VALUES (43, 'R19', 0, '2022-04-26', '2022-04-26', 0, 4, 'Roue avant');
+INSERT INTO `parts` (`id`, `description`, `unit_price`, `introduction_date`, `discontinuation_date`, `procurement_delay`, `quantity`, `type`) VALUES (43, 'R19', 11, '2022-04-26', '2022-04-26', 0, 4, 'Roue avant');
 INSERT INTO `parts` (`id`, `description`, `unit_price`, `introduction_date`, `discontinuation_date`, `procurement_delay`, `quantity`, `type`) VALUES (44, 'R1', 0, '2022-04-26', '2022-04-26', 0, 2, 'Roue avant');
 INSERT INTO `parts` (`id`, `description`, `unit_price`, `introduction_date`, `discontinuation_date`, `procurement_delay`, `quantity`, `type`) VALUES (45, 'R11', 0, '2022-04-26', '2022-04-26', 0, 3, 'Roue avant');
 INSERT INTO `parts` (`id`, `description`, `unit_price`, `introduction_date`, `discontinuation_date`, `procurement_delay`, `quantity`, `type`) VALUES (46, 'R44', 0, '2022-04-26', '2022-04-26', 0, 2, 'Roue avant');
@@ -320,13 +320,13 @@ INSERT INTO `clients`(id,street,city,postal_code,province,phone,mail) VALUES (4,
 INSERT INTO `clients`(id,street,city,postal_code,province,phone,mail) VALUES (5,'11 Rue Danton','Lyon','69003','Rhône','04 72 36 83 28','CylcesDGuideon@free.fr');
 INSERT INTO `clients`(id,street,city,postal_code,province,phone,mail) VALUES (6,'2 Rue de l''Occitanie','Fenouillet','31150','Haute-Garonne','06 47 08 30 00','BAUDOUBIKES@gmail.com');
 
-INSERT INTO `individuals`(id,first_name,last_name,id_fidelity) VALUES (1,'Paul','Barbier',1);
-INSERT INTO `individuals`(id,first_name,last_name,id_fidelity) VALUES (2,'Christelle','Gandon',3);
-INSERT INTO `individuals`(id,first_name,last_name,id_fidelity) VALUES (3,'Alexande','Rouste',2);
+INSERT INTO `individuals`(id,first_name,last_name,id_fidelity, expiration_date) VALUES (1,'Paul','Barbier',1,"2022-06-08");
+INSERT INTO `individuals`(id,first_name,last_name,id_fidelity, expiration_date) VALUES (2,'Christelle','Gandon',3,"2022-06-05");
+INSERT INTO `individuals`(id,first_name,last_name,id_fidelity, expiration_date) VALUES (3,'Alexande','Rouste',2,"2022-02-03");
 
-INSERT INTO `professionals`(id,company_name,contact_name,order_count) VALUES (3,'Cycle Alex Singer','Bast',8);
-INSERT INTO `professionals`(id,company_name,contact_name,order_count) VALUES (4,'CycleDGuidon','Gorfle',31);
-INSERT INTO `professionals`(id,company_name,contact_name,order_count) VALUES (5,'Baudou Bikes','Haussien',5);
+INSERT INTO `professionals`(id,company_name,contact_name,order_count) VALUES (4,'Cycle Alex Singer','Bast',8);
+INSERT INTO `professionals`(id,company_name,contact_name,order_count) VALUES (5,'CycleDGuidon','Gorfle',31);
+INSERT INTO `professionals`(id,company_name,contact_name,order_count) VALUES (6,'Baudou Bikes','Haussien',5);
 
 INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_clients) VALUES (1,'2022-05-06','1 Rue Pasteur, 93160 Noisy-le-Grand','2022-06-08',1,2);
 INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_clients) VALUES (2,'2022-03-05','24 Rue de Sévigné, 94370 Sucy-en-Brie','2022-07-05',3,3);
@@ -337,7 +337,7 @@ INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_cl
 INSERT INTO `orders`(id,order_date,shipping_address,shipping_date,quantity,id_clients) VALUES (7,'2022-04-04','2 Rue de l''Occitanie , 31150 Fenouillet','2022-05-01',10,6);
 
 INSERT INTO `ordered_parts`(id,orders_id,parts_id,quantity) VALUES (1,2,43,2);
-INSERT INTO `ordered_parts`(id,orders_id,parts_id,quantity) VALUES (2,3,24,2);
+INSERT INTO `ordered_parts`(id,orders_id,parts_id,quantity) VALUES (2,3,43,5);
 INSERT INTO `ordered_parts`(id,orders_id,parts_id,quantity) VALUES (3,4,2,5);
 INSERT INTO `ordered_parts`(id,orders_id,parts_id,quantity) VALUES (4,4,33,10);
 INSERT INTO `ordered_parts`(id,orders_id,parts_id,quantity) VALUES (5,6,20,10);

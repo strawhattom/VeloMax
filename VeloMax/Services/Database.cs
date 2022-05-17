@@ -8,7 +8,7 @@ namespace VeloMax.Services
 {
     public class Database
     {
-        private string StringConnection = Config.Connection;
+        private string StringConnection = "database=Velomax;server=Localhost;uid=root;pwd=toor";
         private MySqlConnection Connection;
 
         public Database()
@@ -585,7 +585,7 @@ namespace VeloMax.Services
             {
                 string[] tab = supplier.attributs();
 
-                string modify = "UPDATE Bike SET";
+                string modify = "UPDATE Bike SET ";
                 for(int i = 0; i < tab.Length; i++)
                 {
                     modify+=tab[i] + "=" + supplier.at(i);
@@ -848,6 +848,74 @@ namespace VeloMax.Services
             }
             return false;
         }
+
+        public List<string> BestPart()
+        {
+            string[] date = DateTime.Now.ToString().Split('/');
+            string mois = date[0];
+            string year = date[2].Split(' ')[0];
+            string best = "SELECT P.description , sum(OP.quantity), sum(OP.quantity)*P.unit_price, avg(OP.Quantity)"+
+                        "FROM ordered_parts OP JOIN parts P ON OP.parts_id=P.id JOIN orders O ON OP.orders_id = O.id"+
+                        "WHERE O.shipping_date>'" + year + "-" + mois + "-01'"+
+                        "GROUP BY P.id" +
+                        "HAVING sum(OP.quantity)>= all(SELECT sum(quantity) FROM ordered_parts GROUP BY parts_id);";
+            
+            List<string> bestlist = new List<string>();
+
+            if (this.DbConnection())
+                {
+                    MySqlDataReader Reader = Query(Connection, best);
+
+                    int j=0;
+                    while (Reader.Read() & j<1)
+                        {
+                            for (int i = 0; i < Reader.FieldCount; i++)
+                            {
+                                {
+                                    bestlist.Add(Reader.GetString(i));
+                                }
+                            }
+                            j++;
+                        }
+                    Reader.Close();
+                    Connection.Close();
+            }
+            return bestlist;
+        }
+        public List<string> BestBike()
+        {
+            string[] date = DateTime.Now.ToString().Split('/');
+            string mois = date[0];
+            string year = date[2].Split(' ')[0];
+            string best = "SELECT B.name , sum(OB.quantity), sum(OB.quantity)*B.unit_price, avg(OB.Quantity)"+
+                        "FROM ordered_bikes OB JOIN bikes B ON OB.bikes_id=B.id JOIN orders O ON OB.orders_id = O.id"+
+                        "WHERE O.shipping_date>'" + year + "-" + mois + "-01'"+
+                        "GROUP BY B.id" +
+                        "HAVING sum(OB.quantity)>= all(SELECT sum(quantity) FROM ordered_bikes GROUP BY bikes_id)";
+            
+            List<string> bestlist = new List<string>();
+
+            if (this.DbConnection())
+                {
+                    MySqlDataReader Reader = Query(Connection, best);
+
+                    int j=0;
+                    while (Reader.Read() & j<1)
+                        {
+                            for (int i = 0; i < Reader.FieldCount; i++)
+                            {
+                                {
+                                    bestlist.Add(Reader.GetString(i));
+                                }
+                            }
+                            j++;
+                        }
+                    Reader.Close();
+                    Connection.Close();
+            }
+            return bestlist;
+        }
+        
 
     }
 }
