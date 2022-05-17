@@ -59,9 +59,9 @@ CREATE TABLE IF NOT EXISTS orders(
 	shipping_address VARCHAR(255) NOT NULL,
 	shipping_date DATE NOT NULL,
 	quantity INT NOT NULL,
-    id_clients INT NOT NULL,
+    id_client INT NOT NULL,
 	PRIMARY KEY(id),
-    FOREIGN KEY(id_clients)
+    FOREIGN KEY(id_client)
 		references clients(id)
 );
 
