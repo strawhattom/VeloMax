@@ -59,7 +59,10 @@ CREATE TABLE IF NOT EXISTS orders(
 	shipping_address VARCHAR(255) NOT NULL,
 	shipping_date DATE NOT NULL,
 	quantity INT NOT NULL,
-	PRIMARY KEY(id)
+    id_clients INT NOT NULL,
+	PRIMARY KEY(id),
+    FOREIGN KEY(id_clients)
+		references clients(id)
 );
 
 -- Bikes
@@ -103,7 +106,7 @@ CREATE TABLE IF NOT EXISTS suppliers(
 
 -- Ordered bikes
 DROP TABLE IF EXISTS ordered_bikes;
-CREATE TABLE IF NOT EXISTS oredered_bikes(
+CREATE TABLE IF NOT EXISTS ordered_bikes(
 	id INT NOT NULL AUTO_INCREMENT,
 	orders_id INT NOT NULL,
 	bikes_id INT NOT NULL,
@@ -115,7 +118,7 @@ CREATE TABLE IF NOT EXISTS oredered_bikes(
 
 -- Ordered parts
 DROP TABLE IF EXISTS ordered_parts;
-CREATE TABLE IF NOT EXISTS oredered_parts(
+CREATE TABLE IF NOT EXISTS ordered_parts(
 	id INT NOT NULL AUTO_INCREMENT,
 	orders_id INT NOT NULL,
 	parts_id INT NOT NULL,
