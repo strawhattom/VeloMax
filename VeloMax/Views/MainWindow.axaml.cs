@@ -22,7 +22,7 @@ namespace VeloMax.Views
 
             this.FindControl<Control>("Main").PointerPressed += (i, e) =>
             {
-                PlatformImpl?.BeginMoveDrag(e);
+                // PlatformImpl?.BeginMoveDrag(e);
             };
         }
     }

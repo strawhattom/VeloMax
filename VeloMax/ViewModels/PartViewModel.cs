@@ -8,6 +8,7 @@ using System.Reactive;
 using System.Windows.Input;
 using ReactiveUI;
 using VeloMax.Models;
+using VeloMax.Services;
 using VeloMax.Views;
 
 namespace VeloMax.ViewModels
@@ -18,10 +19,13 @@ namespace VeloMax.ViewModels
         public ReactiveCommand<Unit, Unit> AddPart { get; }
         public ReactiveCommand<Unit, Unit> UpdatePart { get; }
         public ReactiveCommand<Unit, Unit> DeletePart { get; }
+        
+        public ReactiveCommand<Unit, Unit> SearchParts { get;  }
 
         private Part _selectPart;
+        private string _searchText;
         
-        public PartViewModel(List<Part> p)
+        public PartViewModel(List<Part> p, Database DB)
         {
             Parts = new ObservableCollection<object>(p);
             AddPart = ReactiveCommand.Create(() =>
@@ -48,6 +52,11 @@ namespace VeloMax.ViewModels
                 };
                 messageBox.Show();
             });
+            SearchParts = ReactiveCommand.Create(() =>
+            {
+                Console.WriteLine("On recherche: " + _searchText);
+                Parts = new ObservableCollection<object>(DB.Search(_searchText));
+            });
         }
 
         public Part SelectedPart
@@ -55,5 +64,12 @@ namespace VeloMax.ViewModels
             get => _selectPart;
             set => this.RaiseAndSetIfChanged(ref _selectPart, value);
         }
+
+        public string SearchText
+        {
+            get => _searchText;
+            set => this.RaiseAndSetIfChanged(ref _searchText, value);
+        }
+
     }
 }

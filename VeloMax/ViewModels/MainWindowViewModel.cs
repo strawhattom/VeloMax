@@ -43,6 +43,8 @@ namespace VeloMax.ViewModels
         //     set => this.RaiseAndSetIfChanged(ref _searchText, value);
         // }
 
+        private string _searchText;
+        
         // Constructor
         public MainWindowViewModel()
         {
@@ -74,7 +76,7 @@ namespace VeloMax.ViewModels
 
         private void OnPartButtonClicked()
         {
-            this.NavigationContent = new PartViewModel(_db.GetParts());
+            this.NavigationContent = new PartViewModel(_db.Search(_searchText), _db);
         }
 
         private void OnClientButtonClicked()
@@ -100,6 +102,12 @@ namespace VeloMax.ViewModels
         private void OnSupplierButtonClicked()
         {
             this.NavigationContent = new SupplierViewModel(_db.GetSuppliers());
+        }
+
+        public string SearchText
+        {
+            get => _searchText;
+            set => this.RaiseAndSetIfChanged(ref _searchText, value);
         }
     }
 }
