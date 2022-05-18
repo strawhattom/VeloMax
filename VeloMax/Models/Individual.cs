@@ -24,7 +24,7 @@ namespace VeloMax.Models
         }
         public override string[] Attributs()
         {
-            string[] attributs = new string[10];
+            string[] attributs = new string[11];
             attributs[0] = "Id";
             attributs[1] = "street";
             attributs[2] = "city";
