@@ -71,7 +71,7 @@ namespace VeloMax.ViewModels
         {
             var messageBox = new Message
             {
-                DataContext = new MessageWindowViewModel("Voulez-vous vraiment cette pièce ?")
+                DataContext = new MessageWindowViewModel(ItemSelected),
             };
             messageBox.Show();
         }

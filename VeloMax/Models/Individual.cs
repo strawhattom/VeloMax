@@ -7,9 +7,9 @@ namespace VeloMax.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public int FidelityProgram { get; set; }
-        public DateTime expiration_date { get; set; }
+        public DateTime ExpirationDate { get; set; }
 
-        public Individual(int id, string firstName, string lastName, string street, string city, string postalCode, string province, string phone, string mail, int fidelityProgram = 0, DateTime expirationDate = new DateTime()) : base(id, street, city, postalCode, province, phone, mail)
+        public Individual(int id, string firstName, string lastName, string street, string city, string postalCode, string province, string phone, string mail, int fidelityProgram, DateTime expirationDate) : base(id, street, city, postalCode, province, phone, mail)
         {
 
             // if not null args are null
@@ -20,16 +20,8 @@ namespace VeloMax.Models
             this.LastName = lastName;
             this.FirstName = firstName;
             this.FidelityProgram = fidelityProgram;
-            if (this.FidelityProgram == 5)
-            {
-                expiration_date = new DateTime(0001, 1, 1);
-            }
-            else
-            {
-                this.expiration_date = expiration_date;
-            }
+            this.ExpirationDate = expirationDate;
         }
-
         public override string[] Attributs()
         {
             string[] attributs = new string[10];
@@ -63,7 +55,7 @@ namespace VeloMax.Models
                 7 => "'" + this.FirstName.ToString() + "'",
                 8 => "'" + this.LastName + "'",
                 9 => this.FidelityProgram.ToString(),
-                10 => "'" + this.expiration_date.ToString("yyyy-MM-dd") + "'",
+                10 => "'" + this.ExpirationDate.ToString("yyyy-MM-dd") + "'",
                 _ => "",
             };
         }
