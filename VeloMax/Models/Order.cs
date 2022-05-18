@@ -23,7 +23,7 @@ namespace VeloMax.Models
             this.Quantity = quantity;
         }
 
-        public string[] Attributs()
+        public static string[] Attributs()
         {
             string[] attributs = new string[5];
             attributs[0] = "Id";

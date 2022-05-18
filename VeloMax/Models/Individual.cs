@@ -68,7 +68,7 @@ namespace VeloMax.Models
             };
         }
 
-        public override string typeC()
+        public override string TypeC()
         {
             return "individuals";
         }
