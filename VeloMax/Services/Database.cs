@@ -1034,11 +1034,11 @@ namespace VeloMax.Services
         public List<string> BestBike()// meilleurs velo au sens quantite sur le mois
         {
             string[] date = DateTime.Now.ToString().Split('/');
-            string mois = date[0];
+            int mois = int.Parse(date[0]) - 1;
             string year = date[2].Split(' ')[0];
             string best = "SELECT B.name , sum(OB.quantity), sum(OB.quantity)*B.unit_price, avg(OB.Quantity) "+
                         "FROM ordered_bikes OB JOIN bikes B ON OB.bikes_id=B.id JOIN orders O ON OB.orders_id = O.id "+
-                        "WHERE O.shipping_date>'" + year + "-" + mois + "-01' "+
+                        "WHERE O.shipping_date>'" + year + "-" + mois.ToString()  + "-01' "+
                         "GROUP BY B.id " +
                         "HAVING sum(OB.quantity)>= all(SELECT sum(quantity) FROM ordered_bikes GROUP BY bikes_id)";
             
