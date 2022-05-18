@@ -4,18 +4,25 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:material="clr-namespace:MaterialDesign.Avalonia.PackIcon;assembly=MaterialDesign.Avalonia.PackIcon"
+        xmlns:behaviors="clr-namespace:VeloMax.Behaviors"
         xmlns:i="using:Avalonia.Xaml.Interactivity"
         xmlns:controls="clr-namespace:VeloMax.Controls"
         x:Class="VeloMax.Views.MainWindow"
+		Background="{x:Null}"
         TransparencyLevelHint="AcrylicBlur"
         ExtendClientAreaToDecorationsHint="True"
         Icon="/Assets/velomax-logo.ico"
         Title="VeloMax"
         WindowStartupLocation="CenterScreen"
+		SystemDecorations="None"
         CanResize="False"
         Width="1200"
         Height="700">
 
+    <i:Interaction.Behaviors>
+        <behaviors:CloseWindowBehavior CloseTrigger="{Binding CloseAppTrigger}" />
+    </i:Interaction.Behaviors>
+    
     <Design.DataContext>
         <vm:MainWindowViewModel/>
     </Design.DataContext>
@@ -133,6 +140,13 @@
                     Content="{Binding NavigationContent}"
                     Margin="5" />
 
+                <Button 
+                    Grid.Column="2" 
+                    Grid.Row="0" 
+                    VerticalAlignment="Center" 
+                    HorizontalAlignment="Left"
+                    Command="{Binding CloseButtonClicked}"
+                    Classes="QuitButtonStyle" />
             </Grid>
         </Border>
     </Panel>

@@ -22,5 +22,6 @@
 		<StyleInclude Source="/Assets/ModificatorButtonStyle.axaml" />
 		<StyleInclude Source="/Assets/ButtonStyle.axaml" />
         <StyleInclude Source="/Assets/SearchBoxStyle.axaml" />
+        <StyleInclude Source="/Assets/QuitButtonStyle.axaml" />
     </Application.Styles>
 </Application>
