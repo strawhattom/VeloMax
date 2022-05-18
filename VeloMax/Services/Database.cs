@@ -1374,13 +1374,32 @@ namespace VeloMax.Services
             }
         }
 
-        public void DeleteParts(Part part)
+        public Boolean DeleteParts(Part part)
         {
+            if(CheckIfDeleteAvailable(part.Id))
+            {
+                Console.WriteLine("Parts is used by a bike");
+                return false;
+            }
             int id = part.Id;
             string delete = "DELETE FROM parts WHERE id="+id.ToString();
             if(this.DbConnection())
             {
                 SetValue(Connection,delete);
+            }
+            return true;
+        }
+
+        public void DeleteClient(Client client)
+        {
+            int id = client.Id;
+            string delete = "DELETE FROM clients WHERE id="+id.ToString();
+            string delete_fille = "DELETE FROM"+ client.TypeC() +"WHERE id="+id.ToString();
+            if(this.DbConnection())
+            {
+                SetValue(Connection,delete_fille);
+                SetValue(Connection,delete);
+                
             }
         }
 
@@ -1737,6 +1756,31 @@ namespace VeloMax.Services
             {
                 SetValue(Connection, changes);
             }
+        }
+
+        public bool CheckIfDeleteAvailable(int id)
+        {
+            string search = "SELECT count(*), group_concat(B.name) "+
+                            "From bikes B JOIN bike_parts Bp ON Bp.bikes_id = B.id "+
+                            "WHERE Bp.parts_id = "+id;
+            bool present=false;
+
+            if(this.DbConnection())
+            {
+                MySqlDataReader Reader = Query(Connection, search);
+                
+                int j = 0;
+                while(Reader.Read() && j < 1)
+                {
+                    if(Reader.GetInt32(0)>0)
+                    {
+                        present = true;
+
+                    }
+                    j++;
+                }
+            }
+            return present;
         }
 
         #endregion
