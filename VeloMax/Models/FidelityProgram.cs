@@ -44,11 +44,11 @@ namespace VeloMax.Models
                 case 0:
                     return this.Id.ToString();
                 case 1:
-                    return this.Label;
+                    return "'"+this.Label+"'";
                 case 2:
                     return this.Cost.ToString();
                 case 3:
-                    return this .Duration.ToString();
+                    return this.Duration.ToString();
                 case 4:
                     return this.Discount.ToString();
  

@@ -42,11 +42,11 @@ namespace VeloMax.Models
                 case 0:
                     return this.Id.ToString();
                 case 1:
-                    return this.OrderDate.ToString();
+                    return "'"+this.OrderDate.ToString("yyyy-MM-dd")+"'";
                 case 2:
-                    return this.ShippingAdress;
+                    return "'"+this.ShippingAdress+"'";
                 case 3:
-                    return this .ShippinDate.ToString();
+                    return "'"+this.ShippinDate.ToString("yyyy-MM-dd")+"'";
                 case 4:
                     return this.Quantity.ToString();
                 default:

@@ -25,7 +25,7 @@
             attributs[0]="Id";
             attributs[1]="street";
             attributs[2]="city";
-            attributs[3]="postal";
+            attributs[3]="postal_code";
             attributs[4]="province";
             attributs[5]="phone";
             attributs[6]="mail";

@@ -35,7 +35,7 @@ namespace VeloMax.Models
             attributs[0]="Id";
             attributs[1]="name";
             attributs[2]="target";
-            attributs[3]="unite_price";
+            attributs[3]="unit_price";
             attributs[4]="type";
             attributs[5]="introduction_date";
             attributs[6]="discontinuation_date";
@@ -50,17 +50,17 @@ namespace VeloMax.Models
                 case 0:
                     return this.Id.ToString();
                 case 1:
-                    return this.Name;
+                    return "'"+this.Name+"'";
                 case 2:
-                    return this.Target;
+                    return "'"+this.Target+"'";
                 case 3:
-                    return this .UnitPrice.ToString();
+                    return this.UnitPrice.ToString();
                 case 4:
-                    return this.Type;
+                    return "'"+this.Type+"'";
                 case 5:
-                    return this.IntroductionDate.ToString();
+                    return "'"+this.IntroductionDate.ToString("yyyy-MM-dd")+"'";
                 case 6:
-                    return this.DiscontinuationDate.ToString(); 
+                    return "'"+this.DiscontinuationDate.ToString("yyyy_MM_dd")+"'"; 
                 default:
                     return "";
             }    

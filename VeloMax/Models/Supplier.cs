@@ -51,15 +51,15 @@ namespace VeloMax.Models
                 case 0:
                     return this.Id.ToString();
                 case 1:
-                    return this.Siret;
+                    return "'"+this.Siret+"'";
                 case 2:
-                    return this.Name.ToString();
+                    return "'"+this.Name.ToString()+"'";
                 case 3:
-                    return this.Contact.ToString();
+                    return "'"+this.Contact.ToString()+"'";
                 case 4:
-                    return this.Location.ToString();
+                    return "'"+this.Location.ToString()+"'";
                 case 5:
-                    return this.Label.ToString();
+                    return "'"+this.Label.ToString()+"'";
                 default:
                     return "";
             }    

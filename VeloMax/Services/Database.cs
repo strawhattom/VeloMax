@@ -452,13 +452,13 @@ namespace VeloMax.Services
             {
                 string[] tab = bike.attributs();
 
-                string modify = "UPDATE Bike SET";
-                for(int i = 0; i < tab.Length; i++)
+                string modify = "UPDATE bikes SET ";
+                for(int i = 0; i < tab.Length-1; i++)
                 {
-                    modify+=tab[i] + "=" + bike.at(i);
+                    modify+=tab[i] + " = " + bike.at(i) +", ";
                 }
-                    
-                modify += "WHERE id = " + bike.at(0);
+                modify += tab[tab.Length-1] + " = " + bike.at(tab.Length - 1);
+                modify += " WHERE id = " + bike.at(0);
 
                 SetValue(Connection, modify);
                 return true;   
@@ -470,7 +470,7 @@ namespace VeloMax.Services
         {
             string[] tab = bike.attributs();
 
-            string create = "Insert into `velomax`.`Bike` (";
+            string create = "Insert into `velomax`.`bikes` (";
             for(int i = 0; i< tab.Length-1;i++)
             {
                 create += tab[i] + ',';
@@ -497,12 +497,14 @@ namespace VeloMax.Services
             {
                 string[] tab = order.attributs();
 
-                string modify = "UPDATE Bike SET";
+                string modify = "UPDATE orders SET";
                 for(int i = 0; i < tab.Length; i++)
                 {
-                    modify+=tab[i] + "=" + order.at(i);
+                    modify+=tab[i] + " = " + order.at(i) +", ";
+
                 }
                     
+                modify += tab[tab.Length-1] + " = " + order.at(tab.Length - 1);
                 modify += "WHERE id = " + order.at(0);
 
                 SetValue(Connection, modify);
@@ -515,7 +517,7 @@ namespace VeloMax.Services
         {
             string[] tab = order.attributs();
 
-            string create = "Insert into `velomax`.`Bike` (";
+            string create = "Insert into `velomax`.`orders` (";
             for(int i = 0; i< tab.Length-1;i++)
             {
                 create += tab[i] + ',';
@@ -542,12 +544,14 @@ namespace VeloMax.Services
             {
                 string[] tab = part.attributs();
 
-                string modify = "UPDATE Bike SET";
+                string modify = "UPDATE parts SET";
                 for(int i = 0; i < tab.Length; i++)
                 {
-                    modify+=tab[i] + "=" + part.at(i);
+                    modify+=tab[i] + " = " + part.at(i) +", ";
+
                 }
-                    
+                
+                modify += tab[tab.Length-1] + " = " + part.at(tab.Length - 1);
                 modify += "WHERE id = " + part.at(0);
 
                 SetValue(Connection, modify);
@@ -560,7 +564,7 @@ namespace VeloMax.Services
         {
             string[] tab = part.attributs();
 
-            string create = "Insert into `velomax`.`Bike` (";
+            string create = "Insert into `velomax`.`parts` (";
             for(int i = 0; i< tab.Length-1;i++)
             {
                 create += tab[i] + ',';
@@ -587,12 +591,13 @@ namespace VeloMax.Services
             {
                 string[] tab = supplier.attributs();
 
-                string modify = "UPDATE Bike SET ";
+                string modify = "UPDATE suppliers SET ";
                 for(int i = 0; i < tab.Length; i++)
                 {
-                    modify+=tab[i] + "=" + supplier.at(i);
+                    modify+=tab[i] + " = " + supplier.at(i) +", ";
+
                 }
-                    
+                modify += tab[tab.Length-1] + " = " + supplier.at(tab.Length - 1);
                 modify += "WHERE id = " + supplier.at(0);
 
                 SetValue(Connection, modify);
@@ -605,7 +610,7 @@ namespace VeloMax.Services
         {
             string[] tab = supplier.attributs();
 
-            string create = "Insert into `velomax`.`Bike` (";
+            string create = "Insert into `velomax`.`supliers` (";
             for(int i = 0; i< tab.Length-1;i++)
             {
                 create += tab[i] + ',';
@@ -632,12 +637,14 @@ namespace VeloMax.Services
             {
                 string[] tab = fidelity.attributs();
 
-                string modify = "UPDATE Bike SET";
+                string modify = "UPDATE fidelity_programs SET";
                 for(int i = 0; i < tab.Length; i++)
                 {
-                    modify+=tab[i] + "=" + fidelity.at(i);
+                    modify+=tab[i] + " = " + fidelity.at(i) +", ";
                 }
-                    
+                
+                modify += tab[tab.Length-1] + " = " + fidelity.at(tab.Length - 1);
+
                 modify += "WHERE id = " + fidelity.at(0);
 
                 SetValue(Connection, modify);
@@ -650,7 +657,7 @@ namespace VeloMax.Services
         {
             string[] tab = fidelity.attributs();
 
-            string create = "Insert into `velomax`.`Bike` (";
+            string create = "Insert into `velomax`.`fidelity_programs` (";
             for(int i = 0; i< tab.Length-1;i++)
             {
                 create += tab[i] + ',';
@@ -677,12 +684,15 @@ namespace VeloMax.Services
             {
                 string[] tab = orderedBike.attributs();
 
-                string modify = "UPDATE Bike SET";
+                string modify = "UPDATE ordered_bikes SET";
                 for(int i = 0; i < tab.Length; i++)
                 {
-                    modify+=tab[i] + "=" + orderedBike.at(i);
+                    modify+=tab[i] + " = " + orderedBike.at(i) +", ";
+
                 }
-                    
+                
+                modify += tab[tab.Length-1] + " = " + orderedBike.at(tab.Length - 1);
+
                 modify += "WHERE id = " + orderedBike.at(0);
 
                 SetValue(Connection, modify);
@@ -695,7 +705,7 @@ namespace VeloMax.Services
         {
             string[] tab = orderedBike.attributs();
 
-            string create = "Insert into `velomax`.`Bike` (";
+            string create = "Insert into `velomax`.`ordered_bikes` (";
             for(int i = 0; i< tab.Length-1;i++)
             {
                 create += tab[i] + ',';
@@ -722,13 +732,14 @@ namespace VeloMax.Services
             {
                 string[] tab = orderedPart.attributs();
 
-                string modify = "UPDATE Bike SET";
+                string modify = "UPDATE ordered_parts SET";
                 for(int i = 0; i < tab.Length; i++)
                 {
-                    modify+=tab[i] + "=" + orderedPart.at(i);
+                    modify+=tab[i] + " = " + orderedPart.at(i) +", ";
                 }
-                    
-                modify += "WHERE id = " + orderedPart.at(0);
+                modify += tab[tab.Length-1] + " = " + orderedPart.at(tab.Length - 1);
+
+                modify += " WHERE id = " + orderedPart.at(0);
 
                 SetValue(Connection, modify);
                 return true;   
@@ -740,7 +751,7 @@ namespace VeloMax.Services
         {
             string[] tab = orderedPart.attributs();
 
-            string create = "Insert into `velomax`.`Bike` (";
+            string create = "Insert into `velomax`.`ordered_parts` (";
             for(int i = 0; i< tab.Length-1;i++)
             {
                 create += tab[i] + ',';
@@ -767,12 +778,12 @@ namespace VeloMax.Services
             {
                 string[] tab = bikePart.attributs();
 
-                string modify = "UPDATE Bike SET";
+                string modify = "UPDATE bike_parts SET";
                 for(int i = 0; i < tab.Length; i++)
                 {
-                    modify+=tab[i] + "=" + bikePart.at(i);
+                    modify+=tab[i] + " = " + bikePart.at(i) +", ";
                 }
-                    
+                modify += tab[tab.Length-1] + " = " + bikePart.at(tab.Length - 1);
                 modify += "WHERE id = " + bikePart.at(0);
 
                 SetValue(Connection, modify);
@@ -785,7 +796,7 @@ namespace VeloMax.Services
         {
             string[] tab = bikePart.attributs();
 
-            string create = "Insert into `velomax`.`Bike` (";
+            string create = "Insert into `velomax`.`bike_parts` (";
             for(int i = 0; i< tab.Length-1;i++)
             {
                 create += tab[i] + ',';
@@ -812,12 +823,12 @@ namespace VeloMax.Services
             {
                 string[] tab = procurement.attributs();
 
-                string modify = "UPDATE Bike SET";
+                string modify = "UPDATE procurement SET";
                 for(int i = 0; i < tab.Length; i++)
                 {
-                    modify+=tab[i] + "=" + procurement.at(i);
+                    modify+=tab[i] + " = " + procurement.at(i) +", ";
                 }
-                    
+                modify += tab[tab.Length-1] + " = " + procurement.at(tab.Length - 1);   
                 modify += "WHERE id = " + procurement.at(0);
 
                 SetValue(Connection, modify);
@@ -830,7 +841,7 @@ namespace VeloMax.Services
         {
             string[] tab = procurement.attributs();
 
-            string create = "Insert into `velomax`.`Bike` (";
+            string create = "Insert into `velomax`.`procurement` (";
             for(int i = 0; i< tab.Length-1;i++)
             {
                 create += tab[i] + ',';
