@@ -21,7 +21,7 @@
 			<StackPanel>
 				<TextBlock
 					Grid.Column="0"
-					Text="Part"
+					Text="Parts"
 					Foreground="#000000"
 					FontSize="28"
 					HorizontalAlignment="Left"
@@ -66,7 +66,7 @@
 							Width="140"
 							/>
 						<Button
-							Content="Update"
+							Content="Info / Edit"
 							Background="#F8BD96"
 							Margin="0,100,0,0"
 							Width="140"
@@ -81,6 +81,13 @@
 							Command="{Binding DeletePart}"
 							HorizontalContentAlignment="Center"
 							/>
+						<Button
+							Content="JSON export"
+							Margin="0,100,0,0"
+							Width="140"
+							Command="{Binding SaveJson}"
+							HorizontalContentAlignment="Center"
+						/>
 					</StackPanel>
 				</Grid>
 			</Panel>

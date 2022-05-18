@@ -124,7 +124,7 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left"
                     Watermark="Search..."
-                    Width="200"
+                    Width="500"
                     Height="40"
                     Classes="SearchTextBox"
                     Margin="5"

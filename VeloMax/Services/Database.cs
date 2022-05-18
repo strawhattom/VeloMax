@@ -204,6 +204,44 @@ namespace VeloMax.Services
         }
 
 
+        public List<Part> GetPartsMinQty(int qty)
+        {
+            List<Part> List = new List<Part>();
+
+            if (this.DbConnection())
+            {
+                string StringQuery = "SELECT * FROM parts WHERE quantity < " + qty;
+                MySqlDataReader Reader = Query(Connection, StringQuery);
+
+                string Description, type;
+                double unit_price;
+                int procurement_delay, quantity, Id;
+                DateTime discontinuation_date, introduction_date;
+
+                while (Reader.Read())
+                {
+                    Id = Reader.GetInt32(0);
+                    Description = Reader.GetString(1);
+                    unit_price = Reader.GetDouble(2);
+                    introduction_date = Reader.GetDateTime(3);
+                    discontinuation_date = Reader.GetDateTime(4);
+                    procurement_delay = Reader.GetInt32(5);
+                    quantity = Reader.GetInt32(6);
+                    type = Reader.GetString(7);
+
+                    if (Description is null || type is null)
+                    {
+                        System.Environment.Exit(0);
+                    }
+                    List.Add(new Part(Id,Description, unit_price, introduction_date, discontinuation_date, procurement_delay, quantity, type));
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+            return List;
+        }
+
         public List<Part> GetParts()
         {
             List<Part> List = new List<Part>();
@@ -241,7 +279,7 @@ namespace VeloMax.Services
 
             return List;
         }
-
+        
         public List<Bike> GetBikes(string search)
         {
             List<Bike> List = new List<Bike>();

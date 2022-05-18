@@ -6,6 +6,7 @@ using System.Formats.Asn1;
 using System.Linq;
 using System.Reactive;
 using System.Windows.Input;
+using Avalonia.Controls;
 using ReactiveUI;
 using VeloMax.Models;
 using VeloMax.Services;
@@ -20,7 +21,7 @@ namespace VeloMax.ViewModels
         public ReactiveCommand<Unit, Unit> UpdatePart { get; }
         public ReactiveCommand<Unit, Unit> DeletePart { get; }
         
-        public ReactiveCommand<Unit, Unit> SearchParts { get;  }
+        public ReactiveCommand<Unit, Unit> SaveJson { get;  }
 
         private Part _selectPart;
         private string _searchText;
@@ -52,11 +53,16 @@ namespace VeloMax.ViewModels
                 };
                 messageBox.Show();
             });
-            SearchParts = ReactiveCommand.Create(() =>
+            SaveJson = ReactiveCommand.Create(  () =>
             {
-                Console.WriteLine("On recherche: " + _searchText);
-                Parts = new ObservableCollection<object>(DB.Search(_searchText));
+                var export = new JsonExportWindow
+                {
+                    DataContext = new JsonExportWindowViewModel()
+                };
+                export.Show();
             });
+            
+            
         }
 
         public Part SelectedPart
