@@ -768,6 +768,10 @@ namespace VeloMax.Services
 
         public Boolean CreateOrderParts(OrderedPart orderedPart)
         {
+            if(CheckInStock(orderedPart.Id, orderedPart.Quantity) == false)
+            {
+                return false;
+            }
             string[] tab = orderedPart.attributs();
 
             string create = "Insert into `velomax`.`ordered_parts` (";
@@ -1274,7 +1278,7 @@ namespace VeloMax.Services
         public void DeleteOrder(Order order)
         {
             int id = order.Id;
-            string delete = "DELETE FROM parts WHERE id="+id.ToString();
+            string delete = "DELETE FROM orders WHERE id="+id.ToString();
             if(this.DbConnection())
             {
                 SetValue(Connection,delete);
@@ -1374,6 +1378,7 @@ namespace VeloMax.Services
                     {
                         exist=false;
                     }
+                    j++;
                 }
                 Reader.Close();
                 Connection.Close();
@@ -1407,6 +1412,7 @@ namespace VeloMax.Services
                     {
                         exist=false;
                     }
+                    j++;
                 }
                 Reader.Close();
                 Connection.Close();
@@ -1440,6 +1446,7 @@ namespace VeloMax.Services
                     {
                         exist=false;
                     }
+                    j++;
                 }
                 Reader.Close();
                 Connection.Close();
@@ -1473,6 +1480,7 @@ namespace VeloMax.Services
                     {
                         exist=false;
                     }
+                    j++;
                 }
                 Reader.Close();
                 Connection.Close();
@@ -1506,6 +1514,7 @@ namespace VeloMax.Services
                     {
                         exist=false;
                     }
+                    j++;
                 }
                 Reader.Close();
                 Connection.Close();
@@ -1539,6 +1548,7 @@ namespace VeloMax.Services
                     {
                         exist=false;
                     }
+                    j++;
                 }
                 Reader.Close();
                 Connection.Close();
@@ -1572,6 +1582,7 @@ namespace VeloMax.Services
                     {
                         exist=false;
                     }
+                    j++;
                 }
                 Reader.Close();
                 Connection.Close();
@@ -1606,6 +1617,7 @@ namespace VeloMax.Services
                     {
                         exist=false;
                     }
+                    j++;
                 }
                 Reader.Close();
                 Connection.Close();
@@ -1639,6 +1651,7 @@ namespace VeloMax.Services
                     {
                         exist=false;
                     }
+                    j++;
                 }
                 Reader.Close();
                 Connection.Close();
@@ -1653,6 +1666,34 @@ namespace VeloMax.Services
                 CreateSupplier(objects);
             }
             
+        }
+
+        public Boolean CheckInStock(int idPiece, int order_quantity)
+        {
+            string check = "SELECT quantity FROM parts WHERE id= "+idPiece.ToString();
+            bool inStock = true;
+            if(this.DbConnection())
+            {
+                MySqlDataReader Reader = Query(Connection, check);
+                int j=0;
+                int Stock=int.MinValue;
+                while(Reader.Read() && j<0)
+                {
+                    Stock = Reader.GetInt32(0);
+                    j++;
+                }
+                if(Stock < order_quantity)
+                {
+                    inStock = false;
+                }
+
+            }
+            return inStock;
+        }
+
+        public void modifyPartsStock(int id, int change)
+        {
+            string changes = "";
         }
     }
 }
