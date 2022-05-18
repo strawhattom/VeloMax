@@ -9,6 +9,7 @@ namespace VeloMax.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         private ViewModelBase _navigationContent = new DashboardViewModel();
+        private bool _closeAppTrigger;
         private Database Db { get; set; }
         // private string _searchText = "";
         public ICommand DashboardButtonClicked { get; }
@@ -19,13 +20,19 @@ namespace VeloMax.ViewModels
         public ICommand OtherButtonClicked { get; }
         public ICommand StockButtonClicked { get; }
         public ICommand SupplierButtonClicked { get; }
+        public ICommand CloseButtonClicked { get; }
 
         // public ICommand SearchInput { get; }
-        
-        public ViewModelBase NavigationContent 
-        { 
+
+        public ViewModelBase NavigationContent
+        {
             get => this._navigationContent;
             set => this.RaiseAndSetIfChanged(ref this._navigationContent, value);
+        }
+        public bool CloseAppTrigger
+        {
+            get => this._closeAppTrigger;
+            set => this.RaiseAndSetIfChanged(ref this._closeAppTrigger, value);
         }
 
         // public string SearchContent
@@ -48,9 +55,10 @@ namespace VeloMax.ViewModels
             OtherButtonClicked = ReactiveCommand.Create(OnOtherButtonClicked);
             StockButtonClicked = ReactiveCommand.Create(OnStockButtonClicked);
             SupplierButtonClicked = ReactiveCommand.Create(OnSupplierButtonClicked);
+            CloseButtonClicked = ReactiveCommand.Create(() => { CloseAppTrigger = true; });
 
         }
-        
+
 
         private void OnDashboardButtonClicked()
         {

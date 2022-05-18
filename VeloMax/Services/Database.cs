@@ -118,8 +118,8 @@ namespace VeloMax.Services
                     Mail = Reader.GetString(6);
                     FirstName = Reader.GetString(7);
                     LastName = Reader.GetString(8);
-                    FidelityId = Reader.GetInt32(10);
                     expirationDate = Reader.GetDateTime(9);
+                    FidelityId = Reader.GetInt32(10);
                     List.Add(new Individual(Id, FirstName, LastName, Street, City, PostalCode, Province, Phone, Mail,FidelityId,  expirationDate));
                 }
                 Reader.Close();
