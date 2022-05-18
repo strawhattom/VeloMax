@@ -102,8 +102,6 @@ namespace VeloMax.ViewModels
                 QuantityText = _current.at(7);
                 TypeText = _current.at(8).Trim('\'');
             }
-            
-
             UpdateClick = ReactiveCommand.Create(OnUpdateClick);
             CloseButtonClicked = ReactiveCommand.Create(() => { CloseAppTrigger = true; });
         }
@@ -117,6 +115,7 @@ namespace VeloMax.ViewModels
             Console.Write(DataText + "\n");
 
             // Create our part
+
         }
     }
 }
