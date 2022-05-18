@@ -4,16 +4,16 @@ namespace VeloMax.Models
 {
     public class Bike
     {
-        public string Name { get; set;}
+        public string Name { get; set; }
         public string Target { get; set; }
         public double UnitPrice { get; set; }
         public string Type { get; set; } //enum
-        public DateTime IntroductionDate { get; set;}
-        public DateTime DiscontinuationDate { get; set;}
+        public DateTime IntroductionDate { get; set; }
+        public DateTime DiscontinuationDate { get; set; }
 
-        public int Id {get; set;}
+        public int Id { get; set; }
 
-        public Bike(int id,string name, string target, double unitPrice, string type, DateTime iDate, DateTime dDate)
+        public Bike(int id, string name, string target, double unitPrice, string type, DateTime iDate, DateTime dDate)
         {
             // if args are null
             if (name is null || target is null || unitPrice is double.NaN || type is null)
@@ -29,44 +29,36 @@ namespace VeloMax.Models
             this.DiscontinuationDate = dDate;
         }
 
-        public string[] attributs()
+        public static string[] Attributs()
         {
             string[] attributs = new string[7];
-            attributs[0]="Id";
-            attributs[1]="name";
-            attributs[2]="target";
-            attributs[3]="unit_price";
-            attributs[4]="type";
-            attributs[5]="introduction_date";
-            attributs[6]="discontinuation_date";
+            attributs[0] = "Id";
+            attributs[1] = "name";
+            attributs[2] = "target";
+            attributs[3] = "unit_price";
+            attributs[4] = "type";
+            attributs[5] = "introduction_date";
+            attributs[6] = "discontinuation_date";
 
             return attributs;
         }
 
-        public string at(int i)
+        public string At(int i)
         {
-            switch(i)
+            return i switch
             {
-                case 0:
-                    return this.Id.ToString();
-                case 1:
-                    return "'"+this.Name+"'";
-                case 2:
-                    return "'"+this.Target+"'";
-                case 3:
-                    return this.UnitPrice.ToString();
-                case 4:
-                    return "'"+this.Type+"'";
-                case 5:
-                    return "'"+this.IntroductionDate.ToString("yyyy-MM-dd")+"'";
-                case 6:
-                    return "'"+this.DiscontinuationDate.ToString("yyyy_MM_dd")+"'"; 
-                default:
-                    return "";
-            }    
+                0 => this.Id.ToString(),
+                1 => "'" + this.Name + "'",
+                2 => "'" + this.Target + "'",
+                3 => this.UnitPrice.ToString(),
+                4 => "'" + this.Type + "'",
+                5 => "'" + this.IntroductionDate.ToString("yyyy-MM-dd") + "'",
+                6 => "'" + this.DiscontinuationDate.ToString("yyyy_MM_dd") + "'",
+                _ => "",
+            };
         }
 
-        public string typeC()
+        public static string TypeC()
         {
             return "bikes";
         }

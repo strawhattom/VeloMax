@@ -17,41 +17,32 @@ namespace VeloMax.Models
             this.Quantity = quantity;
         }
 
-        public string[] attributs()
+        public string[] Attributs()
         {
             string[] attributs = new string[7];
-            attributs[0]="Id";
-            attributs[1]="orders_id";
-            attributs[2]="parts_id";
-            attributs[3]="quantity";
-           
-            
-
+            attributs[0] = "Id";
+            attributs[1] = "orders_id";
+            attributs[2] = "parts_id";
+            attributs[3] = "quantity";
             return attributs;
         }
 
-        public string at(int i)
+        public string At(int i)
         {
-            switch(i)
+            return i switch
             {
-                case 0:
-                    return this.Id.ToString();
-                case 1:
-                    return this.OrdersId.ToString();
-                case 2:
-                    return this.PartsId.ToString();
-                case 3:
-                    return this.Quantity.ToString();
-
-                default:
-                    return "";
-            }    
+                0 => this.Id.ToString(),
+                1 => this.OrdersId.ToString(),
+                2 => this.PartsId.ToString(),
+                3 => this.Quantity.ToString(),
+                _ => "",
+            };
         }
 
-        public string typeC()
+        public static string TypeC()
         {
             return "ordered_parts";
         }
-    
+
     }
 }

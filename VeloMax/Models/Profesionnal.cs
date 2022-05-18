@@ -6,9 +6,9 @@
         public string ContactName { get; set; }
         public int OrderCount { get; set; }
 
-        public Professional(int id, string companyName, string contact, string street, string city, string postalCode, string province, string phone, string mail,  int orderCount = 0) : base(id, street, city, postalCode, province, phone, mail)
+        public Professional(int id, string companyName, string contact, string street, string city, string postalCode, string province, string phone, string mail, int orderCount = 0) : base(id, street, city, postalCode, province, phone, mail)
         {
-            
+
             // if not null args are null
             if (companyName is null || contact is null)
             {
@@ -19,53 +19,42 @@
             this.OrderCount = orderCount;
         }
 
-        public override string[] attributs()
+        public override string[] Attributs()
         {
             string[] attributs = new string[10];
-            attributs[0]="Id";
-            attributs[1]="street";
-            attributs[2]="city";
-            attributs[3]="postal_code";
-            attributs[4]="province";
-            attributs[5]="phone";
-            attributs[6]="mail";
-            attributs[7]="company_name";
-            attributs[8]="contact_name";
-            attributs[9]="order_count";
+            attributs[0] = "Id";
+            attributs[1] = "street";
+            attributs[2] = "city";
+            attributs[3] = "postal_code";
+            attributs[4] = "province";
+            attributs[5] = "phone";
+            attributs[6] = "mail";
+            attributs[7] = "company_name";
+            attributs[8] = "contact_name";
+            attributs[9] = "order_count";
 
             return attributs;
         }
 
-        public override string at(int i)
+        public override string At(int i)
         {
-            switch(i)
+            return i switch
             {
-                case 0:
-                    return this.Id.ToString();
-                case 1:
-                    return "'"+this.Street.ToString()+"'";
-                case 2:
-                    return "'"+this.City.ToString()+"'";
-                case 3:
-                    return "'"+this.PostalCode.ToString()+"'";
-                case 4:
-                    return "'"+this.Province.ToString()+"'";
-                case 5:
-                    return "'"+this.Phone+"'";
-                case 6:
-                    return "'"+this.Mail.ToString()+"'";
-                case 7:
-                    return "'"+this.CompanyName.ToString()+"'";
-                case 8:
-                    return "'"+this.ContactName+"'";
-                case 9:
-                    return this.OrderCount.ToString();
-                default:
-                    return "";
-            }    
+                0 => this.Id.ToString(),
+                1 => "'" + this.Street.ToString() + "'",
+                2 => "'" + this.City.ToString() + "'",
+                3 => "'" + this.PostalCode.ToString() + "'",
+                4 => "'" + this.Province.ToString() + "'",
+                5 => "'" + this.Phone + "'",
+                6 => "'" + this.Mail.ToString() + "'",
+                7 => "'" + this.CompanyName.ToString() + "'",
+                8 => "'" + this.ContactName + "'",
+                9 => this.OrderCount.ToString(),
+                _ => "",
+            };
         }
 
-        public override string typeC()
+        public override string TypeC()
         {
             return "professionals";
         }

@@ -1,6 +1,6 @@
 namespace VeloMax.Models
 {
-     public class Client
+    public class Client
     {
         public string Street { get; set; }
         public string City { get; set; }
@@ -10,14 +10,15 @@ namespace VeloMax.Models
         public string Mail { get; set; }
         public int Id { get; set; }
 
-        public Client(int id, string street, string city, string postalCode, string province, string phone, string mail){
+        public Client(int id, string street, string city, string postalCode, string province, string phone, string mail)
+        {
 
             // if not null args are null
-            if ( street is null || city is null || postalCode is null || province is null || phone is null || mail is null)
+            if (street is null || city is null || postalCode is null || province is null || phone is null || mail is null)
             {
                 System.Environment.Exit(0);
             }
-            this.Id=id;
+            this.Id = id;
             this.Street = street;
             this.City = city;
             this.Province = province;
@@ -26,16 +27,16 @@ namespace VeloMax.Models
             this.Mail = mail;
         }
 
-        public virtual string[] attributs()
+        public virtual string[] Attributs()
         {
             return null;
         }
-    
-        public virtual string at(int i)
+
+        public virtual string At(int i)
         {
             return null;
         }
-        public virtual string typeC()
+        public virtual string TypeC()
         {
             return null;
         }

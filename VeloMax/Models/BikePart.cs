@@ -6,7 +6,7 @@ namespace VeloMax.Models
     {
         public int PartId { get; set; }
         public int BikeId { get; set; }
-        public int Id {get; set;}
+        public int Id { get; set; }
 
 
         public BikePart(int id, int partId, int bikeId)
@@ -16,36 +16,31 @@ namespace VeloMax.Models
             this.BikeId = bikeId;
         }
 
-        public string[] attributs()
+        public static string[] Attributs()
         {
             string[] attributs = new string[7];
-            attributs[0]="Id";
-            attributs[1]="parts_id";
-            attributs[2]="bikes_id";
+            attributs[0] = "Id";
+            attributs[1] = "parts_id";
+            attributs[2] = "bikes_id";
 
             return attributs;
         }
 
-        public string at(int i)
+        public string At(int i)
         {
-            switch(i)
+            return i switch
             {
-                case 0:
-                    return this.Id.ToString();
-                case 1:
-                    return this.PartId.ToString();
-                case 2:
-                    return this.BikeId.ToString();
-
-                default:
-                    return "";
-            }    
+                0 => this.Id.ToString(),
+                1 => this.PartId.ToString(),
+                2 => this.BikeId.ToString(),
+                _ => "",
+            };
         }
 
-        public string typeC()
+        public static string TypeC()
         {
             return "bike_parts";
         }
     }
-    
+
 }

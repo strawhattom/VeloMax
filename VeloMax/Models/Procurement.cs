@@ -1,6 +1,7 @@
 using System;
 
-namespace VeloMax.Models{
+namespace VeloMax.Models
+{
 
     public class Procurement
     {
@@ -8,42 +9,38 @@ namespace VeloMax.Models{
         public int PartId { get; set; }
         public int SupplierId { get; set; }
 
-        public Procurement(int id, int parts_id, int suppliers_id){
+        public Procurement(int id, int parts_id, int suppliers_id)
+        {
             this.Id = id;
             this.PartId = parts_id;
             this.SupplierId = suppliers_id;
         }
 
-        public string[] attributs()
+        public static string[] Attributs()
         {
             string[] attributs = new string[7];
-            attributs[0]="Id";
-            attributs[1]="parts_id";
-            attributs[2]="suppliers_id";
+            attributs[0] = "Id";
+            attributs[1] = "parts_id";
+            attributs[2] = "suppliers_id";
 
             return attributs;
         }
 
-        public string at(int i)
+        public string At(int i)
         {
-            switch(i)
+            return i switch
             {
-                case 0:
-                    return this.Id.ToString();
-                case 1:
-                    return this.PartId.ToString();
-                case 2:
-                    return this.SupplierId.ToString();
-
-                default:
-                    return "";
-            }    
+                0 => this.Id.ToString(),
+                1 => this.PartId.ToString(),
+                2 => this.SupplierId.ToString(),
+                _ => "",
+            };
         }
 
-        public string typeC()
+        public static string TypeC()
         {
             return "procurement";
         }
-    
+
     }
 }
