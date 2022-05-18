@@ -36,7 +36,7 @@ namespace VeloMax.Models
 
         public string[] attributs()
         {
-            string[] attributs = new string[7];
+            string[] attributs = new string[8];
             attributs[0]="Id";
             attributs[1]="description";
             attributs[2]="unit_price";

@@ -13,7 +13,6 @@ namespace VeloMax.ViewModels
     public class PartViewModel : ViewModelBase
     {
         private Part? _selected;
-        private Part? _lastSelected;
         public ObservableCollection<Part> Parts { get; set; } // don't change it
         public ICommand AddClicked { get; set; }
         public ICommand ModifyClicked { get; set; }
@@ -25,7 +24,6 @@ namespace VeloMax.ViewModels
         {
             
             Parts = new ObservableCollection<Part>(p);
-            _selected = Parts[2];
             ModifyClicked = ReactiveCommand.Create(OnModifyClick);
             AddClicked = ReactiveCommand.Create(OnAddClick);
         }

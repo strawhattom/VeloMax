@@ -83,7 +83,6 @@
                 Content="Supplier part"
                 Foreground="#D9E0EE"
                 Background="#1E1E2E"
-
                 Width="140"
                 HorizontalContentAlignment="Center"
                 />
