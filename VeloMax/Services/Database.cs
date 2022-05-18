@@ -1368,6 +1368,29 @@ namespace VeloMax.Services
             return Stock;
         }
 
+        public List<string> WorstSuppliers()
+        {
+            string worst = "SELECT S.name "+
+                        "FROM suppliers S JOIN procurement Pr ON Pr.suppliers_id = S.id "+
+                        "JOIN parts P ON P.id = Pr.parts_id "+
+                        "WHERE S.label <= all(SELECT label FROM suppliers);";
+
+            List<string> worstSuppliers = new List<string>();
+
+            if(this.DbConnection())
+            {
+                MySqlDataReader reader = Query(Connection, worst);
+                while(reader.Read())
+                {   
+                    worstSuppliers.Add(reader.GetString(0));
+                }
+            }
+
+            return worstSuppliers;
+        }
+
+            
+
         #endregion
         
         #region Delete
@@ -1414,6 +1437,16 @@ namespace VeloMax.Services
         {
             int id = order.Id;
             string delete = "DELETE FROM orders WHERE id="+id.ToString();
+            if(this.DbConnection())
+            {
+                SetValue(Connection,delete);
+            }
+        }
+
+        public void DeleteSuppliers(Supplier supplier)
+        {
+            int id = supplier.Id;
+            string delete = "DELETE FROM suppliers WHERE id="+id.ToString();
             if(this.DbConnection())
             {
                 SetValue(Connection,delete);
