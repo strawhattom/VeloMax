@@ -998,7 +998,7 @@ namespace VeloMax.Services
         #endregion
         
         #region Statistics
-        public List<string> BestPart()
+        public List<string> BestPart() //les meilleur parts au sense quantite de vente sur le mois
         {
             string[] date = DateTime.Now.ToString().Split('/');
             string mois = date[0];
@@ -1031,7 +1031,7 @@ namespace VeloMax.Services
             }
             return bestlist;
         }
-        public List<string> BestBike()
+        public List<string> BestBike()// meilleurs velo au sens quantite sur le mois
         {
             string[] date = DateTime.Now.ToString().Split('/');
             string mois = date[0];
@@ -1066,7 +1066,7 @@ namespace VeloMax.Services
         }
         
 
-        public List<List<string>> ClientsFidelity()
+        public List<List<string>> ClientsFidelity() // List des clients et de leurs abonnement de fidelity
         {
             string best = "SELECT F.id, F.label, I.first_name, I.last_name "+
                         "FROM fidelity_programs F JOIN individuals I ON F.id = I.id_fidelity;";
@@ -1085,7 +1085,7 @@ namespace VeloMax.Services
 
                     while (Reader.Read())
                         {
-                            if(Reader.GetInt32(0)==5)
+                            if(Reader.GetInt32(0)==0)
                             {
                                 fidelity0.Add(Reader.GetString(2)+' '+Reader.GetString(3));
                             }
@@ -1119,7 +1119,7 @@ namespace VeloMax.Services
         }
 
 
-        public List<List<string>> ClientExpirationDate()
+        public List<List<string>> ClientExpirationDate() //la date d expiration des cartes de fidelité des clients
         {
             string best = "SELECT id, last_name, first_name, expiration_date FROM individuals;";
             
@@ -1147,7 +1147,7 @@ namespace VeloMax.Services
         }
 
 
-        public List<List<string>> BestClients()
+        public List<List<string>> BestClients() // les clients qui ont le plus achete (souvent des professionnels)
         {
             
             List<List<string>> bestclients = new List<List<string>>();
@@ -1194,7 +1194,7 @@ namespace VeloMax.Services
             return bestclients;
         }
         
-        public List<int> Average()
+        public List<int> Average() //Le prix moyen par commande, la quantite moyenne de piece vendu, la quantite moyenne de velo vendus
         {
             string best = "Select avg(Bp.quantity*B.unit_price + Pp.quantity * P.unit_price), avg(Bp.quantity), avg(Pp.quantity)"+
                         "From orders O JOIN ordered_bikes Bp ON O.id=Bp.orders_id"+
@@ -1225,7 +1225,8 @@ namespace VeloMax.Services
         
         }
 
-        public List<List<List<string>>> StockPartsByBikes(string type="name") // range celon l argument donnée (argument appartient a table bikes)
+        public List<List<List<string>>> StockPartsByBikes(string type="name") // range celon l argument donnée (argument appartient a table bikes) 
+                                                                            //et le place en premier argument de la grande liste
         {
             string best = "SELECT B."+type+", P.description, P.Quantity "+
                         "FROM bikes B JOIN bike_parts Br ON B.id=Br.bikes_id " +
@@ -1271,7 +1272,7 @@ namespace VeloMax.Services
             return Parts;
         }
 
-        public List<string> StockParts()
+        public List<string> StockParts() //Donne les stocks de chaque parts
         {
             string best = "SELECT P.description, P.quantity FROM parts P";
             
@@ -1297,7 +1298,7 @@ namespace VeloMax.Services
             return Parts;
         }
 
-        public List<List<List<string>>> StockPartsBySuppliers()
+        public List<List<List<string>>> StockPartsBySuppliers() // la quantite en stock range par suppliers (supplier premier terme de la grande liste)
         {
             string best = "SELECT S.name, P.description, P.Quantity "+
                         "FROM suppliers S JOIN procurement Pr ON S.id=Pr.suppliers_id " +
@@ -1821,6 +1822,48 @@ namespace VeloMax.Services
                 }
             }
             return present;
+        }
+
+        public List<Part> Search(string search)
+        {
+            string part = " SELECT * "+
+                            "FROM parts "+
+                            "WHERE description LIKE '"+search+"%' OR type LIKE '" + search + "%';";
+            
+            List<Part> List = new List<Part>();
+
+            if (this.DbConnection())
+            {
+                MySqlDataReader Reader = Query(Connection, part);
+
+                string Description, type;
+                double unit_price;
+                int procurement_delay, quantity, Id;
+                DateTime discontinuation_date, introduction_date;
+
+                while (Reader.Read())
+                {
+                    Id = Reader.GetInt32(0);
+                    Description = Reader.GetString(1);
+                    unit_price = Reader.GetDouble(2);
+                    introduction_date = Reader.GetDateTime(3);
+                    discontinuation_date = Reader.GetDateTime(4);
+                    procurement_delay = Reader.GetInt32(5);
+                    quantity = Reader.GetInt32(6);
+                    type = Reader.GetString(7);
+
+                    if (Description is null || type is null)
+                    {
+                        System.Environment.Exit(0);
+                    }
+                    List.Add(new Part(Id,Description, unit_price, introduction_date, discontinuation_date, procurement_delay, quantity, type));
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+            return List;
+            
         }
 
         #endregion
