@@ -12,7 +12,7 @@ namespace VeloMax.ViewModels
     {
         private Part? _current;
         private string _mode = "ADD";
-        private string _id = "";
+        private int _id;
         private string _description = "";
         private string _price = "";
         private string _delay = "";
@@ -24,11 +24,6 @@ namespace VeloMax.ViewModels
         private readonly Database _db = new();
         private bool _closeAppTrigger = false;
 
-        public string IdText
-        {
-            get => _id;
-            set => this.RaiseAndSetIfChanged(ref _id, value);
-        }
         public string DescriptionText
         {
             get => _description;
@@ -89,20 +84,18 @@ namespace VeloMax.ViewModels
             _mode = "UPDATE";
             if (!(selected == null))
             {
-                _current = selected;
-                IdText = _current.At(0);
-                DescriptionText = _current.At(1).Trim('\'');
-                PriceText = _current.At(2);
-                DelayText = _current.At(3);
+                _id = selected.Id;
+                DescriptionText = selected.Description;
+                PriceText = selected.At(2);
 
-                string[] idt = _current.At(4).Trim('\'').Split('-');
+                string[] idt = selected.At(3).Trim('\'').Split('-');
                 IntroductionDT = new DateTimeOffset(new DateTime(Int32.Parse(idt[0]), Int32.Parse(idt[1]), Int32.Parse(idt[2])));
-                string[] ddt = _current.At(5).Trim('\'').Split('-');
-                DiscontinuationDT = new DateTimeOffset(new DateTime(Int32.Parse(idt[0]), Int32.Parse(idt[1]), Int32.Parse(idt[2])));
+                string[] ddt = selected.At(4).Trim('\'').Split('-');
+                DiscontinuationDT = new DateTimeOffset(new DateTime(Int32.Parse(ddt[0]), Int32.Parse(ddt[1]), Int32.Parse(ddt[2])));
 
-                DelayText = _current.At(6);
-                QuantityText = _current.At(7);
-                TypeText = _current.At(8).Trim('\'');
+                DelayText = selected.At(5);
+                QuantityText = selected.At(6);
+                TypeText = selected.Type;
             }
             UpdateClick = ReactiveCommand.Create(OnUpdateClick);
             CloseButtonClicked = ReactiveCommand.Create(() => { CloseAppTrigger = true; });
@@ -111,24 +104,25 @@ namespace VeloMax.ViewModels
         private void OnUpdateClick()
         {
             // Create our part
-            if (IdText != "" && IdText.Length > 0
-                && DescriptionText != "" && DescriptionText.Length > 0
+            if (DescriptionText != "" && DescriptionText.Length > 0
                 && PriceText != "" && PriceText.Length > 0
                 && DelayText != "" && DelayText.Length > 0
                 && QuantityText != "" && QuantityText.Length > 0
                 && TypeText != "" && TypeText.Length > 0)
             {
-                int idField = (_mode == "ADD") ? _db.GetMaxID(Part.TypeC()) : Int32.Parse(IdText);
+                int idField = (_mode == "ADD") ? _db.GetMaxID(Part.TypeC()) : _id;
                 try
                 {
-                    _db.SetParts(new Part(idField,
-                    DescriptionText,
-                    Double.Parse(PriceText),
-                    IntroductionDT.DateTime,
-                    DiscontinuationDT.DateTime,
-                    Int32.Parse(DelayText),
-                    Int32.Parse(QuantityText),
-                    TypeText));
+                    _db.SetParts(new Part(
+                        idField,
+                        DescriptionText,
+                        Double.Parse(PriceText),
+                        IntroductionDT.DateTime,
+                        DiscontinuationDT.DateTime,
+                        Int32.Parse(DelayText),
+                        Int32.Parse(QuantityText),
+                        TypeText)
+                    );
 
                     DataText = "Updated";
                 }
@@ -137,7 +131,6 @@ namespace VeloMax.ViewModels
                     DataText = "Incorrect format in at least one field.\nPlease verify fields";
                 }
             }
-
         }
     }
 }
