@@ -74,11 +74,9 @@ namespace VeloMax.Services
                 
                 while(Reader.Read() && j<1)
                 {
-                    max=Reader.GetInt32(0);
-                    
+                    max=Reader.GetInt32(0);  
                 }
             }
-
             return max+1;
         }
 
@@ -91,7 +89,6 @@ namespace VeloMax.Services
             command.ExecuteNonQuery();
              
         }
-
         #endregion
 
         #region Get
@@ -1035,13 +1032,10 @@ namespace VeloMax.Services
             }
             return bestlist;
         }
+
         public List<string> BestBike()// meilleurs velo au sens quantite sur le mois
         {
             string[] date = DateTime.Now.ToString().Split('/');
-            foreach (var el in date)
-            {
-                Debug.WriteLine(el);
-            }
             string mois = date[1];
             string year = date[2].Split(' ')[0];
             string best = "SELECT DISTINCT B.name , sum(OB.quantity), sum(OB.quantity)*B.unit_price, avg(OB.Quantity) "+
@@ -1049,8 +1043,6 @@ namespace VeloMax.Services
                         "WHERE O.shipping_date > '" + year + "-" + mois + "-01' "+
                         "GROUP BY B.id " +
                         "HAVING sum(OB.quantity)>= all(SELECT sum(quantity) FROM ordered_bikes GROUP BY bikes_id);";
-
-            Debug.WriteLine(best);
             
             List<string> bestlist = new List<string>();
 
@@ -1070,10 +1062,6 @@ namespace VeloMax.Services
                         }
                     Reader.Close();
                     Connection.Close();
-            }
-            foreach (var s in bestlist)
-            {
-                Debug.WriteLine(s);
             }
             return bestlist;
         }
@@ -1169,8 +1157,7 @@ namespace VeloMax.Services
             {
                 string best = "Select C.company_name ,sum(O.quantity) "+
                     "FROM orders O JOIN professionals C ON C.id = O.id_client "+
-                    "group by C.id "+
-                    "GROUP BY B.id " +
+                    "group by C.id "+ 
                     "Having sum(O.quantity) >= all(Select sum(O.quantity) FROM orders O group by id_client);";
 
                 MySqlDataReader Reader = Query(Connection, best);
@@ -1199,10 +1186,8 @@ namespace VeloMax.Services
                     clients.Add(Reader.GetInt32(2).ToString());
                     bestclients.Add(clients);
                 }
-
                 Reader.Close();
-                Connection.Close();
-                    
+                Connection.Close(); 
             }
             return bestclients;
         }

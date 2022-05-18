@@ -19,7 +19,7 @@
         <!-- Upper panels -->
         <StackPanel Orientation="Horizontal">
       
-            <!-- Bike and part -->
+            <!-- Best bike -->
             <Border Width="200" Height="200" Background="#96CDFB" CornerRadius="10">
             <Grid>
 				  <Grid.RowDefinitions>
@@ -58,16 +58,38 @@
             </Grid>
           </Border>
       
-            <!-- Client -->
-            <Border Width="200" Height="200" Background="#FAE3B0" CornerRadius="10" Margin="45 0 0 0">
+            <!-- Best part -->
+            <Border Width="200" Height="200" Background="#836953" CornerRadius="10" Margin="45 0 0 0">
 				<Grid>
 					<Grid.RowDefinitions>
 						<RowDefinition Height="160" />
 						<RowDefinition Height="40" />
 					</Grid.RowDefinitions>
+					<StackPanel Orientation="Vertical" Grid.Row="0">
+						<TextBlock
+							Text="{Binding PartName}"
+							Foreground="White"
+							FontSize="24"
+							Margin="10 10 0 10"/>
+						<TextBlock
+								Text="{Binding PartQty}"
+								Foreground="White"
+								FontSize="18"
+								Margin="10 0 0 5"/>
+						<TextBlock
+								Text="{Binding PartSum}"
+								Foreground="White"
+								FontSize="18"
+								Margin="10 0 0 5"/>
+						<TextBlock
+								Text="{Binding PartAvg}"
+								Foreground="White"
+								FontSize="18"
+								Margin="10 0 0 5"/>
+					</StackPanel>
 					<TextBlock
 						Grid.Row="1"
-						Text="Best client"
+						Text="Best part"
 						Foreground="White"
 						VerticalAlignment="Bottom"
 						HorizontalAlignment="Left"
@@ -82,6 +104,7 @@
 						<RowDefinition Height="160" />
 						<RowDefinition Height="40" />
 					</Grid.RowDefinitions>
+					<ListBox Items="{Binding WorstSuppliers}"/>
 
 					<TextBlock Grid.Row="1"
 						Text="Worst suppliers"
@@ -92,7 +115,7 @@
 				</Grid>
 		    </Border>
 
-			<!-- Stats suppliers -->
+			<!-- Best customer -->
 			<Border Width="200" Height="200" Background="#575268" CornerRadius="10" Margin="45 0 0 0">
 				<Grid>
 					<Grid.RowDefinitions>
@@ -138,23 +161,29 @@
           </StackPanel.Styles>
 
           <TextBlock 
-            Text="Section"
+            Text="Table"
             Foreground="#1A1826"
             FontSize="20"
             HorizontalAlignment="Left"
             Margin="0 40 0 10" />
 
             <StackPanel Orientation="Horizontal">
-          
-              <!-- Supplier -->
-              <Border Width="150" Height="150" Background="#DDB6F2" CornerRadius="10" Margin="0">
-                <TextBlock
-                  Text="Supplier"
-                  Foreground="White"
-                  VerticalAlignment="Bottom"
-                  HorizontalAlignment="Left"
-                  Margin="5 0 0 5"/>
-              </Border>
+
+				<StackPanel Orientation="Vertical">
+
+					<DataGrid Items="{Binding WorstSuppliers}" Width="150" Height="150">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="Name" Binding="{Binding}"/>
+						</DataGrid.Columns>
+					</DataGrid>
+					<TextBlock
+						Text="WorstSuppliers"
+						Foreground="#1A1826"
+						FontSize="12"
+						HorizontalAlignment="Left"
+						Margin="0 40 0 10" />
+				</StackPanel>
+				
 
               <!-- Order -->
               <Border Width="150" Height="150" Background="#89DCEB" CornerRadius="10">
