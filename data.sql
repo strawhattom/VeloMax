@@ -246,7 +246,7 @@ INSERT INTO `suppliers`(id,siret,name,contact,location,label) VALUES (2,'5030315
 INSERT INTO `suppliers`(id,siret,name,contact,location,label) VALUES (3,'484395629','alltricks','01 20 48 52 82','9 Rue Auguste Gervais, 92130 Issy-les-Moulineaux','4');
 INSERT INTO `suppliers`(id,siret,name,contact,location,label) VALUES (4,'832870950','BBB Cycling','31 7 15 79 15 80','Rooseveltstraat 46, 2321 BM Leiden, Pays-Bas','4');
 INSERT INTO `suppliers`(id,siret,name,contact,location,label) VALUES (5,'794310110','beastybike','01 44 93 95 85','73 Rue de Turbigo, 75003 Paris','3');
-INSERT INTO `suppliers`(id,siret,name,contact,location,label) VALUES (6,'750378936','Renadar','01 56 76 89 à3','67 Allée de la Citadelle, 34000 Montpellier',3);
+INSERT INTO `suppliers`(id,siret,name,contact,location,label) VALUES (6,'750378936','Renadar','01 56 76 89 à3','67 Allée de la Citadelle, 34000 Montpellier',2);
 
 INSERT INTO `procurement`(id,parts_id,suppliers_id) VALUES (1,1,1);
 INSERT INTO `procurement`(id,parts_id,suppliers_id) VALUES (2,2,1);
