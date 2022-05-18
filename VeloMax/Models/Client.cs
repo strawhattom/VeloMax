@@ -2,14 +2,14 @@ namespace VeloMax.Models
 {
     public class Client
     {
+        public int Id { get; set; }
         public string Street { get; set; }
         public string City { get; set; }
         public string PostalCode { get; set; }
         public string Province { get; set; }
         public string Phone { get; set; }
         public string Mail { get; set; }
-        public int Id { get; set; }
-
+        
         public Client(int id, string street, string city, string postalCode, string province, string phone, string mail)
         {
 

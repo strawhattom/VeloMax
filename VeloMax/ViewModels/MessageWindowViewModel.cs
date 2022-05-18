@@ -8,8 +8,9 @@ namespace VeloMax.ViewModels
 {
     public class MessageWindowViewModel : ReactiveObject
     {
-        private string _message = "Default message";
+        private string _message = "Are you sure ?";
         private string _action = "none";
+        private object _object;
 
         public string Action
         {
@@ -24,18 +25,23 @@ namespace VeloMax.ViewModels
 
         public ICommand ConfirmClick { get; }
         public ICommand CancelClick { get; }
-        public MessageWindowViewModel(string message)
+        public MessageWindowViewModel(object o)
         {
-            ConfirmClick = ReactiveCommand.Create(() =>
-            {
-                _action = "CONFIRM";
-                Debug.WriteLine(_action);
-            });
-            CancelClick = ReactiveCommand.Create(() =>
-            {
-                _action = "CANCEL";
-                Debug.WriteLine(_action);
-            });
+            _object = o;
+            ConfirmClick = ReactiveCommand.Create(OnConfirmClick);
+            CancelClick = ReactiveCommand.Create(OnCancelClick);
+        }
+
+        public void OnConfirmClick()
+        {
+            Action = "CONFIRM";
+            Debug.WriteLine(_action);
+        }
+
+        public void OnCancelClick()
+        {
+            Action = "CANCEL";
+            Debug.WriteLine(_action);
         }
     }
 }

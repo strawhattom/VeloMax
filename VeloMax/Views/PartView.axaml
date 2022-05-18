@@ -72,6 +72,7 @@
 							Background="#F28FAD"
 							Margin="0,100,0,0"
 							Width="140"
+							Command="{Binding DeleteClicked}"
 							HorizontalContentAlignment="Center"
 							/>
 					</StackPanel>

@@ -133,7 +133,6 @@ namespace VeloMax.Services
             {
                 string StringQuery = "SELECT * FROM clients NATURAL JOIN individuals";
                 MySqlDataReader Reader = Query(Connection, StringQuery);
-
                 int Id;
                 string Street, City, PostalCode, Province, Phone, Mail;
                 DateTime expirationDate;
@@ -152,9 +151,17 @@ namespace VeloMax.Services
                     Mail = Reader.GetString(6);
                     FirstName = Reader.GetString(7);
                     LastName = Reader.GetString(8);
-                    expirationDate = Reader.GetDateTime(9);
-                    FidelityId = Reader.GetInt32(10);
-                    List.Add(new Individual(Id, FirstName, LastName, Street, City, PostalCode, Province, Phone, Mail,FidelityId,  expirationDate));
+                    FidelityId = Reader.GetInt32(9);
+
+                    try
+                    {
+                        expirationDate = Reader.GetDateTime(10);
+                    } catch (System.Data.SqlTypes.SqlNullValueException)
+                    {
+                        expirationDate = new DateTime(0001, 1, 1);
+                    }
+                    
+                    List.Add(new Individual(Id, FirstName, LastName, Street, City, PostalCode, Province, Phone, Mail, FidelityId, expirationDate));
                 }
                 Reader.Close();
                 Connection.Close();
