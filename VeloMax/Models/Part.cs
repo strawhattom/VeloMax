@@ -15,11 +15,36 @@ namespace VeloMax.Models
         public string Type { get; set; }
 
 
+        public Part()
+        {
+            Id = Quantity = ProcurementDelay = 0;
+            Description = Type = "";
+            IntroductionDate = DiscontinuationDate = DateTime.Now;
+        }
+        
         public Part(int id, string description, double unit_price, DateTime introduction_date,
         DateTime discontinuation_date, int procurement_delay, int quantity, string type)
         {
 
             // if not null args are null
+            if (description is null || type is null || unit_price is double.NaN)
+            {
+                System.Environment.Exit(0);
+            }
+
+            this.Id = id;
+            this.Description = description;
+            this.UnitPrice = unit_price;
+            this.DiscontinuationDate = discontinuation_date;
+            this.IntroductionDate = introduction_date;
+            this.ProcurementDelay = procurement_delay;
+            this.Quantity = quantity;
+            this.Type = type;
+        }
+
+        public void SetFields(int id, string description, double unit_price, DateTime introduction_date,
+            DateTime discontinuation_date, int procurement_delay, int quantity, string type)
+        {
             if (description is null || type is null || unit_price is double.NaN)
             {
                 System.Environment.Exit(0);

@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Formats.Asn1;
+using System.Linq;
 using System.Reactive;
 using System.Windows.Input;
 using ReactiveUI;
@@ -13,7 +14,7 @@ namespace VeloMax.ViewModels
 {
     public class PartViewModel : ViewModelBase
     {
-        public ObservableCollection<Part> Parts { get; set; } // don't change it
+        public ObservableCollection<object> Parts { get; set; } // don't change it
         public ReactiveCommand<Unit, Unit> AddPart { get; }
         public ReactiveCommand<Unit, Unit> UpdatePart { get; }
         public ReactiveCommand<Unit, Unit> DeletePart { get; }
@@ -22,12 +23,12 @@ namespace VeloMax.ViewModels
         
         public PartViewModel(List<Part> p)
         {
-            Parts = new ObservableCollection<Part>(p);
+            Parts = new ObservableCollection<object>(p);
             AddPart = ReactiveCommand.Create(() =>
             {
                 var update = new PartUpdateWindow
                 {
-                    DataContext = new PartUpdateWindowViewModel(),
+                    DataContext = new PartUpdateWindowViewModel(Parts),
                 };
                 update.Show();
             });
@@ -35,7 +36,7 @@ namespace VeloMax.ViewModels
             {
                 var update = new PartUpdateWindow
                 {
-                    DataContext = new PartUpdateWindowViewModel(_selectPart),
+                    DataContext = new PartUpdateWindowViewModel(Parts, _selectPart),
                 };
                 update.Show();
             });
@@ -43,7 +44,7 @@ namespace VeloMax.ViewModels
             {
                 var messageBox = new Message
                 {
-                    DataContext = new MessageWindowViewModel(_selectPart),
+                    DataContext = new MessageWindowViewModel(Parts, _selectPart),
                 };
                 messageBox.Show();
             });
