@@ -9,6 +9,7 @@ namespace VeloMax.Services
 {
     public class Database
     {
+        #region Basic
         private string StringConnection = Config.Connection;
         private MySqlConnection Connection;
 
@@ -81,6 +82,19 @@ namespace VeloMax.Services
             return max+1;
         }
 
+        public void SetValue(MySqlConnection connection, string modify)
+        {
+            Debug.WriteLine("QUERY :");
+            Debug.WriteLine(modify);
+            MySqlCommand command = connection.CreateCommand();
+            command.CommandText = modify;
+            command.ExecuteNonQuery();
+             
+        }
+
+        #endregion
+
+        #region Get
         public List<Client> GetClients()
         {
             List<Client> List = new List<Client>();
@@ -455,17 +469,12 @@ namespace VeloMax.Services
             }
 
            return List; 
+
         }
 
-        public void SetValue(MySqlConnection connection, string modify)
-        {
-            Debug.WriteLine("QUERY :");
-            Debug.WriteLine(modify);
-            MySqlCommand command = connection.CreateCommand();
-            command.CommandText = modify;
-            command.ExecuteNonQuery();
-             
-        }
+        #endregion
+
+        
 
         public Boolean ModifyBike(Bike bike)
         {
@@ -776,7 +785,7 @@ namespace VeloMax.Services
 
         public Boolean CreateOrderParts(OrderedPart orderedPart)
         {
-            if(CheckInStock(orderedPart.Id, orderedPart.Quantity) == false)
+            if(CheckInStock(orderedPart.Id, orderedPart.typeC(),orderedPart.Quantity) == false)
             {
                 return false;
             }
@@ -1681,9 +1690,9 @@ namespace VeloMax.Services
             
         }
 
-        public Boolean CheckInStock(int idPiece, int order_quantity)
+        public Boolean CheckInStock(int idPiece, string table ,int order_quantity)
         {
-            string check = "SELECT quantity FROM parts WHERE id= "+idPiece.ToString();
+            string check = "SELECT quantity FROM "+table +" WHERE id= "+idPiece.ToString();
             bool inStock = true;
             if(this.DbConnection())
             {
