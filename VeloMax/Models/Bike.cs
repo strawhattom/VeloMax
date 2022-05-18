@@ -13,6 +13,13 @@ namespace VeloMax.Models
 
         public int Id { get; set; }
 
+        public Bike()
+        {
+            Name = Target = Type = "";
+            UnitPrice = 0.0;
+            IntroductionDate = DiscontinuationDate = DateTime.Now;
+        }
+
         public Bike(int id, string name, string target, double unitPrice, string type, DateTime iDate, DateTime dDate)
         {
             // if args are null
@@ -53,7 +60,7 @@ namespace VeloMax.Models
                 3 => this.UnitPrice.ToString(),
                 4 => "'" + this.Type + "'",
                 5 => "'" + this.IntroductionDate.ToString("yyyy-MM-dd") + "'",
-                6 => "'" + this.DiscontinuationDate.ToString("yyyy_MM_dd") + "'",
+                6 => "'" + this.DiscontinuationDate.ToString("yyyy-MM-dd") + "'",
                 _ => "",
             };
         }

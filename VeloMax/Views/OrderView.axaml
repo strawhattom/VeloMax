@@ -52,7 +52,7 @@
 							Width="140"
 							/>
 						<Button
-							Content="Update"
+							Content="Update/Info"
 							Background="#F8BD96"
 							Margin="0,100,0,0"
 							Width="140"

@@ -11,6 +11,11 @@ namespace VeloMax.Models
         public string Location { get; set; }
         public string Label { get; set; }
 
+        public Supplier()
+        {
+            Id = 0;
+            Siret = Name = Contact = Location = Label = "";
+        }
         public Supplier(int id, string siret, string name, string contact, string location, string label)
         {
             if (siret is null || name is null || contact is null || location is null)
@@ -33,7 +38,7 @@ namespace VeloMax.Models
 
         public static string[] Attributs()
         {
-            string[] attributs = new string[7];
+            string[] attributs = new string[6];
             attributs[0] = "Id";
             attributs[1] = "siret";
             attributs[2] = "name";

@@ -35,20 +35,36 @@ namespace VeloMax.ViewModels
             ConfirmClick = ReactiveCommand.Create(() =>
             {
                 Action = "CONFIRM";
-                if (item.GetType() == typeof(Part))
+                var find = items.FirstOrDefault(i => ReferenceEquals(o, i));
+                if (find != null)
                 {
-                    Debug.WriteLine("ITEM IS PART");
-                    var find = items.FirstOrDefault(i => ReferenceEquals(o, i));
-                    if (find != null)
+                    switch (o)
                     {
-                        _db.DeleteParts((Part) find);
-                        items.Remove(find);
-                    }
-                    else
-                    {
-                        Debug.WriteLine("ERROR : item not in collection");
+                        case Part p:
+                            _db.DeleteParts((Part)find);
+                            items.Remove(find);
+                            break;
+                        case Bike b:
+                            _db.DeleteBikes((Bike)find);
+                            items.Remove(find);
+                            break;
+
+                        case Supplier s:
+                            _db.DeleteSuppliers((Supplier)find);
+                            items.Remove(find);
+                            break;
+
+                        case Client c:
+                            _db.DeleteClient((Client)find);
+                            items.Remove(find);
+                            break;
                     }
                 }
+                else
+                {
+                    Debug.WriteLine("ERROR : item not in collection");
+                }
+                
 
                 Debug.WriteLine(_action);
             });

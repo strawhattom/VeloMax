@@ -19,7 +19,7 @@ namespace VeloMax.Models
 
         public static string[] Attributs()
         {
-            string[] attributs = new string[7];
+            string[] attributs = new string[4];
             attributs[0] = "Id";
             attributs[1] = "orders_id";
             attributs[2] = "parts_id";

@@ -14,7 +14,6 @@ namespace VeloMax.Models
         public int Quantity { get; set; }
         public string Type { get; set; }
 
-
         public Part()
         {
             Id = Quantity = ProcurementDelay = 0;
