@@ -70,6 +70,7 @@
 							Background="#ABE9B3"
 							Margin="0,100,0,0"
 							HorizontalContentAlignment="Center"
+							Command="{Binding AddClicked}"
 							Width="140"
 							/>
 						<Button

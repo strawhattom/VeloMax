@@ -1464,7 +1464,7 @@ namespace VeloMax.Services
 
             if(this.DbConnection())
             {
-                string check = "SELECT count(*) FROM "+objects.typeC() + "WHERE id = "+id;
+                string check = "SELECT count(*) FROM "+ objects.TypeC() + "WHERE id = "+id;
                 MySqlDataReader Reader = Query(Connection, check);
                 int j=0;
                 
@@ -1498,7 +1498,7 @@ namespace VeloMax.Services
 
             if(this.DbConnection())
             {
-                string check = "SELECT count(*) FROM "+objects.typeC() +" WHERE id = "+id;
+                string check = "SELECT count(*) FROM "+ FidelityProgram.TypeC() +" WHERE id = "+id;
                 MySqlDataReader Reader = Query(Connection, check);
                 int j=0;
                 
@@ -1532,7 +1532,7 @@ namespace VeloMax.Services
 
             if(this.DbConnection())
             {
-                string check = "SELECT count(*) FROM "+objects.typeC() +" WHERE id = "+id;
+                string check = "SELECT count(*) FROM "+ objects.TypeC() +" WHERE id = "+id;
                 MySqlDataReader Reader = Query(Connection, check);
                 int j=0;
                 
@@ -1566,7 +1566,7 @@ namespace VeloMax.Services
 
             if(this.DbConnection())
             {
-                string check = "SELECT count(*) FROM "+objects.typeC() +" WHERE id = "+id;
+                string check = "SELECT count(*) FROM "+ OrderedPart.TypeC() +" WHERE id = "+id;
                 MySqlDataReader Reader = Query(Connection, check);
                 int j=0;
                 
@@ -1600,7 +1600,7 @@ namespace VeloMax.Services
 
             if(this.DbConnection())
             {
-                string check = "SELECT count(*) FROM "+objects.typeC() +" WHERE id = "+id;
+                string check = "SELECT count(*) FROM "+ Part.TypeC() +" WHERE id = "+id;
                 MySqlDataReader Reader = Query(Connection, check);
                 int j=0;
                 
@@ -1635,7 +1635,7 @@ namespace VeloMax.Services
 
             if(this.DbConnection())
             {
-                string check = "SELECT count(*) FROM "+objects.typeC() +" WHERE id = "+id;
+                string check = "SELECT count(*) FROM "+ Procurement.TypeC() +" WHERE id = "+id;
                 MySqlDataReader Reader = Query(Connection, check);
                 int j=0;
                 
@@ -1669,7 +1669,7 @@ namespace VeloMax.Services
 
             if(this.DbConnection())
             {
-                string check = "SELECT count(*) FROM "+objects.typeC() +" WHERE id = "+id;
+                string check = "SELECT count(*) FROM " + Supplier.TypeC() +" WHERE id = "+id;
                 MySqlDataReader Reader = Query(Connection, check);
                 int j=0;
                 

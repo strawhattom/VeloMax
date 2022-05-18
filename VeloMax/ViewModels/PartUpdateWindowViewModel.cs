@@ -11,6 +11,7 @@ namespace VeloMax.ViewModels
     public class PartUpdateWindowViewModel : ReactiveObject
     {
         private Part? _current;
+        private string _mode = "ADD";
         private string _id = "";
         private string _description = "";
         private string _price = "";
@@ -20,7 +21,7 @@ namespace VeloMax.ViewModels
         private string _data = "";
         private DateTimeOffset _introduction = DateTime.Now;
         private DateTimeOffset _discontinuation = DateTime.Now;
-        private Database _db = new Database();
+        private readonly Database _db = new();
         private bool _closeAppTrigger = false;
 
         public string IdText
@@ -85,22 +86,23 @@ namespace VeloMax.ViewModels
         }
         public PartUpdateWindowViewModel(Part selected)
         {
+            _mode = "UPDATE";
             if (!(selected == null))
             {
                 _current = selected;
-                IdText = _current.at(0);
-                DescriptionText = _current.at(1).Trim('\'');
-                PriceText = _current.at(2);
-                DelayText = _current.at(3);
+                IdText = _current.At(0);
+                DescriptionText = _current.At(1).Trim('\'');
+                PriceText = _current.At(2);
+                DelayText = _current.At(3);
 
-                string[] idt = _current.at(4).Trim('\'').Split('-');
+                string[] idt = _current.At(4).Trim('\'').Split('-');
                 IntroductionDT = new DateTimeOffset(new DateTime(Int32.Parse(idt[0]), Int32.Parse(idt[1]), Int32.Parse(idt[2])));
-                string[] ddt = _current.at(5).Trim('\'').Split('-');
+                string[] ddt = _current.At(5).Trim('\'').Split('-');
                 DiscontinuationDT = new DateTimeOffset(new DateTime(Int32.Parse(idt[0]), Int32.Parse(idt[1]), Int32.Parse(idt[2])));
 
-                DelayText = _current.at(6);
-                QuantityText = _current.at(7);
-                TypeText = _current.at(8).Trim('\'');
+                DelayText = _current.At(6);
+                QuantityText = _current.At(7);
+                TypeText = _current.At(8).Trim('\'');
             }
             UpdateClick = ReactiveCommand.Create(OnUpdateClick);
             CloseButtonClicked = ReactiveCommand.Create(() => { CloseAppTrigger = true; });
@@ -108,25 +110,18 @@ namespace VeloMax.ViewModels
 
         private void OnUpdateClick()
         {
-            /*
-            DataText = IdText + " " + DescriptionText + " " + PriceText + " " + DelayText + " " + QuantityText + " " + TypeText + "\n" +
-                            "Introduction : " + IntroductionDT.ToString() +
-                            "\n Discontinuation : " + DiscontinuationDT.ToString();
-            Console.WriteLine("Form data : ");
-            Console.Write(DataText + "\n");
-            */
-
             // Create our part
-            if(IdText != "" && IdText.Length > 0
+            if (IdText != "" && IdText.Length > 0
                 && DescriptionText != "" && DescriptionText.Length > 0
                 && PriceText != "" && PriceText.Length > 0
                 && DelayText != "" && DelayText.Length > 0
                 && QuantityText != "" && QuantityText.Length > 0
                 && TypeText != "" && TypeText.Length > 0)
             {
+                int idField = (_mode == "ADD") ? _db.GetMaxID(Part.TypeC()) : Int32.Parse(IdText);
                 try
                 {
-                    _db.SetParts(new Part(Int32.Parse(IdText),
+                    _db.SetParts(new Part(idField,
                     DescriptionText,
                     Double.Parse(PriceText),
                     IntroductionDT.DateTime,
@@ -136,12 +131,13 @@ namespace VeloMax.ViewModels
                     TypeText));
 
                     DataText = "Updated";
-                } catch (FormatException e)
+                }
+                catch (FormatException)
                 {
                     DataText = "Incorrect format in at least one field.\nPlease verify fields";
                 }
             }
-            
+
         }
     }
 }

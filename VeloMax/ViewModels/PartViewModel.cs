@@ -1,9 +1,7 @@
-using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
-using Avalonia.Controls;
 using ReactiveUI;
 using VeloMax.Models;
 using VeloMax.Views;
@@ -16,16 +14,20 @@ namespace VeloMax.ViewModels
         public ObservableCollection<Part> Parts { get; set; } // don't change it
         public ICommand AddClicked { get; set; }
         public ICommand ModifyClicked { get; set; }
-        public Part? ItemSelected { 
+        public ICommand DeleteClicked { get; set; }
+
+        public Part? ItemSelected
+        {
             get => _selected;
-            set => this.RaiseAndSetIfChanged(ref _selected, value); 
+            set => this.RaiseAndSetIfChanged(ref _selected, value);
         }
         public PartViewModel(List<Part> p)
         {
-            
+
             Parts = new ObservableCollection<Part>(p);
             ModifyClicked = ReactiveCommand.Create(OnModifyClick);
             AddClicked = ReactiveCommand.Create(OnAddClick);
+            DeleteClicked = ReactiveCommand.Create(OnDeleteClick);
         }
 
         private void OnAddClick()
@@ -46,6 +48,15 @@ namespace VeloMax.ViewModels
                 DataContext = new PartUpdateWindowViewModel(ItemSelected),
             };
             update.Show();
+        }
+
+        private void OnDeleteClick()
+        {
+            var messageBox = new Message
+            {
+                DataContext = new MessageWindowViewModel("Voulez-vous vraiment cette pièce ?")
+            };
+            messageBox.Show();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿
-<Window xmlns="https://github.com/avaloniaui"
+﻿<Window xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -19,16 +18,14 @@
 	<Design.DataContext>
 		<vm:PartUpdateWindowViewModel/>
 	</Design.DataContext>
-    <StackPanel>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="300"/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
+	<StackPanel>
+		<Grid>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="300"/>
+				<ColumnDefinition/>
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
 				<RowDefinition/>
 				<RowDefinition/>
 				<RowDefinition/>
@@ -38,7 +35,9 @@
 				<RowDefinition/>
 				<RowDefinition/>
 				<RowDefinition/>
-            </Grid.RowDefinitions>
+				<RowDefinition/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
 			<Panel Grid.Column="1"
 				Grid.Row="0"
 				Margin="0,50,0,20">
@@ -92,7 +91,7 @@
 				CornerRadius="15"
 				/>
 
-			<DatePicker 
+			<DatePicker
 				Grid.Column="1"
                 Grid.Row="4"
 				SelectedDate="{Binding IntroductionDT}"
@@ -149,7 +148,7 @@
 					FontSize="13"
 					HorizontalAlignment="Center"
 					Margin="0,30,0,5"/>
-			
+
 			<Panel Grid.Column="1"
 					Grid.Row="10"
 					HorizontalAlignment="Center"
@@ -164,5 +163,5 @@
                 />
 			</Panel>
 		</Grid>
-    </StackPanel>
+	</StackPanel>
 </Window>

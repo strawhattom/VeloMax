@@ -11,13 +11,13 @@ namespace VeloMax.ViewModels
     public class ClientViewModel : ViewModelBase
     {
         private string _type = "Client";
-        private ObservableCollection<Object> _data = new ObservableCollection<Object>();
-        private Object _selected = new object();
+        private ObservableCollection<Object> _data = new();
+        private Object _selected = new();
         public ICommand ClientButtonClick { get; }
         public ICommand IndividualButtonClick { get; }
         public ICommand ProfessionalButtonClick { get; }
         public ObservableCollection<Object> Clients { get; }
-        public ObservableCollection<Object> Individuals{ get; }
+        public ObservableCollection<Object> Individuals { get; }
         public ObservableCollection<Object> Professionals { get; }
 
         public string Type
