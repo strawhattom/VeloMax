@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Diagnostics;
 using System.Linq;
+using VeloMax.Services;
 using VeloMax.Models;
 using ReactiveUI;
 
@@ -13,6 +14,7 @@ namespace VeloMax.ViewModels
     {
         private string _message = "Are you sure ?";
         private string _action = "none";
+        private Database _db = new Database();
 
         public string Action
         {
@@ -39,6 +41,7 @@ namespace VeloMax.ViewModels
                     var find = items.FirstOrDefault(i => ReferenceEquals(o, i));
                     if (find != null)
                     {
+                        _db.DeleteParts((Part) find);
                         items.Remove(find);
                     }
                     else
