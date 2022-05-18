@@ -747,6 +747,7 @@ namespace VeloMax.Services
 
         public Boolean ModifyOrderParts(OrderedPart orderedPart)
         {
+            
             if(this.DbConnection())
             {
                 string[] tab = orderedPart.attributs();
@@ -790,9 +791,14 @@ namespace VeloMax.Services
             if(this.DbConnection())
             {
                 SetValue(Connection,create);
-                return true;
             }
-            return false;
+            else
+            {
+                return false;
+            }
+            modifyPartsStock(orderedPart.PartsId, orderedPart.Quantity);
+
+            return true;
         }
 
         public Boolean ModifyBikeParts(BikePart bikePart)
@@ -1693,7 +1699,11 @@ namespace VeloMax.Services
 
         public void modifyPartsStock(int id, int change)
         {
-            string changes = "";
+            string changes = "UPDATE parts SET quantity = (SELECT quantity FROM parts WHERE id ="+ id+") - 1 WHERE id = "+ id+";";
+            if(this.DbConnection())
+            {
+                SetValue(Connection, changes);
+            }
         }
     }
 }
