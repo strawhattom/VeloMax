@@ -20,9 +20,12 @@ namespace VeloMax.ViewModels
         }
         private void OnModifyClick()
         {
-            Console.WriteLine("Want to modify");
-            var edit = new PartUpdateWindow();
-            edit.Show();
+            Console.WriteLine("Want to update");
+            var update = new PartUpdateWindow
+            {
+                DataContext = new PartUpdateWindowViewModel(),
+            };
+            update.Show();
         }
     }
 }

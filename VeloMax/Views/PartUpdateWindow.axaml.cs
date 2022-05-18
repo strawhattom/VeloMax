@@ -9,12 +9,7 @@ namespace VeloMax.Views
     {
         public PartUpdateWindow()
         {
-
             InitializeComponent();
-            DatePicker IntroductionDP = new DatePicker()
-            {
-                Header = "Introduction date"
-            };
         }
 
         private void InitializeComponent()

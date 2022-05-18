@@ -9,7 +9,7 @@ namespace VeloMax.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         private ViewModelBase _navigationContent = new DashboardViewModel();
-        private bool _closeAppTrigger;
+        private bool _closeAppTrigger = false;
         private Database Db { get; set; }
         // private string _searchText = "";
         public ICommand DashboardButtonClicked { get; }
