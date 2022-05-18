@@ -1,6 +1,9 @@
+using System;
 using System.Diagnostics;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Formats.Asn1;
+using System.Reactive;
 using System.Windows.Input;
 using ReactiveUI;
 using VeloMax.Models;
@@ -10,24 +13,39 @@ namespace VeloMax.ViewModels
 {
     public class PartViewModel : ViewModelBase
     {
-        private Part? _selected;
         public ObservableCollection<Part> Parts { get; set; } // don't change it
-        public ICommand AddClicked { get; set; }
-        public ICommand ModifyClicked { get; set; }
-        public ICommand DeleteClicked { get; set; }
+        public ReactiveCommand<Unit, Unit> AddPart { get; }
+        public ReactiveCommand<Unit, Unit> UpdatePart { get; }
+        public ReactiveCommand<Unit, Unit> DeletePart { get; }
 
-        public Part? ItemSelected
-        {
-            get => _selected;
-            set => this.RaiseAndSetIfChanged(ref _selected, value);
-        }
+        private Part _selectPart;
+        
         public PartViewModel(List<Part> p)
         {
-
             Parts = new ObservableCollection<Part>(p);
-            ModifyClicked = ReactiveCommand.Create(OnModifyClick);
-            AddClicked = ReactiveCommand.Create(OnAddClick);
-            DeleteClicked = ReactiveCommand.Create(OnDeleteClick);
+            AddPart = ReactiveCommand.Create(() =>
+            {
+                var update = new PartUpdateWindow
+                {
+                    DataContext = new PartUpdateWindowViewModel(),
+                };
+                update.Show();
+            });
+            UpdatePart = ReactiveCommand.Create(() =>
+            {
+                var update = new PartUpdateWindow
+                {
+                    DataContext = new PartUpdateWindowViewModel(_selectPart),
+                };
+                update.Show();
+            });
+            DeletePart = ReactiveCommand.Create(OnDeleteClick);
+        }
+
+        public Part SelectedPart
+        {
+            get => _selectPart;
+            set => this.RaiseAndSetIfChanged(ref _selectPart, value);
         }
 
         private void OnAddClick()
@@ -42,10 +60,9 @@ namespace VeloMax.ViewModels
         private void OnModifyClick()
         {
             Debug.WriteLine("Want to update");
-            Debug.WriteLine(ItemSelected);
             var update = new PartUpdateWindow
             {
-                DataContext = new PartUpdateWindowViewModel(ItemSelected),
+                DataContext = new PartUpdateWindowViewModel(),
             };
             update.Show();
         }
