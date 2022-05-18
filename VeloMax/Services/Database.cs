@@ -811,6 +811,9 @@ namespace VeloMax.Services
 
         public Boolean CreateOrderBikes(OrderedBike orderedBike)
         {
+            if(CheckInStock(orderedBike.BikesId, orderedBike.TypeC(), orderedBike.Quantity)==false){
+                return false;
+            }
             string[] tab = OrderedBike.Attributs();
 
             string create = "Insert into `velomax`.`ordered_bikes` (";
@@ -829,9 +832,14 @@ namespace VeloMax.Services
             if(this.DbConnection())
             {
                 SetValue(Connection,create);
-                return true;
+                
             }
-            return false;
+            else
+            {
+                return false;
+            }
+            ModifyStock(orderedBike.BikesId, orderedBike.TypeC(), orderedBike.Quantity);
+            return true;
         }
 
         public Boolean ModifyOrderParts(OrderedPart orderedPart)
@@ -858,7 +866,7 @@ namespace VeloMax.Services
 
         public Boolean CreateOrderParts(OrderedPart orderedPart)
         {
-            if(CheckInStock(orderedPart.Id, OrderedPart.TypeC(),orderedPart.Quantity) == false)
+            if(CheckInStock(orderedPart.PartsId, OrderedPart.TypeC(),orderedPart.Quantity) == false)
             {
                 return false;
             }
@@ -885,7 +893,7 @@ namespace VeloMax.Services
             {
                 return false;
             }
-            ModifyPartsStock(orderedPart.PartsId, orderedPart.Quantity);
+            ModifyStock(orderedPart.PartsId, OrderedPart.TypeC(),orderedPart.Quantity);
 
             return true;
         }
@@ -1722,9 +1730,9 @@ namespace VeloMax.Services
             return inStock;
         }
 
-        public void ModifyPartsStock(int id, int change)
+        public void ModifyStock(int id, string table, int change)
         {
-            string changes = "UPDATE parts SET quantity = (SELECT quantity FROM parts WHERE id ="+ id + ") - 1 WHERE id = "+ id + ";";
+            string changes = "UPDATE"+ table +"SET quantity = (SELECT quantity FROM parts WHERE id ="+ id + ") - 1 WHERE id = "+ id + ";";
             if(this.DbConnection())
             {
                 SetValue(Connection, changes);
