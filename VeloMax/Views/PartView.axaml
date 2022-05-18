@@ -40,26 +40,12 @@
 							  Items="{Binding Parts}"
 							  SelectedItem="{Binding SelectedPart}"
 							  AutoGenerateColumns="True">
-						<!--
 						<DataGrid.Columns>
-							<DataGridTemplateColumn Header="Edit" Width="*" >
-								<DataGridTemplateColumn.CellTemplate>
-									<DataTemplate>
-										<StackPanel Orientation="Horizontal">
-											<Button
-											Width="100"
-											Name = "{Binding Id}"
-											Command="{Binding ModifyClicked}"
-											Content="Edit"
-											Background="#F8BD96"
-											HorizontalContentAlignment="Center"
-											/>
-										</StackPanel>
-									</DataTemplate>
-								</DataGridTemplateColumn.CellTemplate>
-							</DataGridTemplateColumn>
+							<DataGridTextColumn Header="#" Binding="{Binding Id }"/>
+							<DataGridTextColumn Header="Description" Binding="{Binding Description }"/>
+							<DataGridTextColumn Header="Type" Binding="{Binding Type }"/>
+							<DataGridTextColumn Header="Quantity" Binding="{Binding Quantity }"/>
 						</DataGrid.Columns>
-						-->
 					</DataGrid>
 
 					<!-- Modificator Button -->
@@ -70,7 +56,7 @@
 							Background="#ABE9B3"
 							Margin="0,100,0,0"
 							HorizontalContentAlignment="Center"
-							Command="{Binding AddClicked}"
+							Command="{Binding AddPart}"
 							Width="140"
 							/>
 						<Button
