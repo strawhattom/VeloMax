@@ -1420,6 +1420,16 @@ namespace VeloMax.Services
             }
         }
 
+        public void DeleteSuppliers(Supplier supplier)
+        {
+            int id = supplier.Id;
+            string delete = "DELETE FROM suppliers WHERE id="+id.ToString();
+            if(this.DbConnection())
+            {
+                SetValue(Connection,delete);
+            }
+        }
+
         #endregion
 
         #region setTable
