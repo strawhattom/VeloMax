@@ -35,7 +35,7 @@ namespace VeloMax.Models
             attributs[0]="Id";
             attributs[1]="street";
             attributs[2]="city";
-            attributs[3]="postalCode";
+            attributs[3]="postal_code";
             attributs[4]="province";
             attributs[5]="phone";
             attributs[6]="mail";
@@ -55,25 +55,25 @@ namespace VeloMax.Models
                 case 0:
                     return this.Id.ToString();
                 case 1:
-                    return this .Street.ToString();
+                    return "'"+this .Street.ToString()+"'";
                 case 2:
-                    return this.City.ToString();
+                    return "'"+this.City.ToString()+"'";
                 case 3:
-                    return this.PostalCode.ToString();
+                    return "'"+this.PostalCode.ToString()+"'";
                 case 4:
-                    return this.Province.ToString();
+                    return "'"+this.Province.ToString()+"'";
                 case 5:
-                    return this.Phone;
+                    return "'"+this.Phone+"'";
                 case 6:
-                    return this .Mail.ToString();
+                    return "'"+this.Mail.ToString()+"'";
                 case 7:
-                    return this.FirstName.ToString();
+                    return "'"+this.FirstName.ToString()+"'";
                 case 8:
-                    return this.LastName;
+                    return "'"+this.LastName+"'";
                 case 9:
                     return this.FidelityProgram.ToString();
                 case 10:
-                    return this.expiration_date.ToString();
+                    return "'"+this.expiration_date.ToString("yyyy-MM-dd")+"'";
                 default:
                     return "";
             }    

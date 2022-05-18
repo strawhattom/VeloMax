@@ -1258,13 +1258,13 @@ namespace VeloMax.Services
                 string[] tab = client.attributs();
 
                 string create = "Insert into `velomax`.`clients` (";
-                for(int i = 0; i< 7;i++)
+                for(int i = 0; i< 6;i++)
                 {
                     create += tab[i] + ',';
                 }
                 create+=tab[6] + ") Value (" ;
                 
-                for(int i = 0; i< 7;i++)
+                for(int i = 0; i< 6;i++)
                 {
                     create += client.at(i) + ',';
                 }
@@ -1275,18 +1275,18 @@ namespace VeloMax.Services
                     SetValue(Connection,create);
                 }
 
-                create = "Insert into `velomax`.`" + client.typeC() + "` (";
-                for(int i = 7; i< tab.Length;i++)
+                create = "Insert into `velomax`.`" + client.typeC() + "` (id,";
+                for(int i = 7; i< tab.Length-1;i++)
                 {
                     create += tab[i] + ',';
                 }
-                create+=tab[6] + ") Value (" ;
+                create+=tab[tab.Length - 1] + ") Value ("+client.Id +", ";
                 
-                for(int i = 0; i< 7;i++)
+                for(int i = 7; i< tab.Length-1;i++)
                 {
                     create += client.at(i) + ',';
                 }
-                create+= client.at(6) + ')';
+                create+= client.at(tab.Length - 1) + ')';
 
                 if(this.DbConnection())
                 {
@@ -1302,22 +1302,22 @@ namespace VeloMax.Services
             {
                 string[] tab = client.attributs();
 
-                string modify = "UPDATE clients SET";
-                for(int i = 0; i < 7; i++)
+                string modify = "UPDATE clients SET ";
+                for(int i = 0; i < 6; i++)
                 {
-                    modify+=tab[i] + "=" + client.at(i);
+                    modify+=tab[i] + " = " + client.at(i) + ", \n";
                 }
-                    
-                modify += "WHERE id = " + client.at(0);
+                modify += tab[6] + " = " + client.at(6) +" ";
+                modify += " WHERE id = " + client.at(0);
 
-                SetValue(Connection, modify);
+                    SetValue(Connection, modify);
 
-                modify = "UPDATE" + client.typeC() + "SET";
-                for(int i = 7; i < tab.Length; i++)
+                    modify = "UPDATE " + client.typeC() + " SET ";
+                for(int i = 7; i < tab.Length-1; i++)
                 {
-                    modify+=tab[i] + "=" + client.at(i);
+                    modify+=tab[i] + " = " + client.at(i)+", \n";
                 }
-                    
+                modify += tab[tab.Length-1] + " = " + client.at(tab.Length-1) +" ";
                 modify += "WHERE id = " + client.at(0);
 
                 SetValue(Connection, modify);
