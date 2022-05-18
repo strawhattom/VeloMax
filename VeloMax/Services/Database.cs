@@ -1001,14 +1001,13 @@ namespace VeloMax.Services
         public List<string> BestPart() //les meilleur parts au sense quantite de vente sur le mois
         {
             string[] date = DateTime.Now.ToString().Split('/');
-            string mois = date[0];
+            string mois = date[1];
             string year = date[2].Split(' ')[0];
             string best = "SELECT P.description , sum(OP.quantity), sum(OP.quantity)*P.unit_price, avg(OP.Quantity) "+
                         "FROM ordered_parts OP JOIN parts P ON OP.parts_id=P.id JOIN orders O ON OP.orders_id = O.id "+
                         "WHERE O.shipping_date>'" + year + "-" + mois + "-01' "+
                         "GROUP BY P.id " +
                         "HAVING sum(OP.quantity)>= all(SELECT sum(quantity) FROM ordered_parts GROUP BY parts_id); ";
-            Debug.WriteLine(best);
 
             List<string> bestlist = new List<string>();
 
@@ -1030,18 +1029,26 @@ namespace VeloMax.Services
                     Reader.Close();
                     Connection.Close();
             }
+            foreach (var s in bestlist)
+            {
+                Debug.WriteLine(s);
+            }
             return bestlist;
         }
         public List<string> BestBike()// meilleurs velo au sens quantite sur le mois
         {
             string[] date = DateTime.Now.ToString().Split('/');
-            int mois = int.Parse(date[0]) - 1;
+            foreach (var el in date)
+            {
+                Debug.WriteLine(el);
+            }
+            string mois = date[1];
             string year = date[2].Split(' ')[0];
-            string best = "SELECT B.name , sum(OB.quantity), sum(OB.quantity)*B.unit_price, avg(OB.Quantity) "+
+            string best = "SELECT DISTINCT B.name , sum(OB.quantity), sum(OB.quantity)*B.unit_price, avg(OB.Quantity) "+
                         "FROM ordered_bikes OB JOIN bikes B ON OB.bikes_id=B.id JOIN orders O ON OB.orders_id = O.id "+
-                        "WHERE O.shipping_date>'" + year + "-" + mois.ToString()  + "-01' "+
+                        "WHERE O.shipping_date > '" + year + "-" + mois + "-01' "+
                         "GROUP BY B.id " +
-                        "HAVING sum(OB.quantity)>= all(SELECT sum(quantity) FROM ordered_bikes GROUP BY bikes_id)";
+                        "HAVING sum(OB.quantity)>= all(SELECT sum(quantity) FROM ordered_bikes GROUP BY bikes_id);";
 
             Debug.WriteLine(best);
             
@@ -1050,7 +1057,6 @@ namespace VeloMax.Services
             if (this.DbConnection())
                 {
                     MySqlDataReader Reader = Query(Connection, best);
-
                     int j=0;
                     while (Reader.Read() & j<1)
                         {
@@ -1064,6 +1070,10 @@ namespace VeloMax.Services
                         }
                     Reader.Close();
                     Connection.Close();
+            }
+            foreach (var s in bestlist)
+            {
+                Debug.WriteLine(s);
             }
             return bestlist;
         }
@@ -1199,10 +1209,10 @@ namespace VeloMax.Services
         
         public List<int> Average() //Le prix moyen par commande, la quantite moyenne de piece vendu, la quantite moyenne de velo vendus
         {
-            string best = "Select avg(Bp.quantity*B.unit_price + Pp.quantity * P.unit_price), avg(Bp.quantity), avg(Pp.quantity)"+
-                        "From orders O JOIN ordered_bikes Bp ON O.id=Bp.orders_id"+
-                        "Join bikes B on B.id = Bp.bikes_id"+
-                        "join ordered_parts Pp on Pp.orders_id = O.id" +
+            string best = "Select avg(Bp.quantity*B.unit_price + Pp.quantity * P.unit_price), avg(Bp.quantity), avg(Pp.quantity) "+
+                        "From orders O JOIN ordered_bikes Bp ON O.id=Bp.orders_id "+
+                        "Join bikes B on B.id = Bp.bikes_id "+
+                        "join ordered_parts Pp on Pp.orders_id = O.id " +
                         "join parts P on P.id = Pp.parts_id;";
             
             List<int> average = new List<int>();

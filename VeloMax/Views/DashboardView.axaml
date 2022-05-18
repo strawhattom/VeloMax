@@ -3,136 +3,191 @@
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:vm="using:VeloMax.ViewModels"
   x:Class="VeloMax.Views.DashboardView">
-  
-  <Design.DataContext>
-    <vm:DashboardViewModel/>
-  </Design.DataContext>
-  <StackPanel>
-    <TextBlock 
-      Text="Dashboard"
-      Foreground="#1A1826"
-      FontSize="28"
-      HorizontalAlignment="Left"
-      Margin="0 0 0 20" />
-    
-    <!-- Upper panels -->
-    <StackPanel Orientation="Horizontal">
-      
-      <!-- Bike and part -->
-      <Border Width="400" Height="300" CornerRadius="10">
-        <Border.Background>
-          <LinearGradientBrush StartPoint="0,0" EndPoint="100,200">
-            <GradientStop Color="#96CDFB" Offset="0.0" />
-            
-            <GradientStop Color="#B5E8E0" Offset="1.0" />
-          </LinearGradientBrush>
-        </Border.Background>
-        <Grid>
-          <Grid.RowDefinitions>
-            <RowDefinition Height="240" />
-            <RowDefinition Height="60" />
-          </Grid.RowDefinitions>
-		    <ListBox Grid.Row="0"
-					 Items="{Binding BestBike}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-			    <ListBox.ItemTemplate>
-				    <DataTemplate>
-						<TextBlock Text="{Binding}" 
-								Foreground="White"
-                                VerticalAlignment="Bottom"
-                                HorizontalAlignment="Left"
-                                Margin="10 0 0 10"
-								TextWrapping="Wrap"/>
-				    </DataTemplate>
-			    </ListBox.ItemTemplate>
-		    </ListBox>
-          <TextBlock Grid.Row="1"
-            Text="Best bike !"
-            Foreground="White"
-            VerticalAlignment="Bottom"
-            HorizontalAlignment="Left"
-            Margin="10 0 0 10"/>
-        </Grid>
-      </Border>
-      
-      <!-- Client -->
-      <Border Width="200" Height="300" CornerRadius="10" Margin="45 0 0 0">
-        <Border.Background>
-          <LinearGradientBrush StartPoint="0,0" EndPoint="100,200">
-            <GradientStop Color="#FAE3B0" Offset="0.0" />
-            <GradientStop Color="#F8BD96" Offset="1.0" />
-          </LinearGradientBrush>
-        </Border.Background>
-        
-        <TextBlock
-          Text="Client"
-          Foreground="White"
-          VerticalAlignment="Bottom"
+
+
+	<StackPanel>
+		<Design.DataContext>
+			<vm:DashboardViewModel/>
+		</Design.DataContext>
+        <TextBlock 
+          Text="Dashboard"
+          Foreground="#1A1826"
+          FontSize="28"
           HorizontalAlignment="Left"
-          Margin="10 0 0 10"/>
-      </Border>
-    </StackPanel>
-    <!-- End upper panels -->
+          Margin="0 0 0 20" />
     
-    <!-- Lower panels -->
-    <StackPanel>
-
-      <StackPanel.Styles>
-        <Style Selector="Border">
-          <Setter Property="Margin" Value="15 0 0 0" />
-        </Style>
-      </StackPanel.Styles>
-
-      <TextBlock 
-        Text="Section"
-        Foreground="#1A1826"
-        FontSize="20"
-        HorizontalAlignment="Left"
-        Margin="0 40 0 10" />
-
+        <!-- Upper panels -->
         <StackPanel Orientation="Horizontal">
-          
-          <!-- Supplier -->
-          <Border Width="150" Height="150" Background="#DDB6F2" CornerRadius="10" Margin="0">
-            <TextBlock
-              Text="Supplier"
-              Foreground="White"
-              VerticalAlignment="Bottom"
-              HorizontalAlignment="Left"
-              Margin="5 0 0 5"/>
-          </Border>
+      
+            <!-- Bike and part -->
+            <Border Width="200" Height="200" Background="#96CDFB" CornerRadius="10">
+            <Grid>
+				  <Grid.RowDefinitions>
+						<RowDefinition Height="160" />
+						<RowDefinition Height="40" />
+				  </Grid.RowDefinitions>
+				<StackPanel Orientation="Vertical" Grid.Row="0">
+					<TextBlock
+							Text="{Binding BikeName}"
+							Foreground="White"
+							FontSize="24"
+							Margin="10 10 0 10"/>
+					<TextBlock
+							Text="{Binding BikeQty}"
+							Foreground="White"
+							FontSize="18"
+							Margin="10 0 0 5"/>
+					<TextBlock
+							Text="{Binding BikeSum}"
+							Foreground="White"
+							FontSize="18"
+							Margin="10 0 0 5"/>
+					<TextBlock
+							Text="{Binding BikeAvg}"
+							Foreground="White"
+							FontSize="18"
+							Margin="10 0 0 5"/>
+				</StackPanel>
 
-          <!-- Order -->
-          <Border Width="150" Height="150" Background="#89DCEB" CornerRadius="10">
-            <TextBlock
-              Text="Order"
-              Foreground="White"
-              VerticalAlignment="Bottom"
-              HorizontalAlignment="Left"
-              Margin="5 0 0 5"/>
+              <TextBlock Grid.Row="1"
+                Text="Best bike !"
+                Foreground="White"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Margin="10 0 0 10"/>
+            </Grid>
           </Border>
+      
+            <!-- Client -->
+            <Border Width="200" Height="200" Background="#FAE3B0" CornerRadius="10" Margin="45 0 0 0">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="160" />
+						<RowDefinition Height="40" />
+					</Grid.RowDefinitions>
+					<TextBlock
+						Grid.Row="1"
+						Text="Best client"
+						Foreground="White"
+						VerticalAlignment="Bottom"
+						HorizontalAlignment="Left"
+						Margin="10 0 0 10"/>
+				</Grid>
+            </Border>
+			
+			<!-- Worst suppliers -->
+		    <Border Width="200" Height="200" Background="#ff6961" CornerRadius="10" Margin="45 0 0 0">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="160" />
+						<RowDefinition Height="40" />
+					</Grid.RowDefinitions>
 
-          <!-- Stock -->
-          <Border Width="150" Height="150" Background="#ABE9B3" CornerRadius="10">
-            <TextBlock
-              Text="Stock"
-              Foreground="White"
-              VerticalAlignment="Bottom"
-              HorizontalAlignment="Left"
-              Margin="5 0 0 5"/> 
-          </Border>
+					<TextBlock Grid.Row="1"
+						Text="Worst suppliers"
+						Foreground="White"
+						VerticalAlignment="Bottom"
+						HorizontalAlignment="Left"
+						Margin="10 0 0 10"/>
+				</Grid>
+		    </Border>
 
-          <!-- Other -->
-          <Border Width="150" Height="150" Background="#FAE3B0" CornerRadius="10">
-            <TextBlock
-              Text="Other"
-              Foreground="White"
-              VerticalAlignment="Bottom"
-              HorizontalAlignment="Left"
-              Margin="5 0 0 5"/> 
-          </Border>
+			<!-- Stats suppliers -->
+			<Border Width="200" Height="200" Background="#575268" CornerRadius="10" Margin="45 0 0 0">
+				<Grid>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="160" />
+						<RowDefinition Height="40" />
+					</Grid.RowDefinitions>
+					<StackPanel Orientation="Vertical" Grid.Row="0">
+						<TextBlock
+								Text="{Binding AvgBikeSold}"
+								Foreground="White"
+								FontSize="18"
+								Margin="10"/>
+						<TextBlock
+								Text="{Binding AvgOrderQty}"
+								Foreground="White"
+								FontSize="18"
+								Margin="10"/>
+						<TextBlock
+								Text="{Binding AvgOrderPrice}"
+								Foreground="White"
+								FontSize="18"
+								Margin="10"/>
+					</StackPanel>
+					<TextBlock
+						Grid.Row="1"
+						Text="Average stats"
+						Foreground="White"
+						VerticalAlignment="Bottom"
+						HorizontalAlignment="Left"
+						Margin="10 0 0 10"/>
+				</Grid>
+			</Border>
         </StackPanel>
-    </StackPanel>
-    <!-- End lower panels -->
+        <!-- End upper panels -->
     
-  </StackPanel>
+        <!-- Lower panels -->
+        <StackPanel>
+
+          <StackPanel.Styles>
+            <Style Selector="Border">
+              <Setter Property="Margin" Value="15 0 0 0" />
+            </Style>
+          </StackPanel.Styles>
+
+          <TextBlock 
+            Text="Section"
+            Foreground="#1A1826"
+            FontSize="20"
+            HorizontalAlignment="Left"
+            Margin="0 40 0 10" />
+
+            <StackPanel Orientation="Horizontal">
+          
+              <!-- Supplier -->
+              <Border Width="150" Height="150" Background="#DDB6F2" CornerRadius="10" Margin="0">
+                <TextBlock
+                  Text="Supplier"
+                  Foreground="White"
+                  VerticalAlignment="Bottom"
+                  HorizontalAlignment="Left"
+                  Margin="5 0 0 5"/>
+              </Border>
+
+              <!-- Order -->
+              <Border Width="150" Height="150" Background="#89DCEB" CornerRadius="10">
+                <TextBlock
+                  Text="Order"
+                  Foreground="White"
+                  VerticalAlignment="Bottom"
+                  HorizontalAlignment="Left"
+                  Margin="5 0 0 5"/>
+              </Border>
+
+              <!-- Stock -->
+              <Border Width="150" Height="150" Background="#ABE9B3" CornerRadius="10">
+                <TextBlock
+                  Text="Stock"
+                  Foreground="White"
+                  VerticalAlignment="Bottom"
+                  HorizontalAlignment="Left"
+                  Margin="5 0 0 5"/> 
+              </Border>
+
+              <!-- Other -->
+              <Border Width="150" Height="150" Background="#FAE3B0" CornerRadius="10">
+                <TextBlock
+                  Text="Other"
+                  Foreground="White"
+                  VerticalAlignment="Bottom"
+                  HorizontalAlignment="Left"
+                  Margin="5 0 0 5"/> 
+              </Border>
+            </StackPanel>
+        </StackPanel>
+        <!-- End lower panels -->
+    
+      </StackPanel>
 </UserControl>
