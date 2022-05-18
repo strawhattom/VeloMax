@@ -1,0 +1,140 @@
+﻿
+<Window xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:VeloMax.ViewModels"
+    x:Class="VeloMax.Views.PartUpdateWindow"
+    Icon="/Assets/velomax-logo.ico"
+    Title="VeloMax"
+    WindowStartupLocation="CenterScreen"
+    Width="500"
+    Height="800">
+    
+    <StackPanel>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="300"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+            </Grid.RowDefinitions>
+			<Panel Grid.Column="1"
+					Grid.Row="0"
+					Margin="0,50,0,20">
+				<TextBlock
+					Grid.Row="0"
+					Grid.Column="1"
+					Text="Update part"
+					FontSize="22"
+					FontWeight="Bold"
+					HorizontalAlignment="Center"
+				/>
+			</Panel>
+
+			<TextBox
+				Grid.Column="1"
+                Grid.Row="1"
+				BorderThickness="2"
+				BorderBrush="#D9E0EE"
+                Watermark="Id"
+                Width="160"
+				Margin="0,10,0,10"
+                CornerRadius="15"/>
+			<TextBox
+				Grid.Column="1"
+                Grid.Row="2"
+				BorderThickness="2"
+				BorderBrush="#D9E0EE"
+                Watermark="Description"
+                Width="160"
+				Margin="0,10,0,10"
+				CornerRadius="15"
+				/>
+			<TextBox
+				Grid.Column="1"
+                Grid.Row="3"
+				BorderThickness="2"
+				BorderBrush="#D9E0EE"
+                Watermark="Unit price"
+                Width="160"
+				Margin="0,10,0,10"
+				CornerRadius="15"
+				/>
+
+			<DatePicker 
+				Grid.Column="1"
+                Grid.Row="4"
+				Name="IntroductionDP"
+				Header="Introduction date"
+				Margin="0,10,0,10"/>
+
+			<DatePicker
+				Grid.Column="1"
+                Grid.Row="5"
+				Name="DiscontinuationDP"
+				Header="Discontinuation date"
+				Margin="0,10,0,10"/>
+
+			<TextBox
+				Grid.Column="1"
+                Grid.Row="6"
+				BorderThickness="2"
+				BorderBrush="#D9E0EE"
+                Watermark="Procurement delay"
+                Width="160"
+				Margin="0,10,0,10"
+				CornerRadius="15"
+				/>
+
+			<TextBox
+				Grid.Column="1"
+                Grid.Row="7"
+				BorderThickness="2"
+				BorderBrush="#D9E0EE"
+                Watermark="Quantity"
+                Width="160"
+				Margin="0,10,0,10"
+				CornerRadius="15"
+				/>
+
+			<TextBox
+				Grid.Column="1"
+                Grid.Row="8"
+				BorderThickness="2"
+				BorderBrush="#D9E0EE"
+                Watermark="Type"
+                Width="160"
+				Margin="0,10,0,10"
+				CornerRadius="15"
+				/>
+
+			<Panel Grid.Column="1"
+					Grid.Row="9"
+					HorizontalAlignment="Center"
+					Margin="0,30,0,0">
+				
+				<Button
+					Content="Update"
+					Foreground="#D9E0EE"
+					Background="#1E1E2E"
+					Width="100"
+					HorizontalContentAlignment="Center"
+                />
+			</Panel>
+
+
+		</Grid>
+    </StackPanel>
+</Window>
