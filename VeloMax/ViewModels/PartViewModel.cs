@@ -39,41 +39,20 @@ namespace VeloMax.ViewModels
                 };
                 update.Show();
             });
-            DeletePart = ReactiveCommand.Create(OnDeleteClick);
+            DeletePart = ReactiveCommand.Create(() =>
+            {
+                var messageBox = new Message
+                {
+                    DataContext = new MessageWindowViewModel(_selectPart),
+                };
+                messageBox.Show();
+            });
         }
 
         public Part SelectedPart
         {
             get => _selectPart;
             set => this.RaiseAndSetIfChanged(ref _selectPart, value);
-        }
-
-        private void OnAddClick()
-        {
-            Debug.WriteLine("Want to add");
-            var update = new PartUpdateWindow
-            {
-                DataContext = new PartUpdateWindowViewModel(),
-            };
-            update.Show();
-        }
-        private void OnModifyClick()
-        {
-            Debug.WriteLine("Want to update");
-            var update = new PartUpdateWindow
-            {
-                DataContext = new PartUpdateWindowViewModel(),
-            };
-            update.Show();
-        }
-
-        private void OnDeleteClick()
-        {
-            var messageBox = new Message
-            {
-                DataContext = new MessageWindowViewModel("Voulez-vous vraiment cette pièce ?")
-            };
-            messageBox.Show();
         }
     }
 }
