@@ -25,5 +25,19 @@ namespace VeloMax.Models
             this.Phone = phone;
             this.Mail = mail;
         }
+
+        public virtual string[] attributs()
+        {
+            return null;
+        }
+    
+        public virtual string at(int i)
+        {
+            return null;
+        }
+        public virtual string typeC()
+        {
+            return null;
+        }
     }
 }

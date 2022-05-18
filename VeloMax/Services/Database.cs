@@ -120,7 +120,7 @@ namespace VeloMax.Services
                     LastName = Reader.GetString(8);
                     FidelityId = Reader.GetInt32(10);
                     expirationDate = Reader.GetDateTime(9);
-                    List.Add(new Individual(Id, FirstName, LastName, Street, City, PostalCode, Province, Phone, Mail, expirationDate,FidelityId));
+                    List.Add(new Individual(Id, FirstName, LastName, Street, City, PostalCode, Province, Phone, Mail,FidelityId,  expirationDate));
                 }
                 Reader.Close();
                 Connection.Close();
@@ -1251,6 +1251,78 @@ namespace VeloMax.Services
             }
         }
 
-        
+        public Boolean CreateClient(Client client)
+        {
+            if(this.DbConnection())
+            {
+                string[] tab = client.attributs();
+
+                string create = "Insert into `velomax`.`clients` (";
+                for(int i = 0; i< 7;i++)
+                {
+                    create += tab[i] + ',';
+                }
+                create+=tab[6] + ") Value (" ;
+                
+                for(int i = 0; i< 7;i++)
+                {
+                    create += client.at(i) + ',';
+                }
+                create+= client.at(6) + ')';
+
+                if(this.DbConnection())
+                {
+                    SetValue(Connection,create);
+                }
+
+                create = "Insert into `velomax`.`" + client.typeC() + "` (";
+                for(int i = 7; i< tab.Length;i++)
+                {
+                    create += tab[i] + ',';
+                }
+                create+=tab[6] + ") Value (" ;
+                
+                for(int i = 0; i< 7;i++)
+                {
+                    create += client.at(i) + ',';
+                }
+                create+= client.at(6) + ')';
+
+                if(this.DbConnection())
+                {
+                    SetValue(Connection,create);
+                }
+            }
+            return false;
+        }
+
+        public Boolean ModifyClient(Client client)
+        {
+            if(this.DbConnection())
+            {
+                string[] tab = client.attributs();
+
+                string modify = "UPDATE clients SET";
+                for(int i = 0; i < 7; i++)
+                {
+                    modify+=tab[i] + "=" + client.at(i);
+                }
+                    
+                modify += "WHERE id = " + client.at(0);
+
+                SetValue(Connection, modify);
+
+                modify = "UPDATE" + client.typeC() + "SET";
+                for(int i = 7; i < tab.Length; i++)
+                {
+                    modify+=tab[i] + "=" + client.at(i);
+                }
+                    
+                modify += "WHERE id = " + client.at(0);
+
+                SetValue(Connection, modify);
+            }
+            return false;
+        }
     }
 }

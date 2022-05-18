@@ -39,6 +39,7 @@ CREATE TABLE IF NOT EXISTS individuals(
 	PRIMARY KEY(id),
 	FOREIGN KEY(id_fidelity)
 		REFERENCES fidelity_programs(id)
+                ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS professionals;
@@ -49,6 +50,7 @@ CREATE TABLE IF NOT EXISTS professionals(
 	order_count INT NOT NULL DEFAULT 0,
 	FOREIGN KEY(id)
 		REFERENCES clients(id)
+                ON DELETE CASCADE
 );
 
 
@@ -64,6 +66,7 @@ CREATE TABLE IF NOT EXISTS orders(
 	PRIMARY KEY(id),
     FOREIGN KEY(id_client)
 		references clients(id)
+                ON DELETE CASCADE
 );
 
 -- Bikes
@@ -113,8 +116,10 @@ CREATE TABLE IF NOT EXISTS ordered_bikes(
 	bikes_id INT NOT NULL,
 	quantity INT NOT NULL,
 	PRIMARY KEY(id),
-	FOREIGN KEY(orders_id) REFERENCES orders(id),
+	FOREIGN KEY(orders_id) REFERENCES orders(id) 
+            ON DELETE CASCADE,
 	FOREIGN KEY(bikes_id) REFERENCES bikes(id)
+            ON DELETE CASCADE
 );
 
 -- Ordered parts
@@ -136,8 +141,10 @@ CREATE TABLE IF NOT EXISTS bike_parts(
 	parts_id INT NOT NULL,
 	bikes_id INT NOT NULL,
 	PRIMARY KEY(id),
-	FOREIGN KEY(parts_id) REFERENCES parts(id),
+	FOREIGN KEY(parts_id) REFERENCES parts(id)
+            ON DELETE CASCADE,
 	FOREIGN KEY(bikes_id) REFERENCES bikes(id)
+            ON DELETE CASCADE
 );
 
 -- Procurement
@@ -147,8 +154,10 @@ CREATE TABLE IF NOT EXISTS procurement(
 	parts_id INT NOT NULL,
 	suppliers_id INT NOT NULL,
 	PRIMARY KEY(id),
-	FOREIGN KEY(parts_id) REFERENCES parts(id),
+	FOREIGN KEY(parts_id) REFERENCES parts(id)
+            ON DELETE CASCADE,
 	FOREIGN KEY(suppliers_id) REFERENCES suppliers(id)
+            ON DELETE CASCADE
 );
 
 -- EOF

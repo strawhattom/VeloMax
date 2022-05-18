@@ -9,7 +9,7 @@ namespace VeloMax.Models
         public int FidelityProgram { get; set; }
         public DateTime expiration_date {get; set;}
 
-        public Individual(int id, string firstName, string lastName, string street, string city, string postalCode, string province, string phone, string mail, DateTime expirationDate , int fidelityProgram = 0) : base(id, street, city, postalCode, province, phone, mail)
+        public Individual(int id, string firstName, string lastName, string street, string city, string postalCode, string province, string phone, string mail , int fidelityProgram = 0,  DateTime expirationDate = new DateTime()) : base(id, street, city, postalCode, province, phone, mail)
         {
             
             // if not null args are null
@@ -29,18 +29,18 @@ namespace VeloMax.Models
             }
         }
 
-        public string[] attributs()
+        public override string[] attributs()
         {
             string[] attributs = new string[10];
             attributs[0]="Id";
-            attributs[1]="first_name";
-            attributs[2]="last_name";
-            attributs[3]="street";
-            attributs[4]="city";
-            attributs[5]="postalCode";
-            attributs[6]="province";
-            attributs[7]="phone";
-            attributs[8]="mail";
+            attributs[1]="street";
+            attributs[2]="city";
+            attributs[3]="postalCode";
+            attributs[4]="province";
+            attributs[5]="phone";
+            attributs[6]="mail";
+            attributs[7]="first_name";
+            attributs[8]="last_name";
             attributs[9]="id_fidelity";
             attributs[10]="expiration_date";
 
@@ -48,28 +48,28 @@ namespace VeloMax.Models
             return attributs;
         }
 
-        public string at(int i)
+        public override string at(int i)
         {
             switch(i)
             {
                 case 0:
                     return this.Id.ToString();
                 case 1:
-                    return this.FirstName.ToString();
-                case 2:
-                    return this.LastName;
-                case 3:
                     return this .Street.ToString();
-                case 4:
+                case 2:
                     return this.City.ToString();
-                case 5:
+                case 3:
                     return this.PostalCode.ToString();
-                case 6:
+                case 4:
                     return this.Province.ToString();
-                case 7:
+                case 5:
                     return this.Phone;
-                case 8:
+                case 6:
                     return this .Mail.ToString();
+                case 7:
+                    return this.FirstName.ToString();
+                case 8:
+                    return this.LastName;
                 case 9:
                     return this.FidelityProgram.ToString();
                 case 10:
@@ -77,6 +77,11 @@ namespace VeloMax.Models
                 default:
                     return "";
             }    
+        }
+
+        public override string typeC()
+        {
+            return "individuals";
         }
     }
 }
