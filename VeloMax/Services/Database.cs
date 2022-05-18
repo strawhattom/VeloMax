@@ -102,6 +102,7 @@ namespace VeloMax.Services
 
                 int Id;
                 string Street, City, PostalCode, Province, Phone, Mail;
+                DateTime expirationDate;
                 string FirstName, LastName;
                 int FidelityId;
                 
@@ -117,8 +118,9 @@ namespace VeloMax.Services
                     Mail = Reader.GetString(6);
                     FirstName = Reader.GetString(7);
                     LastName = Reader.GetString(8);
-                    FidelityId = Reader.GetInt32(9);
-                    List.Add(new Individual(Id, FirstName, LastName, Street, City, PostalCode, Province, Phone, Mail, FidelityId));
+                    FidelityId = Reader.GetInt32(10);
+                    expirationDate = Reader.GetDateTime(9);
+                    List.Add(new Individual(Id, FirstName, LastName, Street, City, PostalCode, Province, Phone, Mail, expirationDate,FidelityId));
                 }
                 Reader.Close();
                 Connection.Close();
@@ -1219,6 +1221,36 @@ namespace VeloMax.Services
             return Stock;
         }
         
+        public void DeleteBikes(Bike bike)
+        {
+            int id = bike.Id;
+            string delete = "DELETE FROM bikes WHERE id="+id.ToString();
+            if(this.DbConnection())
+            {
+                SetValue(Connection,delete);
+            }
+        }
+
+        public void DeleteParts(Part part)
+        {
+            int id = part.Id;
+            string delete = "DELETE FROM parts WHERE id="+id.ToString();
+            if(this.DbConnection())
+            {
+                SetValue(Connection,delete);
+            }
+        }
+
+        public void DeleteOrder(Order order)
+        {
+            int id = order.Id;
+            string delete = "DELETE FROM parts WHERE id="+id.ToString();
+            if(this.DbConnection())
+            {
+                SetValue(Connection,delete);
+            }
+        }
+
         
     }
 }
