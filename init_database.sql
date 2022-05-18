@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS individuals(
 	first_name VARCHAR(255) NOT NULL,
 	last_name VARCHAR(255) NOT NULL,
 	id_fidelity INT NOT NULL DEFAULT 0,
-    expiration_date DATE NULL,
+    	expiration_date DATE NULL,
 	PRIMARY KEY(id),
 	FOREIGN KEY(id_fidelity)
 		REFERENCES fidelity_programs(id)
@@ -62,9 +62,9 @@ CREATE TABLE IF NOT EXISTS orders(
 	shipping_address VARCHAR(255) NOT NULL,
 	shipping_date DATE NOT NULL,
 	quantity INT NOT NULL,
-    id_client INT NOT NULL,
+    	id_client INT NOT NULL,
 	PRIMARY KEY(id),
-    FOREIGN KEY(id_client)
+    	FOREIGN KEY(id_client)
 		references clients(id)
                 ON DELETE CASCADE
 );

@@ -11,49 +11,49 @@ namespace VeloMax.ViewModels
     public class PartUpdateWindowViewModel : ReactiveObject
     {
         private Part? _current;
-        private string? _id;
-        private string? _description;
-        private string? _price;
-        private string? _delay;
-        private string? _quantity;
-        private string? _type;
-        private string? _data;
+        private string _id = "";
+        private string _description = "";
+        private string _price = "";
+        private string _delay = "";
+        private string _quantity = "";
+        private string _type = "";
+        private string _data = "";
         private DateTimeOffset _introduction = DateTime.Now;
         private DateTimeOffset _discontinuation = DateTime.Now;
         private Database _db = new Database();
-        private bool _closeAppTrigger;
+        private bool _closeAppTrigger = false;
 
-        public string? IdText
+        public string IdText
         {
             get => _id;
             set => this.RaiseAndSetIfChanged(ref _id, value);
         }
-        public string? DescriptionText
+        public string DescriptionText
         {
             get => _description;
             set => this.RaiseAndSetIfChanged(ref _description, value);
         }
-        public string? PriceText
+        public string PriceText
         {
             get => _price;
             set => this.RaiseAndSetIfChanged(ref _price, value);
         }
-        public string? DelayText
+        public string DelayText
         {
             get => _delay;
             set => this.RaiseAndSetIfChanged(ref _delay, value);
         }
-        public string? QuantityText
+        public string QuantityText
         {
             get => _quantity;
             set => this.RaiseAndSetIfChanged(ref _quantity, value);
         }
-        public string? TypeText
+        public string TypeText
         {
             get => _type;
             set => this.RaiseAndSetIfChanged(ref _type, value);
         }
-        public string? DataText
+        public string DataText
         {
             get => _data;
             set => this.RaiseAndSetIfChanged(ref _data, value);
@@ -102,21 +102,46 @@ namespace VeloMax.ViewModels
                 QuantityText = _current.at(7);
                 TypeText = _current.at(8).Trim('\'');
             }
-            
-
             UpdateClick = ReactiveCommand.Create(OnUpdateClick);
             CloseButtonClicked = ReactiveCommand.Create(() => { CloseAppTrigger = true; });
         }
 
         private void OnUpdateClick()
         {
+            /*
             DataText = IdText + " " + DescriptionText + " " + PriceText + " " + DelayText + " " + QuantityText + " " + TypeText + "\n" +
                             "Introduction : " + IntroductionDT.ToString() +
                             "\n Discontinuation : " + DiscontinuationDT.ToString();
             Console.WriteLine("Form data : ");
             Console.Write(DataText + "\n");
+            */
 
             // Create our part
+            if(IdText != "" && IdText.Length > 0
+                && DescriptionText != "" && DescriptionText.Length > 0
+                && PriceText != "" && PriceText.Length > 0
+                && DelayText != "" && DelayText.Length > 0
+                && QuantityText != "" && QuantityText.Length > 0
+                && TypeText != "" && TypeText.Length > 0)
+            {
+                try
+                {
+                    _db.SetParts(new Part(Int32.Parse(IdText),
+                    DescriptionText,
+                    Double.Parse(PriceText),
+                    IntroductionDT.DateTime,
+                    DiscontinuationDT.DateTime,
+                    Int32.Parse(DelayText),
+                    Int32.Parse(QuantityText),
+                    TypeText));
+
+                    DataText = "Updated";
+                } catch (FormatException e)
+                {
+                    DataText = "Incorrect format in at least one field.\nPlease verify fields";
+                }
+            }
+            
         }
     }
 }

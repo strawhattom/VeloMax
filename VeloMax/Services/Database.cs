@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using VeloMax.Models;
 using MySql.Data.MySqlClient;
+using System.Diagnostics;
 using System.Globalization;
 
 namespace VeloMax.Services
@@ -458,7 +459,8 @@ namespace VeloMax.Services
 
         public void SetValue(MySqlConnection connection, string modify)
         {
-            
+            Debug.WriteLine("QUERY :");
+            Debug.WriteLine(modify);
             MySqlCommand command = connection.CreateCommand();
             command.CommandText = modify;
             command.ExecuteNonQuery();
@@ -563,8 +565,8 @@ namespace VeloMax.Services
             {
                 string[] tab = part.attributs();
 
-                string modify = "UPDATE parts SET";
-                for(int i = 0; i < tab.Length; i++)
+                string modify = "UPDATE parts SET ";
+                for(int i = 0; i < tab.Length-1 ; i++)
                 {
                     modify+=tab[i] + " = " + part.at(i) +", ";
 
@@ -588,19 +590,24 @@ namespace VeloMax.Services
             {
                 create += tab[i] + ',';
             }
-            create+=tab[tab.Length-1] + ") Value (" ;
-            
-            for(int i = 0; i< tab.Length-1;i++)
+            Debug.WriteLine("Column name OK");
+            create +=tab[tab.Length-1] + ") Value (" ;
+            Debug.WriteLine("Last column name OK");
+
+            for (int i = 0; i< tab.Length-1;i++)
             {
                 create += part.at(i) + ',';
             }
-            create+= part.at(tab.Length-1) + ')';
 
-            if(this.DbConnection())
+            create+= part.at(tab.Length-1) + ')';
+            Debug.WriteLine("Values OK");
+            if (this.DbConnection())
             {
+                Debug.WriteLine("Part created");
                 SetValue(Connection,create);
                 return true;
             }
+            Debug.WriteLine("Part not created");
             return false;
         }
 
@@ -611,7 +618,7 @@ namespace VeloMax.Services
                 string[] tab = supplier.attributs();
 
                 string modify = "UPDATE suppliers SET ";
-                for(int i = 0; i < tab.Length; i++)
+                for(int i = 0; i < tab.Length - 1; i++)
                 {
                     modify+=tab[i] + " = " + supplier.at(i) +", ";
 
@@ -656,8 +663,8 @@ namespace VeloMax.Services
             {
                 string[] tab = fidelity.attributs();
 
-                string modify = "UPDATE fidelity_programs SET";
-                for(int i = 0; i < tab.Length; i++)
+                string modify = "UPDATE fidelity_programs SET ";
+                for(int i = 0; i < tab.Length - 1; i++)
                 {
                     modify+=tab[i] + " = " + fidelity.at(i) +", ";
                 }
@@ -703,8 +710,8 @@ namespace VeloMax.Services
             {
                 string[] tab = orderedBike.attributs();
 
-                string modify = "UPDATE ordered_bikes SET";
-                for(int i = 0; i < tab.Length; i++)
+                string modify = "UPDATE ordered_bikes SET ";
+                for(int i = 0; i < tab.Length - 1; i++)
                 {
                     modify+=tab[i] + " = " + orderedBike.at(i) +", ";
 
@@ -752,8 +759,8 @@ namespace VeloMax.Services
             {
                 string[] tab = orderedPart.attributs();
 
-                string modify = "UPDATE ordered_parts SET";
-                for(int i = 0; i < tab.Length; i++)
+                string modify = "UPDATE ordered_parts SET ";
+                for(int i = 0; i < tab.Length - 1; i++)
                 {
                     modify+=tab[i] + " = " + orderedPart.at(i) +", ";
                 }
@@ -807,8 +814,8 @@ namespace VeloMax.Services
             {
                 string[] tab = bikePart.attributs();
 
-                string modify = "UPDATE bike_parts SET";
-                for(int i = 0; i < tab.Length; i++)
+                string modify = "UPDATE bike_parts SET ";
+                for(int i = 0; i < tab.Length - 1; i++)
                 {
                     modify+=tab[i] + " = " + bikePart.at(i) +", ";
                 }
@@ -852,8 +859,8 @@ namespace VeloMax.Services
             {
                 string[] tab = procurement.attributs();
 
-                string modify = "UPDATE procurement SET";
-                for(int i = 0; i < tab.Length; i++)
+                string modify = "UPDATE procurement SET ";
+                for(int i = 0; i < tab.Length - 1; i++)
                 {
                     modify+=tab[i] + " = " + procurement.at(i) +", ";
                 }
@@ -1073,13 +1080,13 @@ namespace VeloMax.Services
                 Reader = Query(Connection, best);
 
                 while (Reader.Read())
-                    {
-                        List<string>  clients = new List<string>();
-                        clients.Add(Reader.GetString(0)+' '+Reader.GetString(1));
-                        clients.Add(Reader.GetInt32(2).ToString());
-                        bestclients.Add(clients);
-                    }   
-                
+                {
+                    List<string>  clients = new List<string>();
+                    clients.Add(Reader.GetString(0)+' '+Reader.GetString(1));
+                    clients.Add(Reader.GetInt32(2).ToString());
+                    bestclients.Add(clients);
+                }
+
                 Reader.Close();
                 Connection.Close();
                     
