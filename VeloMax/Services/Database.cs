@@ -474,8 +474,81 @@ namespace VeloMax.Services
 
         #endregion
 
-        
+        #region Modify/Create
 
+        public Boolean CreateClient(Client client)
+        {
+            if(this.DbConnection())
+            {
+                string[] tab = client.attributs();
+
+                string create = "Insert into `velomax`.`clients` (";
+                for(int i = 0; i< 6;i++)
+                {
+                    create += tab[i] + ',';
+                }
+                create+=tab[6] + ") Value (" ;
+                
+                for(int i = 0; i< 6;i++)
+                {
+                    create += client.at(i) + ',';
+                }
+                create+= client.at(6) + ')';
+
+                if(this.DbConnection())
+                {
+                    SetValue(Connection,create);
+                }
+
+                create = "Insert into `velomax`.`" + client.typeC() + "` (id,";
+                for(int i = 7; i< tab.Length-1;i++)
+                {
+                    create += tab[i] + ',';
+                }
+                create+=tab[tab.Length - 1] + ") Value ("+client.Id +", ";
+                
+                for(int i = 7; i< tab.Length-1;i++)
+                {
+                    create += client.at(i) + ',';
+                }
+                create+= client.at(tab.Length - 1) + ')';
+
+                if(this.DbConnection())
+                {
+                    SetValue(Connection,create);
+                }
+            }
+            return false;
+        }
+
+        public Boolean ModifyClient(Client client)
+        {
+            if(this.DbConnection())
+            {
+                string[] tab = client.attributs();
+
+                string modify = "UPDATE clients SET ";
+                for(int i = 0; i < 6; i++)
+                {
+                    modify+=tab[i] + " = " + client.at(i) + ", \n";
+                }
+                modify += tab[6] + " = " + client.at(6) +" ";
+                modify += " WHERE id = " + client.at(0);
+
+                    SetValue(Connection, modify);
+
+                    modify = "UPDATE " + client.typeC() + " SET ";
+                for(int i = 7; i < tab.Length-1; i++)
+                {
+                    modify+=tab[i] + " = " + client.at(i)+", \n";
+                }
+                modify += tab[tab.Length-1] + " = " + client.at(tab.Length-1) +" ";
+                modify += "WHERE id = " + client.at(0);
+
+                SetValue(Connection, modify);
+            }
+            return false;
+        }
         public Boolean ModifyBike(Bike bike)
         {
             if(this.DbConnection())
@@ -907,6 +980,9 @@ namespace VeloMax.Services
             return false;
         }
 
+        #endregion
+        
+        #region Statistics
         public List<string> BestPart()
         {
             string[] date = DateTime.Now.ToString().Split('/');
@@ -1276,7 +1352,10 @@ namespace VeloMax.Services
             }
             return Stock;
         }
+
+        #endregion
         
+        #region Delete
         public void DeleteBikes(Bike bike)
         {
             int id = bike.Id;
@@ -1307,82 +1386,9 @@ namespace VeloMax.Services
             }
         }
 
-        public Boolean CreateClient(Client client)
-        {
-            if(this.DbConnection())
-            {
-                string[] tab = client.attributs();
+        #endregion
 
-                string create = "Insert into `velomax`.`clients` (";
-                for(int i = 0; i< 6;i++)
-                {
-                    create += tab[i] + ',';
-                }
-                create+=tab[6] + ") Value (" ;
-                
-                for(int i = 0; i< 6;i++)
-                {
-                    create += client.at(i) + ',';
-                }
-                create+= client.at(6) + ')';
-
-                if(this.DbConnection())
-                {
-                    SetValue(Connection,create);
-                }
-
-                create = "Insert into `velomax`.`" + client.typeC() + "` (id,";
-                for(int i = 7; i< tab.Length-1;i++)
-                {
-                    create += tab[i] + ',';
-                }
-                create+=tab[tab.Length - 1] + ") Value ("+client.Id +", ";
-                
-                for(int i = 7; i< tab.Length-1;i++)
-                {
-                    create += client.at(i) + ',';
-                }
-                create+= client.at(tab.Length - 1) + ')';
-
-                if(this.DbConnection())
-                {
-                    SetValue(Connection,create);
-                }
-            }
-            return false;
-        }
-
-        public Boolean ModifyClient(Client client)
-        {
-            if(this.DbConnection())
-            {
-                string[] tab = client.attributs();
-
-                string modify = "UPDATE clients SET ";
-                for(int i = 0; i < 6; i++)
-                {
-                    modify+=tab[i] + " = " + client.at(i) + ", \n";
-                }
-                modify += tab[6] + " = " + client.at(6) +" ";
-                modify += " WHERE id = " + client.at(0);
-
-                    SetValue(Connection, modify);
-
-                    modify = "UPDATE " + client.typeC() + " SET ";
-                for(int i = 7; i < tab.Length-1; i++)
-                {
-                    modify+=tab[i] + " = " + client.at(i)+", \n";
-                }
-                modify += tab[tab.Length-1] + " = " + client.at(tab.Length-1) +" ";
-                modify += "WHERE id = " + client.at(0);
-
-                SetValue(Connection, modify);
-            }
-            return false;
-        }
-
-        
-
+        #region setTable
         public void SetBikes(Bike bike)
         {
             string id = bike.Id.ToString();
@@ -1690,6 +1696,9 @@ namespace VeloMax.Services
             
         }
 
+        #endregion
+
+        #region Gestion
         public Boolean CheckInStock(int idPiece, string table ,int order_quantity)
         {
             string check = "SELECT quantity FROM "+table +" WHERE id= "+idPiece.ToString();
@@ -1721,5 +1730,7 @@ namespace VeloMax.Services
                 SetValue(Connection, changes);
             }
         }
+
+        #endregion
     }
 }
