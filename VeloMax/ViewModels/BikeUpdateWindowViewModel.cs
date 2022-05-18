@@ -139,7 +139,7 @@ namespace VeloMax.ViewModels
                     }
                     else
                     {
-                        _obj = new ObservableCollection<object>(_db.GetBikes());
+                        _obj = new ObservableCollection<object>(_db.GetBikes(""));
                     }
 
                     Color = "#77DD77";

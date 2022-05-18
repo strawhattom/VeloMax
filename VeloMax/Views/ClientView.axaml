@@ -112,6 +112,13 @@
 							HorizontalContentAlignment="Center"
 							Width="140"
 							/>
+						<Button
+							Content="Update/Info"
+							Background="#ABE9B3"
+							Margin="0,100,0,0"
+							HorizontalContentAlignment="Center"
+							Width="140"
+							/>
 						
 						<Button
 							Content="Delete"

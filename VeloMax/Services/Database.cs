@@ -242,7 +242,7 @@ namespace VeloMax.Services
             return List;
         }
 
-        public List<Bike> GetBikes(string search)
+        public List<Bike> GetBikes(string search = "")
         {
             List<Bike> List = new List<Bike>();
 
