@@ -38,7 +38,9 @@
 					<DataGrid Grid.Column="0"
 							  Name="PartGrid"
 							  Items="{Binding Parts}"
+							  SelectedItem="{Binding ItemSelected}"
 							  AutoGenerateColumns="True">
+						<!--
 						<DataGrid.Columns>
 							<DataGridTemplateColumn Header="Edit" Width="*" >
 								<DataGridTemplateColumn.CellTemplate>
@@ -57,6 +59,7 @@
 								</DataGridTemplateColumn.CellTemplate>
 							</DataGridTemplateColumn>
 						</DataGrid.Columns>
+						-->
 					</DataGrid>
 
 					<!-- Modificator Button -->

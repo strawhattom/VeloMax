@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using VeloMax.Services;
@@ -9,6 +10,7 @@ namespace VeloMax.ViewModels
 {
     public class PartUpdateWindowViewModel : ReactiveObject
     {
+        private Part? _current;
         private string? _id;
         private string? _description;
         private string? _price;
@@ -51,7 +53,6 @@ namespace VeloMax.ViewModels
             get => _type;
             set => this.RaiseAndSetIfChanged(ref _type, value);
         }
-
         public string? DataText
         {
             get => _data;
@@ -78,15 +79,44 @@ namespace VeloMax.ViewModels
         public ICommand UpdateClick { get; }
         public PartUpdateWindowViewModel()
         {
-            UpdateClick = ReactiveCommand.Create(() =>
-            {
-                DataText = IdText + " " + DescriptionText + " " + PriceText + " " + DelayText + " " + QuantityText + " " + TypeText + "\n" + 
-                            "Introduction : " + IntroductionDT.ToString() + 
-                            "\n Discontinuation : " + DiscontinuationDT.ToString();
-                Console.WriteLine("Form data : ");
-                Console.Write(DataText + "\n");
-            });
+            _current = null;
+            UpdateClick = ReactiveCommand.Create(OnUpdateClick);
             CloseButtonClicked = ReactiveCommand.Create(() => { CloseAppTrigger = true; });
+        }
+        public PartUpdateWindowViewModel(Part selected)
+        {
+            if (!(selected == null))
+            {
+                _current = selected;
+                IdText = _current.at(0);
+                DescriptionText = _current.at(1).Trim('\'');
+                PriceText = _current.at(2);
+                DelayText = _current.at(3);
+
+                string[] idt = _current.at(4).Trim('\'').Split('-');
+                IntroductionDT = new DateTimeOffset(new DateTime(Int32.Parse(idt[0]), Int32.Parse(idt[1]), Int32.Parse(idt[2])));
+                string[] ddt = _current.at(5).Trim('\'').Split('-');
+                DiscontinuationDT = new DateTimeOffset(new DateTime(Int32.Parse(idt[0]), Int32.Parse(idt[1]), Int32.Parse(idt[2])));
+
+                DelayText = _current.at(6);
+                QuantityText = _current.at(7);
+                TypeText = _current.at(8).Trim('\'');
+            }
+            
+
+            UpdateClick = ReactiveCommand.Create(OnUpdateClick);
+            CloseButtonClicked = ReactiveCommand.Create(() => { CloseAppTrigger = true; });
+        }
+
+        private void OnUpdateClick()
+        {
+            DataText = IdText + " " + DescriptionText + " " + PriceText + " " + DelayText + " " + QuantityText + " " + TypeText + "\n" +
+                            "Introduction : " + IntroductionDT.ToString() +
+                            "\n Discontinuation : " + DiscontinuationDT.ToString();
+            Console.WriteLine("Form data : ");
+            Console.Write(DataText + "\n");
+
+            // Create our part
         }
     }
 }
