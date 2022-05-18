@@ -8,21 +8,81 @@
 	>
 	<StackPanel>
 		<Design.DataContext>
-			<vm:BikeViewModel/>
+			<vm:SupplierViewModel/>
 		</Design.DataContext>
-		
-		<TextBlock
-        Text="Bike"
-        Foreground="#000000"
-        FontSize="28"
-        HorizontalAlignment="Left"
-        Margin="0,0,0,20"/>
+
 		<Grid>
-			<DataGrid Items="{Binding Suppliers}"
-					Name="SupplierGrid">
-				
-			</DataGrid>
-			
+			<Grid.RowDefinitions>
+				<RowDefinition Height="40"/>
+				<RowDefinition Height="550"/>
+			</Grid.RowDefinitions>
+
+			<!-- Title + client type button-->
+			<StackPanel>
+				<TextBlock
+					Grid.Column="0"
+					Text="Supplier"
+					Foreground="#000000"
+					FontSize="28"
+					HorizontalAlignment="Left"
+					Margin="0,0,0,20"/>
+			</StackPanel>
+
+			<!-- Data + buttons -->
+			<Panel Grid.Row="1">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="800"/>
+						<ColumnDefinition Width="180"/>
+					</Grid.ColumnDefinitions>
+					<DataGrid Grid.Column="0"
+							  Items="{Binding Suppliers}"
+							  SelectedItem="{Binding SelectedSupplier}"
+							  AutoGenerateColumns="False"
+							  CanUserResizeColumns="True"
+							  CanUserSortColumns="True"
+							  SelectionMode="Single"
+							  IsReadOnly="True">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="#"  Binding="{Binding Id}"/>
+							<DataGridTextColumn Header="Siret" Binding="{Binding Siret}" />
+							<DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+							<DataGridTextColumn Header="Contact" Binding="{Binding Contact}" />
+							<DataGridTextColumn Header="Location" Binding="{Binding Location}" />
+							<DataGridTextColumn Header="Reputation" Binding="{Binding Label}" />
+						</DataGrid.Columns>
+					</DataGrid>
+
+					<!-- Modificator Button -->
+					<StackPanel Grid.Column="1"
+								HorizontalAlignment="Center">
+						<Button
+							Content="Add"
+							Background="#ABE9B3"
+							Margin="0,100,0,0"
+							HorizontalContentAlignment="Center"
+							Width="140"
+							Command="{Binding Add}"
+							/>
+						<Button
+							Content="Update"
+							Background="#F8BD96"
+							Margin="0,100,0,0"
+							Width="140"
+							HorizontalContentAlignment="Center"
+							Command="{Binding Update}"
+							/>
+						<Button
+							Content="Delete"
+							Background="#F28FAD"
+							Margin="0,100,0,0"
+							Width="140"
+							Command="{Binding Delete}"
+							HorizontalContentAlignment="Center"
+							/>
+					</StackPanel>
+				</Grid>
+			</Panel>
 		</Grid>
 
 	</StackPanel>

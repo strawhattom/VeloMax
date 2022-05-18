@@ -26,4 +26,9 @@
         <PackageReference Include="MySql.Data" Version="8.0.29" />
 <!--        <PackageReference Include="XamlNameReferenceGenerator" Version="*" />-->
     </ItemGroup>
+    <ItemGroup>
+      <Compile Update="Views\SupplierUpdateWindow.axaml.cs">
+        <DependentUpon>SupplierUpdateWindow.axaml</DependentUpon>
+      </Compile>
+    </ItemGroup>
 </Project>

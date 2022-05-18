@@ -661,7 +661,7 @@ namespace VeloMax.Services
                 }
                 
                 modify += tab[tab.Length-1] + " = " + part.At(tab.Length - 1);
-                modify += "WHERE id = " + part.At(0);
+                modify += " WHERE id = " + part.At(0);
 
                 SetValue(Connection, modify);
                 return true;   
@@ -712,7 +712,9 @@ namespace VeloMax.Services
 
                 }
                 modify += tab[tab.Length-1] + " = " + supplier.At(tab.Length - 1);
-                modify += "WHERE id = " + supplier.At(0);
+                modify += " WHERE id = " + supplier.At(0);
+                
+                Debug.WriteLine(modify);
 
                 SetValue(Connection, modify);
                 return true;   
@@ -724,20 +726,23 @@ namespace VeloMax.Services
         {
             string[] tab = Supplier.Attributs();
 
-            string create = "Insert into `velomax`.`supliers` (";
+            string create = "Insert into `velomax`.`suppliers` (";
             for(int i = 0; i< tab.Length-1;i++)
             {
                 create += tab[i] + ',';
             }
-            create+=tab[tab.Length-1] + ") Value (" ;
+            Debug.WriteLine("Column name OK");
+            create +=tab[tab.Length-1] + ") Value (" ;
             
-            for(int i = 0; i< tab.Length-1;i++)
+
+            for (int i = 0; i< tab.Length-1;i++)
             {
                 create += supplier.At(i) + ',';
             }
             create+= supplier.At(tab.Length-1) + ')';
+            Debug.WriteLine("Values name OK");
 
-            if(this.DbConnection())
+            if (this.DbConnection())
             {
                 SetValue(Connection,create);
                 return true;
@@ -745,7 +750,7 @@ namespace VeloMax.Services
             return false;
         }
 
-        public Boolean ModifyFildelityProgram(FidelityProgram fidelity)
+        public Boolean ModifyFidelityProgram(FidelityProgram fidelity)
         {
             if(this.DbConnection())
             {
@@ -1584,7 +1589,7 @@ namespace VeloMax.Services
 
             if(exist)
             {
-                ModifyFildelityProgram(objects);
+                ModifyFidelityProgram(objects);
             }
             else
             {
