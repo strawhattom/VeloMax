@@ -38,7 +38,7 @@
 					<DataGrid Grid.Column="0"
 							  Name="PartGrid"
 							  Items="{Binding Parts}"
-							  SelectedItem="{Binding ItemSelected}"
+							  SelectedItem="{Binding SelectedPart}"
 							  AutoGenerateColumns="True">
 						<!--
 						<DataGrid.Columns>
@@ -78,7 +78,7 @@
 							Background="#F8BD96"
 							Margin="0,100,0,0"
 							Width="140"
-							Command="{Binding ModifyClicked}"
+							Command="{Binding UpdatePart}"
 							HorizontalContentAlignment="Center"
 							/>
 						<Button
