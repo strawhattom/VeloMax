@@ -242,13 +242,15 @@ namespace VeloMax.Services
             return List;
         }
 
-        public List<Bike> GetBikes()
+        public List<Bike> GetBikes(string search)
         {
             List<Bike> List = new List<Bike>();
 
             if (this.DbConnection())
             {
-                string StringQuery = "SELECT * FROM bikes";
+                string StringQuery = "SELECT * "+
+                                     "FROM bikes "+
+                                     "WHERE name LIKE '"+search+"%' OR target LIKE '" + search + "%' OR type LIKE '" + search + "%';";
                 MySqlDataReader Reader = Query(Connection, StringQuery);
 
                 string name, target, type;

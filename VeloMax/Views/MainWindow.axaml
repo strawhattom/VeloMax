@@ -75,43 +75,43 @@
                         Command="{Binding DashboardButtonClicked}"/>
                     
                     <controls:MenuItemButton
-                        Content="Bike"
+                        Content="Bikes"
                         Classes="MenuItem"
                         Kind="BikeBasket"
                         Command="{Binding BikeButtonClicked}"/>
 
                     <controls:MenuItemButton
-                        Content="Part"
+                        Content="Parts"
                         Classes="MenuItem"
                         Kind="BikeBasket"
                         Command="{Binding PartButtonClicked}"/>
                     
                     <controls:MenuItemButton
-                        Content="Client"
+                        Content="Clients"
                         Classes="MenuItem"
                         Kind="User"
                         Command="{Binding ClientButtonClicked}"/>
                     
                     <controls:MenuItemButton
-                        Content="Supplier"
+                        Content="Suppliers"
                         Classes="MenuItem"
                         Kind="BagPersonal"
                         Command="{Binding SupplierButtonClicked}"/>
                     
                     <controls:MenuItemButton
-                        Content="Order"
+                        Content="Orders"
                         Classes="MenuItem"
                         Kind="Check"
                         Command="{Binding OrderButtonClicked}"/>
                     
                     <controls:MenuItemButton
-                        Content="Stock"
+                        Content="Stocks"
                         Kind="Wrench"
                         Classes="MenuItem"
                         Command="{Binding StockButtonClicked}"/>
                     
                     <controls:MenuItemButton
-                        Content="Other"
+                        Content="Others"
                         Kind="DotsHorizontal"
                         Classes="MenuItem"
                         Command="{Binding OtherButtonClicked}"/>

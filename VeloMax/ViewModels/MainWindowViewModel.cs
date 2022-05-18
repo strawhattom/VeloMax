@@ -71,7 +71,7 @@ namespace VeloMax.ViewModels
 
         private void OnBikeButtonClicked()
         {
-            this.NavigationContent = new BikeViewModel(_db.GetBikes());
+            this.NavigationContent = new BikeViewModel(_db.GetBikes(_searchText));
         }
 
         private void OnPartButtonClicked()
