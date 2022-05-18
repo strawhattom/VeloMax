@@ -123,7 +123,6 @@ namespace VeloMax.ViewModels
                         Int32.Parse(QuantityText),
                         TypeText)
                     );
-
                     DataText = "Updated";
                 }
                 catch (FormatException)
