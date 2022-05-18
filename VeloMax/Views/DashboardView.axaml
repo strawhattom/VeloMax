@@ -1,8 +1,12 @@
 ﻿<UserControl 
   xmlns="https://github.com/avaloniaui"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:vm="using:VeloMax.ViewModels"
   x:Class="VeloMax.Views.DashboardView">
   
+  <Design.DataContext>
+    <vm:DashboardViewModel/>
+  </Design.DataContext>
   <StackPanel>
     <TextBlock 
       Text="Dashboard"
@@ -19,16 +23,35 @@
         <Border.Background>
           <LinearGradientBrush StartPoint="0,0" EndPoint="100,200">
             <GradientStop Color="#96CDFB" Offset="0.0" />
+            
             <GradientStop Color="#B5E8E0" Offset="1.0" />
           </LinearGradientBrush>
         </Border.Background>
-        
-        <TextBlock
-          Text="Bike and part"
-          Foreground="White"
-          VerticalAlignment="Bottom"
-          HorizontalAlignment="Left"
-          Margin="10 0 0 10"/>
+        <Grid>
+          <Grid.RowDefinitions>
+            <RowDefinition Height="240" />
+            <RowDefinition Height="60" />
+          </Grid.RowDefinitions>
+		    <ListBox Grid.Row="0"
+					 Items="{Binding BestBike}" ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+			    <ListBox.ItemTemplate>
+				    <DataTemplate>
+						<TextBlock Text="{Binding}" 
+								Foreground="White"
+                                VerticalAlignment="Bottom"
+                                HorizontalAlignment="Left"
+                                Margin="10 0 0 10"
+								TextWrapping="Wrap"/>
+				    </DataTemplate>
+			    </ListBox.ItemTemplate>
+		    </ListBox>
+          <TextBlock Grid.Row="1"
+            Text="Best bike !"
+            Foreground="White"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Left"
+            Margin="10 0 0 10"/>
+        </Grid>
       </Border>
       
       <!-- Client -->

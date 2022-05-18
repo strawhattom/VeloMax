@@ -8,10 +8,12 @@ namespace VeloMax.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private ViewModelBase _navigationContent = new DashboardViewModel();
+        
         private bool _closeAppTrigger = false;
-        private Database Db { get; set; }
+
+        private Database _db = new Database();
         // private string _searchText = "";
+        private ViewModelBase _navigationContent = new();
         public ICommand DashboardButtonClicked { get; }
         public ICommand BikeButtonClicked { get; }
         public ICommand PartButtonClicked { get; }
@@ -42,9 +44,9 @@ namespace VeloMax.ViewModels
         // }
 
         // Constructor
-        public MainWindowViewModel(Database db)
+        public MainWindowViewModel()
         {
-            Db = db;
+            NavigationContent = new DashboardViewModel(_db);
 
             // Button
             DashboardButtonClicked = ReactiveCommand.Create(OnDashboardButtonClicked);
@@ -62,27 +64,27 @@ namespace VeloMax.ViewModels
 
         private void OnDashboardButtonClicked()
         {
-            this.NavigationContent = new DashboardViewModel();
+            this.NavigationContent = new DashboardViewModel(_db);
         }
 
         private void OnBikeButtonClicked()
         {
-            this.NavigationContent = new BikeViewModel(Db.GetBikes());
+            this.NavigationContent = new BikeViewModel(_db.GetBikes());
         }
 
         private void OnPartButtonClicked()
         {
-            this.NavigationContent = new PartViewModel(Db.GetParts());
+            this.NavigationContent = new PartViewModel(_db.GetParts());
         }
 
         private void OnClientButtonClicked()
         {
-            this.NavigationContent = new ClientViewModel(Db.GetClients(), Db.GetIndividuals(), Db.GetProfessionals());
+            this.NavigationContent = new ClientViewModel(_db.GetClients(), _db.GetIndividuals(), _db.GetProfessionals());
         }
 
         private void OnOrderButtonClicked()
         {
-            this.NavigationContent = new OrderViewModel(Db.GetOrders());
+            this.NavigationContent = new OrderViewModel(_db.GetOrders());
         }
 
         private void OnOtherButtonClicked()
@@ -97,7 +99,7 @@ namespace VeloMax.ViewModels
 
         private void OnSupplierButtonClicked()
         {
-            this.NavigationContent = new SupplierViewModel(Db.GetSuppliers());
+            this.NavigationContent = new SupplierViewModel(_db.GetSuppliers());
         }
     }
 }
