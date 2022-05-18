@@ -78,5 +78,11 @@ namespace VeloMax.Models
             return this.at(0) + ", " + this.at(1);
         }
 
+        public string typeC()
+        {
+            return "parts";
+        }
+    
+
     }
 }

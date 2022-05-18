@@ -56,5 +56,11 @@ namespace VeloMax.Models
                     return "";
             }    
         }
+
+        public string typeC()
+        {
+            return "fidelity_programs";
+        }
     }
+    
 }

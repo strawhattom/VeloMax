@@ -61,6 +61,25 @@ namespace VeloMax.Services
 
         }
 
+        public int GetMaxID(string table)
+        {
+            string requete = "SELECT max(id) FROM "+table;
+            int max=-1;
+            if(this.DbConnection())
+            {
+                MySqlDataReader Reader = Query(Connection, requete);
+                int j=0;
+                
+                while(Reader.Read() && j<1)
+                {
+                    max=Reader.GetInt32(0);
+                    
+                }
+            }
+
+            return max+1;
+        }
+
         public List<Client> GetClients()
         {
             List<Client> List = new List<Client>();
@@ -1334,6 +1353,306 @@ namespace VeloMax.Services
                 SetValue(Connection, modify);
             }
             return false;
+        }
+
+        
+
+        public void SetBikes(Bike bike)
+        {
+            string id = bike.Id.ToString();
+            bool exist=true;
+
+            if(this.DbConnection())
+            {
+                string check = "SELECT count(*) FROM bikes WHERE id = "+id;
+                MySqlDataReader Reader = Query(Connection, check);
+                int j=0;
+                
+                while(Reader.Read() && j<1)
+                {
+                    if(Reader.GetInt32(0)==0)
+                    {
+                        exist=false;
+                    }
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+            if(exist)
+            {
+                ModifyBike(bike);
+            }
+            else
+            {
+                CreateBike(bike);
+            }
+            
+        }
+
+         public void SetBikeParts(BikePart bike)
+        {
+            string id = bike.Id.ToString();
+            bool exist=true;
+
+            if(this.DbConnection())
+            {
+                string check = "SELECT count(*) FROM bike_parts WHERE id = "+id;
+                MySqlDataReader Reader = Query(Connection, check);
+                int j=0;
+                
+                while(Reader.Read() && j<1)
+                {
+                    if(Reader.GetInt32(0)==0)
+                    {
+                        exist=false;
+                    }
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+            if(exist)
+            {
+                ModifyBikeParts(bike);
+            }
+            else
+            {
+                CreateBikeParts(bike);
+            }
+            
+        }
+
+         public void SetClients(Client objects)
+        {
+            string id = objects.Id.ToString();
+            bool exist=true;
+
+            if(this.DbConnection())
+            {
+                string check = "SELECT count(*) FROM "+objects.typeC() + "WHERE id = "+id;
+                MySqlDataReader Reader = Query(Connection, check);
+                int j=0;
+                
+                while(Reader.Read() && j<1)
+                {
+                    if(Reader.GetInt32(0)==0)
+                    {
+                        exist=false;
+                    }
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+            if(exist)
+            {
+                ModifyClient(objects);
+            }
+            else
+            {
+                CreateClient(objects);
+            }
+            
+        }
+
+        public void SetFidelityProgram(FidelityProgram objects)
+        {
+            string id = objects.Id.ToString();
+            bool exist=true;
+
+            if(this.DbConnection())
+            {
+                string check = "SELECT count(*) FROM "+objects.typeC() +" WHERE id = "+id;
+                MySqlDataReader Reader = Query(Connection, check);
+                int j=0;
+                
+                while(Reader.Read() && j<1)
+                {
+                    if(Reader.GetInt32(0)==0)
+                    {
+                        exist=false;
+                    }
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+            if(exist)
+            {
+                ModifyFildelityProgram(objects);
+            }
+            else
+            {
+                CreateFidelityProgram(objects);
+            }
+            
+        }
+
+        public void SetOrderBikes(OrderedBike objects)
+        {
+            string id = objects.Id.ToString();
+            bool exist=true;
+
+            if(this.DbConnection())
+            {
+                string check = "SELECT count(*) FROM "+objects.typeC() +" WHERE id = "+id;
+                MySqlDataReader Reader = Query(Connection, check);
+                int j=0;
+                
+                while(Reader.Read() && j<1)
+                {
+                    if(Reader.GetInt32(0)==0)
+                    {
+                        exist=false;
+                    }
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+            if(exist)
+            {
+                ModifyOrderBikes(objects);
+            }
+            else
+            {
+                CreateOrderBikes(objects);
+            }
+            
+        }
+
+        public void SetOrderParts(OrderedPart objects)
+        {
+            string id = objects.Id.ToString();
+            bool exist=true;
+
+            if(this.DbConnection())
+            {
+                string check = "SELECT count(*) FROM "+objects.typeC() +" WHERE id = "+id;
+                MySqlDataReader Reader = Query(Connection, check);
+                int j=0;
+                
+                while(Reader.Read() && j<1)
+                {
+                    if(Reader.GetInt32(0)==0)
+                    {
+                        exist=false;
+                    }
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+            if(exist)
+            {
+                ModifyOrderParts(objects);
+            }
+            else
+            {
+                CreateOrderParts(objects);
+            }
+            
+        }
+
+        public void SetParts(Part objects)
+        {
+            string id = objects.Id.ToString();
+            bool exist=true;
+
+            if(this.DbConnection())
+            {
+                string check = "SELECT count(*) FROM "+objects.typeC() +" WHERE id = "+id;
+                MySqlDataReader Reader = Query(Connection, check);
+                int j=0;
+                
+                while(Reader.Read() && j<1)
+                {
+                    if(Reader.GetInt32(0)==0)
+                    {
+                        exist=false;
+                    }
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+            if(exist)
+            {
+                ModifyParts(objects);
+            }
+            else
+            {
+                CreatePart(objects);
+            }
+            
+        }
+        
+
+        public void SetProcurement(Procurement objects)
+        {
+            string id = objects.Id.ToString();
+            bool exist=true;
+
+            if(this.DbConnection())
+            {
+                string check = "SELECT count(*) FROM "+objects.typeC() +" WHERE id = "+id;
+                MySqlDataReader Reader = Query(Connection, check);
+                int j=0;
+                
+                while(Reader.Read() && j<1)
+                {
+                    if(Reader.GetInt32(0)==0)
+                    {
+                        exist=false;
+                    }
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+            if(exist)
+            {
+                ModifyProcurment(objects);
+            }
+            else
+            {
+                CreateProcurment(objects);
+            }
+            
+        }
+
+        public void SetSuppliers(Supplier objects)
+        {
+            string id = objects.Id.ToString();
+            bool exist=true;
+
+            if(this.DbConnection())
+            {
+                string check = "SELECT count(*) FROM "+objects.typeC() +" WHERE id = "+id;
+                MySqlDataReader Reader = Query(Connection, check);
+                int j=0;
+                
+                while(Reader.Read() && j<1)
+                {
+                    if(Reader.GetInt32(0)==0)
+                    {
+                        exist=false;
+                    }
+                }
+                Reader.Close();
+                Connection.Close();
+            }
+
+            if(exist)
+            {
+                ModifySupplier(objects);
+            }
+            else
+            {
+                CreateSupplier(objects);
+            }
+            
         }
     }
 }

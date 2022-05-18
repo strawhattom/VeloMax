@@ -65,6 +65,11 @@ namespace VeloMax.Models
             }    
         }
 
+        public string typeC()
+        {
+            return "suppliers";
+        }
+    
 
     }
 }

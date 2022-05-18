@@ -53,5 +53,11 @@ namespace VeloMax.Models
                     return "";
             }    
         }
+
+        public string typeC()
+        {
+            return "orders";
+        }
     }
+    
 }

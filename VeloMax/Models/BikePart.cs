@@ -41,5 +41,11 @@ namespace VeloMax.Models
                     return "";
             }    
         }
+
+        public string typeC()
+        {
+            return "bike_parts";
+        }
     }
+    
 }
