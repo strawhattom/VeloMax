@@ -84,7 +84,7 @@
 							Command="{Binding AddProfessional}"
 						/>
 						<Button
-							Content="Get info / Edit"
+							Content="Info / Edit"
 							Background="#F8BD96"
 							Margin="0,100,0,0"
 							HorizontalContentAlignment="Center"

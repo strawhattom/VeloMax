@@ -16,12 +16,23 @@
 				<RowDefinition Height="40"/>
 				<RowDefinition Height="550"/>
 			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="400"/>
+				<ColumnDefinition Width="400"/>
+			</Grid.ColumnDefinitions>
 
 			<!-- Title + client type button-->
 			<StackPanel>
 				<TextBlock
 					Grid.Column="0"
-					Text="Order"
+					Text="Ordered bikes"
+					Foreground="#000000"
+					FontSize="28"
+					HorizontalAlignment="Left"
+					Margin="0,0,0,20"/>
+				<TextBlock
+					Grid.Column="1"
+					Text="Ordered parts"
 					Foreground="#000000"
 					FontSize="28"
 					HorizontalAlignment="Left"
@@ -36,12 +47,22 @@
 						<ColumnDefinition Width="400"/>
 					</Grid.ColumnDefinitions>
 					<DataGrid Grid.Column="0"
-							  Items="{Binding Orders}"
-							  AutoGenerateColumns="True">
+							  Items="{Binding OrderedBikes}"
+							  SelectedItem="{Binding SelectedBike}"
+					          AutoGenerateColumns="False"
+					          CanUserResizeColumns="True"
+					          CanUserSortColumns="True"
+					          SelectionMode="Single"
+					          IsReadOnly="True">
 					</DataGrid>
 					<DataGrid Grid.Column="1"
-							  Items="{Binding Orders}"
-							  AutoGenerateColumns="True">
+							  Items="{Binding OrderedParts}"
+							  SelectedItem="{Binding SelectedPart}"
+					          AutoGenerateColumns="False"
+					          CanUserResizeColumns="True"
+					          CanUserSortColumns="True"
+					          SelectionMode="Single"
+					          IsReadOnly="True">
 					</DataGrid>
 				</Grid>
 			</Panel>
