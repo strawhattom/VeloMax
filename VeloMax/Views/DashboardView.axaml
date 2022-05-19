@@ -35,17 +35,17 @@
 					<TextBlock
 							Text="{Binding BikeQty}"
 							Foreground="White"
-							FontSize="18"
+							FontSize="14"
 							Margin="10 0 0 5"/>
 					<TextBlock
 							Text="{Binding BikeSum}"
 							Foreground="White"
-							FontSize="18"
+							FontSize="14"
 							Margin="10 0 0 5"/>
 					<TextBlock
 							Text="{Binding BikeAvg}"
 							Foreground="White"
-							FontSize="18"
+							FontSize="14"
 							Margin="10 0 0 5"/>
 				</StackPanel>
 
@@ -74,17 +74,17 @@
 						<TextBlock
 								Text="{Binding PartQty}"
 								Foreground="White"
-								FontSize="18"
+								FontSize="14"
 								Margin="10 0 0 5"/>
 						<TextBlock
 								Text="{Binding PartSum}"
 								Foreground="White"
-								FontSize="18"
+								FontSize="14"
 								Margin="10 0 0 5"/>
 						<TextBlock
 								Text="{Binding PartAvg}"
 								Foreground="White"
-								FontSize="18"
+								FontSize="14"
 								Margin="10 0 0 5"/>
 					</StackPanel>
 					<TextBlock
