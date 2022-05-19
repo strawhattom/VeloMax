@@ -80,7 +80,16 @@
 				/>
 				
 			</StackPanel>
-
+			
+			<TextBlock
+				Grid.Column="1"
+				Grid.Row="9"
+				Text="{Binding DataText}"
+				Foreground="{Binding Color}"
+				FontSize="13"
+				HorizontalAlignment="Center"
+				Margin="0,30,0,5"/>
+			
 			<Panel Grid.Column="1"
 			       Grid.Row="10"
 			       HorizontalAlignment="Center"
