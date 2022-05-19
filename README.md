@@ -15,7 +15,7 @@ namespace VeloMax.Services
 {
     public static class Config
     {
-                                            /*                      to change                  */
+                                            /*                     to change                   */
         public static string Connection => "database=dbname;server=host;uid=userid;pwd=password";
     }
 }
