@@ -160,6 +160,11 @@ namespace VeloMax.ViewModels
                     _current.LastName = LastName;
                     _current.FirstName = FirstName;
 
+                    if (_current.FidelityProgram > 4 || _current.FidelityProgram < 0)
+                    {
+                        throw new FormatException();
+                    }
+
                     _db.SetClients(_current);
                     
                     // Updating Datagrid

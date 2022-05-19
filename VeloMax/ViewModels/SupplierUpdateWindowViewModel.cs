@@ -114,6 +114,10 @@ namespace VeloMax.ViewModels
                     _current.Siret = SiretText;
                     _current.Contact = ContactText;
                     _current.Location = LocationText;
+                    if (Int32.Parse(LabelText) > 5 || Int32.Parse(LabelText) < 1)
+                    {
+                        throw new FormatException();
+                    }
                     _current.Label= LabelText;
 
                     Debug.WriteLine(NameText + " " + SiretText + " " + ContactText + " " + LocationText + " " + LabelText);
