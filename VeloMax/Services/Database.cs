@@ -116,14 +116,14 @@ namespace VeloMax.Services
             return list;
         }
 
-        public List<Individual> GetIndividuals()
+        public List<Individual> GetIndividuals(string search = "")
         {
             List<Individual> List = new List<Individual>();
 
             if (this.DbConnection())
             {
-                string StringQuery = "SELECT * FROM clients NATURAL JOIN individuals";
-                MySqlDataReader Reader = Query(Connection, StringQuery);
+                string StringQuery = "SELECT * "+ "FROM clients NATURAL JOIN individuals "+ "WHERE first_name LIKE '"+search+"%'OR last_name LIKE '" + search + "%' OR city LIKE '" + search + "%' OR postal_code LIKE '" + search + "%' OR phone LIKE '" + search + "%';";                MySqlDataReader Reader = Query(Connection, StringQuery);
+                Console.WriteLine(StringQuery);
                 int Id;
                 string Street, City, PostalCode, Province, Phone, Mail;
                 DateTime expirationDate;
@@ -161,15 +161,16 @@ namespace VeloMax.Services
             return List;
         }
 
-        public List<Professional> GetProfessionals()
+        public List<Professional> GetProfessionals(string search = "")
         {
             List<Professional> List = new List<Professional>();
 
             if (this.DbConnection())
             {
-                string StringQuery = "SELECT * FROM clients NATURAL JOIN professionals";
+                string StringQuery = "SELECT * "+ "FROM clients NATURAL JOIN professionals "+ "WHERE company_name LIKE '"+search+"%'OR contact_name LIKE '" + search + "%' OR city LIKE '" + search + "%' OR postal_code LIKE '" + search + "%' OR phone LIKE '" + search + "%';";
+                Console.WriteLine(StringQuery);
                 MySqlDataReader Reader = Query(Connection, StringQuery);
-
+    
                 string Street, City, PostalCode, Province, Phone, Mail;
                 int Id;
                 string CompanyName, ContactName;
@@ -196,34 +197,22 @@ namespace VeloMax.Services
             return List;
         }
 
-        public List<Client> GetClients()
+        public List<Client> GetClients(string sear = "")
         {
             List<int> ids = GetClientsId();
             List<Client> clients = new();
-            List<Individual> ind = GetIndividuals();
-            List<Professional> pro = GetProfessionals();
-            
-            foreach (int id in ids)
+            List<Individual> ind = GetIndividuals(sear);
+            List<Professional> pro = GetProfessionals(sear);
+
+
+            foreach (var item in ind)
             {
-                var search = ind.FirstOrDefault(i => i.Id == id);
-                if (search != null)
-                {
-                    // Find  individual
-                    clients.Add(search);
-                }
-                else
-                {
-                    var anotherSearch = pro.FirstOrDefault(i => i.Id == id);
-                    if (anotherSearch != null)
-                    {
-                        clients.Add(anotherSearch);
-                    }
-                    else
-                    {
-                        System.Environment.Exit(-2);
-                    }
-                    
-                }
+                clients.Add(item);
+            }
+            
+            foreach (var item in pro)
+            {
+                clients.Add(item);
             }
 
             return clients;

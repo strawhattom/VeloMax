@@ -74,7 +74,7 @@ namespace VeloMax.ViewModels
 
         private void OnClientButtonClicked()
         {
-            this.NavigationContent = new ClientViewModel(_db.GetClients());
+            this.NavigationContent = new ClientViewModel(_db.GetClients(_searchText));
         }
 
         private void OnOrderButtonClicked()
