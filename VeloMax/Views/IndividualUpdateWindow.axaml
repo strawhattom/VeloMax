@@ -5,7 +5,7 @@
     xmlns:vm="clr-namespace:VeloMax.ViewModels"
 	xmlns:i="using:Avalonia.Xaml.Interactivity"
 	xmlns:behaviors="clr-namespace:VeloMax.Behaviors"
-    x:Class="VeloMax.Views.BikeUpdateWindow"
+    x:Class="VeloMax.Views.IndividualUpdateWindow"
     Icon="/Assets/velomax-logo.ico"
     Title="VeloMax"
     WindowStartupLocation="CenterScreen"
@@ -15,11 +15,9 @@
 	<i:Interaction.Behaviors>
 		<behaviors:CloseWindowBehavior CloseTrigger="{Binding CloseAppTrigger}" />
 	</i:Interaction.Behaviors>
-	
 	<Design.DataContext>
-		<vm:BikeUpdateWindowViewModel/>
+		<vm:IndividualUpdateWindowViewModel/>
 	</Design.DataContext>
-	
 	<StackPanel>
 		<Grid>
 			<Grid.ColumnDefinitions>
@@ -37,12 +35,15 @@
 				<RowDefinition/>
 				<RowDefinition/>
 				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
+				<RowDefinition/>
 			</Grid.RowDefinitions>
 			<Panel Grid.Column="1"
 				Grid.Row="0"
 				Margin="0,50,0,20">
 				<TextBlock
-					Text="Update bike"
+					Text="Individual client update"
 					FontSize="22"
 					FontWeight="Bold"
 					HorizontalAlignment="Center"/>
@@ -60,16 +61,16 @@
 			       Grid.Row="1"
 			       Orientation="Horizontal">
 				<TextBlock
-					Text="Name"
+					Text="Street"
 					FontSize="13"
 					FontWeight="Bold"
 					VerticalAlignment="Center"
 					Margin="0,0,10,0"/>
 				<TextBox
-					Text="{Binding NameText}"
+					Text="{Binding Street}"
 					BorderThickness="2"
 					BorderBrush="#D9E0EE"
-					Watermark="Name"
+					Watermark="Street"
 					Width="160"
 					Margin="0,10,0,10"
 					CornerRadius="15"
@@ -80,57 +81,58 @@
 			            Grid.Row="2"
 			            Orientation="Horizontal">
 				<TextBlock
-					Text="Target"
+					Text="City"
 					FontSize="13"
 					FontWeight="Bold"
 					VerticalAlignment="Center"
 					Margin="0,0,10,0"/>
 				<TextBox
-					Text="{Binding TargetText}"
+					Text="{Binding City}"
 					BorderThickness="2"
 					BorderBrush="#D9E0EE"
-					Watermark="Target"
+					Watermark="City"
 					Width="160"
 					Margin="0,10,0,10"
 					CornerRadius="15"
 				/>
+				
 			</StackPanel>
 
 			<StackPanel Grid.Column="1"
 			            Grid.Row="3"
 			            Orientation="Horizontal">
 				<TextBlock
-					Text="Price"
+					Text="Postal"
 					FontSize="13"
 					FontWeight="Bold"
 					VerticalAlignment="Center"
 					Margin="0,0,10,0"/>
 				<TextBox
-					Text="{Binding PriceText}"
+					Text="{Binding Postal}"
 					BorderThickness="2"
 					BorderBrush="#D9E0EE"
-					Watermark="Unit price"
+					Watermark="Postal Code"
 					Width="160"
 					Margin="0,10,0,10"
 					CornerRadius="15"
-					HorizontalAlignment="Right"
 				/>
+				
 			</StackPanel>
-
+			
 			<StackPanel Grid.Column="1"
 			            Grid.Row="4"
 			            Orientation="Horizontal">
 				<TextBlock
-					Text="Type"
+					Text="Province"
 					FontSize="13"
 					FontWeight="Bold"
 					VerticalAlignment="Center"
 					Margin="0,0,10,0"/>
 				<TextBox
-					Text="{Binding TypeText}"
+					Text="{Binding Province}"
 					BorderThickness="2"
 					BorderBrush="#D9E0EE"
-					Watermark="Type"
+					Watermark="Province"
 					Width="160"
 					Margin="0,10,0,10"
 					CornerRadius="15"
@@ -138,27 +140,116 @@
 				/>
 			</StackPanel>
 			
-			<DatePicker
-				Grid.Column="1"
-                Grid.Row="5"
-				SelectedDate="{Binding IntroductionDT}"
-				Header="Introduction date"
-				Margin="0,10,0,10"/>
-
-			<DatePicker
-				Grid.Column="1"
-                Grid.Row="6"
-				SelectedDate="{Binding DiscontinuationDT}"
-				Header="Discontinuation date"
-				Margin="0,10,0,10"/>
-
+			<StackPanel Grid.Column="1"
+			            Grid.Row="5"
+			            Orientation="Horizontal">
+				<TextBlock
+					Text="Phone"
+					FontSize="13"
+					FontWeight="Bold"
+					VerticalAlignment="Center"
+					Margin="0,0,10,0"/>
+				<TextBox
+					Text="{Binding Phone}"
+					BorderThickness="2"
+					BorderBrush="#D9E0EE"
+					Watermark="Phone"
+					Width="160"
+					Margin="0,10,0,10"
+					CornerRadius="15"
+					HorizontalAlignment="Right"
+				/>
+			</StackPanel>
 			
+			<StackPanel Grid.Column="1"
+			            Grid.Row="6"
+			            Orientation="Horizontal">
+				<TextBlock
+					Text="Mail"
+					FontSize="13"
+					FontWeight="Bold"
+					VerticalAlignment="Center"
+					Margin="0,0,10,0"/>
+				<TextBox
+					Text="{Binding Mail}"
+					BorderThickness="2"
+					BorderBrush="#D9E0EE"
+					Watermark="Mail"
+					Width="160"
+					Margin="0,10,0,10"
+					CornerRadius="15"
+					HorizontalAlignment="Right"
+				/>
+			</StackPanel>
+			
+			<StackPanel Grid.Column="1"
+			            Grid.Row="7"
+			            Orientation="Horizontal">
+				<TextBlock
+					Text="Last Name"
+					FontSize="13"
+					FontWeight="Bold"
+					VerticalAlignment="Center"
+					Margin="0,0,10,0"/>
+				<TextBox
+					Text="{Binding LastName}"
+					BorderThickness="2"
+					BorderBrush="#D9E0EE"
+					Watermark="Last name"
+					Width="160"
+					Margin="0,10,0,10"
+					CornerRadius="15"
+					HorizontalAlignment="Right"
+				/>
+			</StackPanel>
+			
+			<StackPanel Grid.Column="1"
+			            Grid.Row="8"
+			            Orientation="Horizontal">
+				<TextBlock
+					Text="First Name"
+					FontSize="13"
+					FontWeight="Bold"
+					VerticalAlignment="Center"
+					Margin="0,0,10,0"/>
+				<TextBox
+					Text="{Binding FirstName}"
+					BorderThickness="2"
+					BorderBrush="#D9E0EE"
+					Watermark="FirstName"
+					Width="160"
+					Margin="0,10,0,10"
+					CornerRadius="15"
+					HorizontalAlignment="Right"
+				/>
+			</StackPanel>
+			
+			<StackPanel Grid.Column="1"
+			            Grid.Row="9"
+			            Orientation="Horizontal">
+				<TextBlock
+					Text="Fidelity program"
+					FontSize="13"
+					FontWeight="Bold"
+					VerticalAlignment="Center"
+					Margin="0,0,10,0"/>
+				<TextBox
+					Text="{Binding Program}"
+					BorderThickness="2"
+					BorderBrush="#D9E0EE"
+					Watermark="Fidelity program"
+					Width="160"
+					Margin="0,10,0,10"
+					CornerRadius="15"
+					HorizontalAlignment="Right"
+				/>
+			</StackPanel>
 
 			
 			<!-- Message + button -->
 			<TextBlock
 				Grid.Column="1"
-					Grid.Row="7"
+					Grid.Row="10"
 					Text="{Binding DataText}"
 					Foreground="{Binding Color}"
 					FontSize="13"
@@ -166,7 +257,7 @@
 					Margin="0,30,0,5"/>
 
 			<Panel Grid.Column="1"
-					Grid.Row="8"
+					Grid.Row="11"
 					HorizontalAlignment="Center"
 					Margin="0,10,0,0">
 				<Button

@@ -1,5 +1,6 @@
 ﻿// using System;
 using System.Windows.Input;
+using System.Collections.Generic;
 using VeloMax.Services;
 using VeloMax.Models;
 using ReactiveUI;
@@ -24,8 +25,6 @@ namespace VeloMax.ViewModels
         public ICommand SupplierButtonClicked { get; }
         public ICommand CloseButtonClicked { get; }
 
-        // public ICommand SearchInput { get; }
-
         public ViewModelBase NavigationContent
         {
             get => this._navigationContent;
@@ -36,13 +35,7 @@ namespace VeloMax.ViewModels
             get => this._closeAppTrigger;
             set => this.RaiseAndSetIfChanged(ref this._closeAppTrigger, value);
         }
-
-        // public string SearchContent
-        // {
-        //     get => this._searchText;
-        //     set => this.RaiseAndSetIfChanged(ref _searchText, value);
-        // }
-
+        
         private string _searchText;
         
         // Constructor
@@ -81,7 +74,7 @@ namespace VeloMax.ViewModels
 
         private void OnClientButtonClicked()
         {
-            this.NavigationContent = new ClientViewModel(_db.GetClients(), _db.GetIndividuals(), _db.GetProfessionals());
+            this.NavigationContent = new ClientViewModel(_db.GetClients());
         }
 
         private void OnOrderButtonClicked()

@@ -12,7 +12,7 @@
 			<vm:ClientViewModel/>
 		</Design.DataContext>
 		
-		<Grid Background="Lightgreen">
+		<Grid>
 			<Grid.RowDefinitions>
 				<RowDefinition Height="40"/>
 				<RowDefinition Height="550"/>
@@ -34,90 +34,62 @@
 						Margin="0,0,0,20"/>
 
 					<!-- Client buttons -->
-					<StackPanel Grid.Column="1" 
-								Orientation="Horizontal"
-								HorizontalAlignment="Right"
-								VerticalAlignment="Center">
-						<Button
-							Content="All"
-							Classes="Type"
-							Background="#D9E0EE"
-							Width="140"
-							Command="{Binding ClientShowClicked}"
-							VerticalContentAlignment="Center"
-							HorizontalContentAlignment="Center"
-							/>
-						<Button
-							Content="Individual"
-							Classes="Type"
-							Width="140"
-							Background="#D9E0EE"
-							Command="{Binding IndividualShowClicked}"
-							VerticalContentAlignment="Center"
-							HorizontalContentAlignment="Center"
-							/>
-						<Button
-							Content="Professional"
-							Classes="Type"
-							Background="#D9E0EE"
-							Width="140"
-							Command="{Binding ProfessionalShowClicked}"
-							VerticalContentAlignment="Center"
-							HorizontalContentAlignment="Center"
-							/>
-					</StackPanel>
 				</Grid>
 			</StackPanel>
 
 			<!-- Data + buttons -->
-			<Panel Grid.Row="1"
-						Background="Pink">
+			<Panel Grid.Row="1">
 				<Grid>
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="800"/>
 						<ColumnDefinition Width="180"/>
 					</Grid.ColumnDefinitions>
 					<DataGrid Grid.Column="0"
-							Name="ClientGrid"
-							Items="{Binding ClientData}"
-							AutoGenerateColumns="True"
-							CanUserSortColumns="True">
-
+					          Name="BikeGrid"
+					          Items="{Binding ClientData}"
+					          SelectedItem="{Binding SelectedClient}"
+					          AutoGenerateColumns="False"
+					          CanUserResizeColumns="True"
+					          CanUserSortColumns="True"
+					          SelectionMode="Single"
+					          IsReadOnly="True">
 						<DataGrid.Columns>
-							<DataGridTemplateColumn Header="Edit" Width="*" >
-								<DataGridTemplateColumn.CellTemplate>
-									<DataTemplate>
-										<StackPanel Orientation="Horizontal">
-											<Button
-											Name="{Binding Id}"
-											Content="Edit"
-											Background="#F8BD96"
-											HorizontalContentAlignment="Center"
-											/>
-										</StackPanel>
-									</DataTemplate>
-								</DataGridTemplateColumn.CellTemplate>
-							</DataGridTemplateColumn>
+							<DataGridTextColumn Header="#"  Binding="{Binding Id}"/>
+							<DataGridTextColumn Header="Type" Binding="{Binding Type}" />
+							<DataGridTextColumn Header="Company" Binding="{Binding CompanyName}" />
+							<DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" />
+							<DataGridTextColumn Header="City" Binding="{Binding City}" />
+							<DataGridTextColumn Header="Phone" Binding="{Binding Phone}" />
+							<DataGridTextColumn Header="Mail" Binding="{Binding Mail}" />
 						</DataGrid.Columns>
 					</DataGrid>
 					
 					<!-- Modificator Button -->
 					<StackPanel Grid.Column="1"
-								HorizontalAlignment="Center"
-								Background="Red">
+								HorizontalAlignment="Center">
 						<Button
-							Content="Add"
+							Content="Add individual"
 							Background="#ABE9B3"
 							Margin="0,100,0,0"
 							HorizontalContentAlignment="Center"
 							Width="140"
+							Command="{Binding AddIndividual}"
 							/>
 						<Button
-							Content="Update/Info"
+							Content="Add professional"
 							Background="#ABE9B3"
 							Margin="0,100,0,0"
 							HorizontalContentAlignment="Center"
 							Width="140"
+							Command="{Binding AddProfessional}"
+						/>
+						<Button
+							Content="Get info / Edit"
+							Background="#F8BD96"
+							Margin="0,100,0,0"
+							HorizontalContentAlignment="Center"
+							Width="140"
+							Command="{Binding Update}"
 							/>
 						
 						<Button
@@ -126,6 +98,7 @@
 							Margin="0,100,0,0"
 							Width="140"
 							HorizontalContentAlignment="Center"
+							Command="{Binding Delete}"
 							/>
 					</StackPanel>
 				</Grid>

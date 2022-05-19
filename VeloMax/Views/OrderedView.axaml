@@ -1,0 +1,52 @@
+<UserControl
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="clr-namespace:VeloMax.ViewModels"
+	x:Class="VeloMax.Views.OrderedView"
+	>
+	<StackPanel>
+		<Design.DataContext>
+			<vm:OrderViewModel/>
+		</Design.DataContext>
+
+		<Grid>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="40"/>
+				<RowDefinition Height="550"/>
+			</Grid.RowDefinitions>
+
+			<!-- Title + client type button-->
+			<StackPanel>
+				<TextBlock
+					Grid.Column="0"
+					Text="Order"
+					Foreground="#000000"
+					FontSize="28"
+					HorizontalAlignment="Left"
+					Margin="0,0,0,20"/>
+			</StackPanel>
+
+			<!-- Data + buttons -->
+			<Panel Grid.Row="1">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="400"/>
+						<ColumnDefinition Width="400"/>
+					</Grid.ColumnDefinitions>
+					<DataGrid Grid.Column="0"
+							  Items="{Binding Orders}"
+							  AutoGenerateColumns="True">
+					</DataGrid>
+					<DataGrid Grid.Column="1"
+							  Items="{Binding Orders}"
+							  AutoGenerateColumns="True">
+					</DataGrid>
+				</Grid>
+			</Panel>
+		</Grid>
+
+	</StackPanel>
+
+</UserControl>

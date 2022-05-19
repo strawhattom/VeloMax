@@ -27,8 +27,18 @@
 <!--        <PackageReference Include="XamlNameReferenceGenerator" Version="*" />-->
     </ItemGroup>
     <ItemGroup>
+      <Compile Update="Views\IndividualUpdateWindow.axaml.cs">
+        <DependentUpon>IndividualUpdateWindow.axaml</DependentUpon>
+      </Compile>
+      <Compile Update="Views\OrderedView.axaml.cs">
+        <DependentUpon>OrderedView.axaml</DependentUpon>
+      </Compile>
       <Compile Update="Views\SupplierUpdateWindow.axaml.cs">
         <DependentUpon>SupplierUpdateWindow.axaml</DependentUpon>
+      </Compile>
+      <Compile Update="Views\ProfessionalUpdateWindow.axaml.cs">
+        <DependentUpon>ClientUpdateWindow.axaml</DependentUpon>
+        <SubType>Code</SubType>
       </Compile>
     </ItemGroup>
 </Project>
