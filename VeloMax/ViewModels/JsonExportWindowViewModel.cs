@@ -18,7 +18,7 @@ public class JsonExportWindowViewModel : ViewModelBase
     private int _minQty;
     private string _filePath = "parts.json";
     private string _data = "";
-    private string _color = "black";
+    private string _color = "";
     
     private readonly Database _db = new();
     public JsonExportWindowViewModel()
@@ -31,7 +31,8 @@ public class JsonExportWindowViewModel : ViewModelBase
             //Console.WriteLine(Parts[0]);
             //Console.WriteLine(jsonString);
             File.WriteAllText(_filePath, jsonString);
-            Console.WriteLine("OK"); 
+            Color = "#77DD77";
+            DataText = "Exported to " + _filePath;
         });
     }
 
@@ -45,5 +46,16 @@ public class JsonExportWindowViewModel : ViewModelBase
     {
         get => _filePath;
         set => this.RaiseAndSetIfChanged(ref _filePath, value);
+    }
+
+    public string Color
+    {
+        get => _color;
+        set => this.RaiseAndSetIfChanged(ref _color, value);
+    }
+    public string DataText
+    {
+        get => _color;
+        set => this.RaiseAndSetIfChanged(ref _color, value);
     }
 }
