@@ -777,7 +777,7 @@ namespace VeloMax.Services
         {
             string[] tab = Supplier.Attributs();
 
-            string create = "Insert into `velomax`.`supliers` (";
+            string create = "Insert into `velomax`.`suppliers` (";
             for(int i = 0; i< tab.Length-1;i++)
             {
                 create += tab[i] + ',';
