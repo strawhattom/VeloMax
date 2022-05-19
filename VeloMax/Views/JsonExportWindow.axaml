@@ -2,10 +2,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:VeloMax.ViewModels"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="VeloMax.Views.JsonExportWindow"
         Title="Json Export">
-    <StackPanel>
+	
+	<Design.DataContext>
+		<vm:JsonExportWindowViewModel/>
+	</Design.DataContext>
+	<StackPanel>
 		<Grid>
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition/>
@@ -34,15 +39,7 @@
 					FontWeight="Bold"
 					HorizontalAlignment="Center"/>
 			</Panel>
-			<Button
-                Grid.Column="2"
-                Grid.Row="0"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Right"
-				Margin="0,10,10,0"
-                Command="{Binding CloseButtonClicked}"
-                Classes="QuitButtonStyle" />
-			
+			<!-- Bouton -->
 			<StackPanel Grid.Column="1"
 			       Grid.Row="2"
 			       Orientation="Horizontal">
@@ -57,7 +54,7 @@
 					BorderThickness="2"
 					BorderBrush="#D9E0EE"
 					Watermark="ex 3"
-					Width="160"
+					Width="80"
 					Margin="0,10,0,10"
 					CornerRadius="15"
 				/>
@@ -77,7 +74,7 @@
 					BorderThickness="2"
 					BorderBrush="#D9E0EE"
 					Watermark="~/Documents/parts.json"
-					Width="160"
+					Width="300"
 					Margin="0,10,0,10"
 					CornerRadius="15"
 				/>
@@ -94,8 +91,7 @@
 					Background="#1E1E2E"
 					Width="100"
 					HorizontalContentAlignment="Center"
-					Command="{Binding ExportJson}"
-                />
+					Command="{Binding ExportJson}" />
 			</Panel>
 		</Grid>
 	</StackPanel>

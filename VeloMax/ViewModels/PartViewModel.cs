@@ -21,7 +21,7 @@ namespace VeloMax.ViewModels
         public ReactiveCommand<Unit, Unit> UpdatePart { get; }
         public ReactiveCommand<Unit, Unit> DeletePart { get; }
         
-        public ReactiveCommand<Unit, Unit> SaveJson { get;  }
+        public ReactiveCommand<Unit, Unit> JsonExport { get;  }
 
         private Part _selectPart;
         private string _searchText;
@@ -53,7 +53,7 @@ namespace VeloMax.ViewModels
                 };
                 messageBox.Show();
             });
-            SaveJson = ReactiveCommand.Create(  () =>
+            JsonExport = ReactiveCommand.Create(  () =>
             {
                 var export = new JsonExportWindow
                 {

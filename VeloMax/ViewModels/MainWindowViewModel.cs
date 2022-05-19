@@ -76,7 +76,7 @@ namespace VeloMax.ViewModels
 
         private void OnPartButtonClicked()
         {
-            this.NavigationContent = new PartViewModel(_db.Search(_searchText), _db);
+            this.NavigationContent = new PartViewModel(_db.MinQtyParts(2), _db);
         }
 
         private void OnClientButtonClicked()
