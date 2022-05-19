@@ -66,5 +66,21 @@ Join bikes B on B.id = Bp.bikes_id
 join ordered_parts Pp on Pp.orders_id = O.id 
 join parts P on P.id = Pp.parts_id;
 ```
-                                                
-                    
+
+
+
+## Les livrables
+
+| Tâche                                                               | Réalisé | Partiellement réalisé | Non réalisé |
+| ------------------------------------------------------------------- |:-------:|:---------------------:|:-----------:|
+| IHM (interface homme machine), Avalonia                             | X       |                       |             |
+| Gestion pièces de rechange (création, suppression, maj)             | X       |                       |             |
+| Gestion des clients (particuliers et professionnels)                | X       |                       |             |
+| Gestion des fournisseurs                                            | X       |                       |             |
+| Gestion des commandes                                               |         |                       | X           |
+| Profil de connexion à la BDD                                        | X       |                       |             |
+| Affichage des stocks                                                | X       |                       |             |
+| Vérification des champs de saisies lors de la création/modification | X       |                       |             |
+| Export des données (JSON/XML)                                       | X       |                       |             |
+| Statistiques                                                        |         | X                     |             |
+| Bonus : barre de recherche sur toutes les tables                    | X       |                       |             |
