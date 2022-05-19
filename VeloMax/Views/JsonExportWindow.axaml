@@ -3,9 +3,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:VeloMax.ViewModels"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="VeloMax.Views.JsonExportWindow"
-        Title="Json Export">
+        Title="Json Export"
+        Width="700"
+        Height="300">
 	
 	<Design.DataContext>
 		<vm:JsonExportWindowViewModel/>

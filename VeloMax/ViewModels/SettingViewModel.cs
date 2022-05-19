@@ -4,7 +4,7 @@ using System.Text;
 
 namespace VeloMax.ViewModels
 {
-    public class StockViewModel : ViewModelBase
+    public class SettingViewModel : ViewModelBase
     {
 
     }

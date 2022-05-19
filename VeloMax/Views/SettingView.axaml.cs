@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace VeloMax.Views
 {
-    public partial class StockView : UserControl
+    public partial class SettingView : UserControl
     {
-        public StockView()
+        public SettingView()
         {
             InitializeComponent();
         }

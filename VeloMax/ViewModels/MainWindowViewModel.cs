@@ -20,8 +20,8 @@ namespace VeloMax.ViewModels
         public ICommand PartButtonClicked { get; }
         public ICommand ClientButtonClicked { get; }
         public ICommand OrderButtonClicked { get; }
-        public ICommand OtherButtonClicked { get; }
-        public ICommand StockButtonClicked { get; }
+        public ICommand OrderedButtonClicked { get; }
+        public ICommand SettingButtonClicked { get; }
         public ICommand SupplierButtonClicked { get; }
         public ICommand CloseButtonClicked { get; }
 
@@ -49,9 +49,9 @@ namespace VeloMax.ViewModels
             PartButtonClicked = ReactiveCommand.Create(OnPartButtonClicked);
             ClientButtonClicked = ReactiveCommand.Create(OnClientButtonClicked);
             OrderButtonClicked = ReactiveCommand.Create(OnOrderButtonClicked);
-            OtherButtonClicked = ReactiveCommand.Create(OnOtherButtonClicked);
-            StockButtonClicked = ReactiveCommand.Create(OnStockButtonClicked);
+            SettingButtonClicked = ReactiveCommand.Create(OnSettingButtonClicked);
             SupplierButtonClicked = ReactiveCommand.Create(OnSupplierButtonClicked);
+            OrderedButtonClicked = ReactiveCommand.Create(OnOrderedButtonClicked);
             CloseButtonClicked = ReactiveCommand.Create(() => { CloseAppTrigger = true; });
 
         }
@@ -81,15 +81,14 @@ namespace VeloMax.ViewModels
         {
             this.NavigationContent = new OrderViewModel(_db.GetOrders());
         }
-
-        private void OnOtherButtonClicked()
+        private void OnOrderedButtonClicked()
         {
-            this.NavigationContent = new OtherViewModel();
+            this.NavigationContent = new OrderedViewModel(_db.GetOrderBikes(), _db.GetOrderParts());
         }
 
-        private void OnStockButtonClicked()
+        private void OnSettingButtonClicked()
         {
-            this.NavigationContent = new StockViewModel();
+            this.NavigationContent = new SettingViewModel();
         }
 
         private void OnSupplierButtonClicked()

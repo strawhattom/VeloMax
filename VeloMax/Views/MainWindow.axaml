@@ -83,7 +83,7 @@
                     <controls:MenuItemButton
                         Content="Parts"
                         Classes="MenuItem"
-                        Kind="BikeBasket"
+                        Kind="Wrench"
                         Command="{Binding PartButtonClicked}"/>
                     
                     <controls:MenuItemButton
@@ -105,16 +105,16 @@
                         Command="{Binding OrderButtonClicked}"/>
                     
                     <controls:MenuItemButton
-                        Content="Stocks"
-                        Kind="Wrench"
+                        Content="Ordered"
                         Classes="MenuItem"
-                        Command="{Binding StockButtonClicked}"/>
+                        Kind="Check"
+                        Command="{Binding OrderedButtonClicked}"/>
                     
                     <controls:MenuItemButton
-                        Content="Others"
+                        Content="Settings"
                         Kind="DotsHorizontal"
                         Classes="MenuItem"
-                        Command="{Binding OtherButtonClicked}"/>
+                        Command="{Binding SettingButtonClicked}"/>
                 </StackPanel>
                 
                 <!-- Search box -->
