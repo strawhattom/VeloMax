@@ -104,8 +104,7 @@
 						<RowDefinition Height="160" />
 						<RowDefinition Height="40" />
 					</Grid.RowDefinitions>
-					<ListBox Items="{Binding WorstSuppliers}"/>
-
+					
 					<TextBlock Grid.Row="1"
 						Text="Worst suppliers"
 						Foreground="White"
@@ -169,21 +168,6 @@
 
             <StackPanel Orientation="Horizontal">
 
-				<StackPanel Orientation="Vertical">
-
-					<DataGrid Items="{Binding WorstSuppliers}" Width="150" Height="150">
-						<DataGrid.Columns>
-							<DataGridTextColumn Header="Name" Binding="{Binding}"/>
-						</DataGrid.Columns>
-					</DataGrid>
-					<TextBlock
-						Text="WorstSuppliers"
-						Foreground="#1A1826"
-						FontSize="12"
-						HorizontalAlignment="Left"
-						Margin="0 40 0 10" />
-				</StackPanel>
-				
 
               <!-- Order -->
               <Border Width="150" Height="150" Background="#89DCEB" CornerRadius="10">
