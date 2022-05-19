@@ -9,6 +9,13 @@ namespace VeloMax.Models
         public int FidelityProgram { get; set; }
         public DateTime ExpirationDate { get; set; }
 
+
+        public Individual() : base()
+        {
+            FirstName = LastName = "";
+            FidelityProgram = 0;
+            ExpirationDate = DateTime.Now;
+        }
         public Individual(int id, string firstName, string lastName, string street, string city, string postalCode, string province, string phone, string mail, int fidelityProgram, DateTime expirationDate) : base(id, street, city, postalCode, province, phone, mail)
         {
 
@@ -17,6 +24,8 @@ namespace VeloMax.Models
             {
                 System.Environment.Exit(0);
             }
+
+            this.Type = "Individual";
             this.LastName = lastName;
             this.FirstName = firstName;
             this.FidelityProgram = fidelityProgram;
@@ -46,14 +55,14 @@ namespace VeloMax.Models
             return i switch
             {
                 0 => this.Id.ToString(),
-                1 => "'" + this.Street.ToString() + "'",
-                2 => "'" + this.City.ToString() + "'",
-                3 => "'" + this.PostalCode.ToString() + "'",
-                4 => "'" + this.Province.ToString() + "'",
+                1 => '"' + this.Street.ToString() + '"',
+                2 => '"' + this.City.ToString() + '"',
+                3 => '"' + this.PostalCode.ToString() + '"',
+                4 => '"' + this.Province.ToString() + '"',
                 5 => "'" + this.Phone + "'",
                 6 => "'" + this.Mail.ToString() + "'",
                 7 => "'" + this.FirstName.ToString() + "'",
-                8 => "'" + this.LastName + "'",
+                8 => '"' + this.LastName + '"',
                 9 => this.FidelityProgram.ToString(),
                 10 => "'" + this.ExpirationDate.ToString("yyyy-MM-dd") + "'",
                 _ => "",

@@ -4,6 +4,7 @@ using VeloMax.Models;
 using MySql.Data.MySqlClient;
 using System.Diagnostics;
 using System.Globalization;
+using System.Linq;
 
 namespace VeloMax.Services
 {
@@ -92,34 +93,27 @@ namespace VeloMax.Services
         #endregion
 
         #region Get
-        public List<Client> GetClients()
+        public List<int> GetClientsId()
         {
-            List<Client> List = new List<Client>();
+            List<int> list = new();
 
             if (this.DbConnection())
             {
-                string StringQuery = "SELECT * FROM clients";
+                string StringQuery = "SELECT id FROM clients";
                 MySqlDataReader Reader = Query(Connection, StringQuery);
-
-                string Street, City, PostalCode, Province, Phone, Mail;
+                
                 int Id;
 
                 while (Reader.Read())
                 {
                     Id = Reader.GetInt32(0);
-                    Street = Reader.GetString(1);
-                    City = Reader.GetString(2);
-                    PostalCode = Reader.GetString(3);
-                    Province = Reader.GetString(4);
-                    Phone = Reader.GetString(5);
-                    Mail = Reader.GetString(6);
-                    List.Add(new Client(Id,Street, City, PostalCode, Province, Phone, Mail));
+                    list.Add(Id);
                 }
                 Reader.Close();
                 Connection.Close();
             }
 
-            return List;
+            return list;
         }
 
         public List<Individual> GetIndividuals()
@@ -199,8 +193,40 @@ namespace VeloMax.Services
                 Reader.Close();
                 Connection.Close();
             }
-
             return List;
+        }
+
+        public List<Client> GetClients()
+        {
+            List<int> ids = GetClientsId();
+            List<Client> clients = new();
+            List<Individual> ind = GetIndividuals();
+            List<Professional> pro = GetProfessionals();
+            
+            foreach (int id in ids)
+            {
+                var search = ind.FirstOrDefault(i => i.Id == id);
+                if (search != null)
+                {
+                    // Find  individual
+                    clients.Add(search);
+                }
+                else
+                {
+                    var anotherSearch = pro.FirstOrDefault(i => i.Id == id);
+                    if (anotherSearch != null)
+                    {
+                        clients.Add(anotherSearch);
+                    }
+                    else
+                    {
+                        System.Environment.Exit(-2);
+                    }
+                    
+                }
+            }
+
+            return clients;
         }
 
 
@@ -1049,22 +1075,22 @@ namespace VeloMax.Services
             List<string> bestlist = new List<string>();
 
             if (this.DbConnection())
-                {
-                    MySqlDataReader Reader = Query(Connection, best);
+            {
+                MySqlDataReader Reader = Query(Connection, best);
 
-                    int j=0;
-                    while (Reader.Read() & j<1)
+                int j=0;
+                while (Reader.Read() & j<1)
+                {
+                    for (int i = 0; i < Reader.FieldCount; i++)
+                    {
                         {
-                            for (int i = 0; i < Reader.FieldCount; i++)
-                            {
-                                {
-                                    bestlist.Add(Reader.GetString(i));
-                                }
-                            }
-                            j++;
+                            bestlist.Add(Reader.GetString(i));
                         }
-                    Reader.Close();
-                    Connection.Close();
+                    }
+                    j++;
+                }
+                Reader.Close();
+                Connection.Close();
             }
             foreach (var s in bestlist)
             {
@@ -1087,21 +1113,21 @@ namespace VeloMax.Services
             List<string> bestlist = new List<string>();
 
             if (this.DbConnection())
+            {
+                MySqlDataReader Reader = Query(Connection, best);
+                int j=0;
+                while (Reader.Read() & j<1)
                 {
-                    MySqlDataReader Reader = Query(Connection, best);
-                    int j=0;
-                    while (Reader.Read() & j<1)
+                    for (int i = 0; i < Reader.FieldCount; i++)
+                    {
                         {
-                            for (int i = 0; i < Reader.FieldCount; i++)
-                            {
-                                {
-                                    bestlist.Add(Reader.GetString(i));
-                                }
-                            }
-                            j++;
+                            bestlist.Add(Reader.GetString(i));
                         }
-                    Reader.Close();
-                    Connection.Close();
+                    }
+                    j++;
+                }
+                Reader.Close();
+                Connection.Close();
             }
             return bestlist;
         }
@@ -1115,47 +1141,47 @@ namespace VeloMax.Services
             List<List<string>>clients = new List<List<string>>();
 
             if (this.DbConnection())
+            {
+                MySqlDataReader Reader = Query(Connection, best);
+
+                List<string> fidelity0 = new List<string>();
+                List<string> fidelity1 = new List<string>();
+                List<string> fidelity2 = new List<string>();
+                List<string> fidelity3 = new List<string>();
+                List<string> fidelity4 = new List<string>();
+
+                while (Reader.Read())
                 {
-                    MySqlDataReader Reader = Query(Connection, best);
-
-                    List<string> fidelity0 = new List<string>();
-                    List<string> fidelity1 = new List<string>();
-                    List<string> fidelity2 = new List<string>();
-                    List<string> fidelity3 = new List<string>();
-                    List<string> fidelity4 = new List<string>();
-
-                    while (Reader.Read())
-                        {
-                            if(Reader.GetInt32(0)==0)
-                            {
-                                fidelity0.Add(Reader.GetString(2)+' '+Reader.GetString(3));
-                            }
-                            if(Reader.GetInt32(0)==1)
-                            {
-                                fidelity1.Add(Reader.GetString(2)+' '+Reader.GetString(3));
-                            }
-                            if(Reader.GetInt32(0)==2)
-                            {
-                                fidelity2.Add(Reader.GetString(2)+' '+Reader.GetString(3));
-                            }
-                            if(Reader.GetInt32(0)==3)
-                            {
-                                fidelity3.Add(Reader.GetString(2)+' '+Reader.GetString(3));
-                            }
-                            if(Reader.GetInt32(0)==4)
-                            {
-                                fidelity4.Add(Reader.GetString(2)+' '+Reader.GetString(3));
-                            }
-                        }   
-                    
-                    Reader.Close();
-                    Connection.Close();
-                    clients.Add(fidelity0);
-                    clients.Add(fidelity1);
-                    clients.Add(fidelity2);
-                    clients.Add(fidelity3);
-                    clients.Add(fidelity4);
-            }
+                    if(Reader.GetInt32(0)==0)
+                    {
+                        fidelity0.Add(Reader.GetString(2)+' '+Reader.GetString(3));
+                    }
+                    if(Reader.GetInt32(0)==1)
+                    {
+                        fidelity1.Add(Reader.GetString(2)+' '+Reader.GetString(3));
+                    }
+                    if(Reader.GetInt32(0)==2)
+                    {
+                        fidelity2.Add(Reader.GetString(2)+' '+Reader.GetString(3));
+                    }
+                    if(Reader.GetInt32(0)==3)
+                    {
+                        fidelity3.Add(Reader.GetString(2)+' '+Reader.GetString(3));
+                    }
+                    if(Reader.GetInt32(0)==4)
+                    {
+                        fidelity4.Add(Reader.GetString(2)+' '+Reader.GetString(3));
+                    }
+                }   
+                
+                Reader.Close();
+                Connection.Close();
+                clients.Add(fidelity0);
+                clients.Add(fidelity1);
+                clients.Add(fidelity2);
+                clients.Add(fidelity3);
+                clients.Add(fidelity4);
+        }
             return clients;
         }
 
@@ -1463,8 +1489,13 @@ namespace VeloMax.Services
         {
             int id = client.Id;
             string delete = "DELETE FROM clients WHERE id="+id.ToString();
-            string delete_fille = "DELETE FROM"+ client.TypeC() +"WHERE id="+id.ToString();
-            if(this.DbConnection())
+            Debug.WriteLine("Delete query :");
+            Debug.WriteLine(delete);
+            string delete_fille = "DELETE FROM "+ client.TypeC() +" WHERE id="+id.ToString();
+            Debug.WriteLine("Delete inherited query:");
+            Debug.WriteLine(delete_fille);
+
+            if (this.DbConnection())
             {
                 SetValue(Connection,delete_fille);
                 SetValue(Connection,delete);
@@ -1570,7 +1601,7 @@ namespace VeloMax.Services
 
             if(this.DbConnection())
             {
-                string check = "SELECT count(*) FROM "+ objects.TypeC() + "WHERE id = "+id;
+                string check = "SELECT count(*) FROM "+ objects.TypeC() + " WHERE id = "+id;
                 MySqlDataReader Reader = Query(Connection, check);
                 int j=0;
                 
