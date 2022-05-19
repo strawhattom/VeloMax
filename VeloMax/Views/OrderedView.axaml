@@ -8,7 +8,7 @@
 	>
 	<StackPanel>
 		<Design.DataContext>
-			<vm:OrderViewModel/>
+			<vm:OrderedViewModel/>
 		</Design.DataContext>
 
 		<Grid>
@@ -16,27 +16,30 @@
 				<RowDefinition Height="40"/>
 				<RowDefinition Height="550"/>
 			</Grid.RowDefinitions>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="400"/>
-				<ColumnDefinition Width="400"/>
-			</Grid.ColumnDefinitions>
+			
 
-			<!-- Title + client type button-->
-			<StackPanel>
-				<TextBlock
-					Grid.Column="0"
-					Text="Ordered bikes"
-					Foreground="#000000"
-					FontSize="28"
-					HorizontalAlignment="Left"
-					Margin="0,0,0,20"/>
-				<TextBlock
-					Grid.Column="1"
-					Text="Ordered parts"
-					Foreground="#000000"
-					FontSize="28"
-					HorizontalAlignment="Left"
-					Margin="0,0,0,20"/>
+			<!-- Title -->
+			<StackPanel Grid.Row="0">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="450"/>
+						<ColumnDefinition Width="450"/>
+					</Grid.ColumnDefinitions>
+					<TextBlock
+						Grid.Column="0"
+						Text="Ordered bikes"
+						Foreground="#000000"
+						FontSize="28"
+						HorizontalAlignment="Left"
+						Margin="0,0,0,20"/>
+					<TextBlock
+						Grid.Column="1"
+						Text="Ordered parts"
+						Foreground="#000000"
+						FontSize="28"
+						HorizontalAlignment="Left"
+						Margin="0,0,0,20"/>
+				</Grid>
 			</StackPanel>
 
 			<!-- Data + buttons -->
@@ -53,7 +56,14 @@
 					          CanUserResizeColumns="True"
 					          CanUserSortColumns="True"
 					          SelectionMode="Single"
-					          IsReadOnly="True">
+					          IsReadOnly="True"
+							  Margin="0,0,50,0">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="#" Binding="{Binding Id }"/>
+							<DataGridTextColumn Header="Order id" Binding="{Binding OrdersId }"/>
+							<DataGridTextColumn Header="Bike id" Binding="{Binding BikesId }"/>
+							<DataGridTextColumn Header="Quantity" Binding="{Binding Quantity }"/>
+						</DataGrid.Columns>
 					</DataGrid>
 					<DataGrid Grid.Column="1"
 							  Items="{Binding OrderedParts}"
@@ -63,6 +73,12 @@
 					          CanUserSortColumns="True"
 					          SelectionMode="Single"
 					          IsReadOnly="True">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="#" Binding="{Binding Id }"/>
+							<DataGridTextColumn Header="Order id" Binding="{Binding OrdersId }"/>
+							<DataGridTextColumn Header="Part id" Binding="{Binding PartsId }"/>
+							<DataGridTextColumn Header="Quantity" Binding="{Binding Quantity }"/>
+						</DataGrid.Columns>
 					</DataGrid>
 				</Grid>
 			</Panel>
