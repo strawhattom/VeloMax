@@ -2,6 +2,11 @@
 
 BDD et interopérabilité Avril 2022 – A3
 
+## Preview
+
+![preview1](./assets/preview_1.png)
+![preview2](./assets/preview_2.png)
+
 ## Clone repository
 
 ```bash
